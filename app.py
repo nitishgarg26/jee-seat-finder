@@ -1,73 +1,68 @@
-
 import streamlit as st
+import sqlite3
 import pandas as pd
 
-st.set_page_config(page_title="College Seat Finder", layout="wide")
+# Connect to the SQLite database
+conn = sqlite3.connect("jee_data.db")
+cursor = conn.cursor()
 
-@st.cache_data
-def load_data():
-    df = pd.read_csv("jee_data.csv")
-    df["Closing Rank"] = pd.to_numeric(df["Closing Rank"], errors="coerce")
-    df["Opening Rank"] = pd.to_numeric(df["Opening Rank"], errors="coerce")
-    return df
-
-df = load_data()
-
-st.title("🎓 JEE College Seat Finder (2024)")
-
-# Sidebar filters
+# Load unique values for filters
+programs_df = pd.read_sql_query("SELECT DISTINCT [Academic Program Name] FROM jee_seats", conn)
+programs = sorted(programs_df["Academic Program Name"].dropna().unique().tolist())
 
 # Predefined categories
-category_map = {
-    "Computers": ["computer", "data", "ai", "artificial", "intelligence"],
-    "Electronics": ["electronics"]
-}
+computer_keywords = ["Computer", "Data", "AI", "Artificial", "Intelligence"]
+electronics_keywords = ["Electronics"]
 
-all_programs = sorted(df["Academic Program Name"].dropna().unique())
-program_options = ["Computers", "Electronics"] + all_programs
+def match_keywords(name, keywords):
+    return any(kw.lower() in name.lower() for kw in keywords)
 
-selected_programs = st.sidebar.multiselect("Academic Programs", program_options)
+# Sidebar filters
+st.sidebar.header("Filter Options")
+rank_range = st.sidebar.slider("Rank Range (Opening to Closing)", 0, 100000, (0, 75000))
 
-gender = st.sidebar.selectbox("Gender", ["All", "Gender-Neutral", "Female-only (including Supernumerary)"])
-quota = st.sidebar.selectbox("Quota", ["All"] + sorted(df["Quota"].dropna().unique()))
-seat_type = st.sidebar.selectbox("Seat Type", ["All"] + sorted(df["Seat Type"].dropna().unique()))
-rank_range = st.sidebar.slider("Rank Range", 1, 250000, (1, 75000))
-min_rank, max_rank = rank_range
+# Program multi-select with categories
+custom_program_options = ["Computers", "Electronics"] + programs
+selected_programs = st.sidebar.multiselect("Select Programs", custom_program_options)
 
-# Apply program filtering
+# Seat Type and Quota
+seat_types = pd.read_sql_query("SELECT DISTINCT [Seat Type] FROM jee_seats", conn)["Seat Type"].dropna().tolist()
+selected_seat_types = st.sidebar.multiselect("Select Seat Types", seat_types)
+
+# Construct SQL query
+query = "SELECT * FROM jee_seats WHERE 1=1"
+conditions = []
+
+# Rank range filter
+conditions.append(f'"Opening Rank" >= {rank_range[0]} AND "Closing Rank" <= {rank_range[1]}')
+
+# Program filter logic
 if selected_programs:
-    mask = pd.Series([False] * len(df))
-    for selected in selected_programs:
-        if selected in category_map:
-            keywords = category_map[selected]
-            for kw in keywords:
-                mask |= df["Academic Program Name"].str.contains(kw, case=False, na=False)
+    program_conditions = []
+    for program in selected_programs:
+        if program == "Computers":
+            program_conditions.append(" OR ".join([f"[Academic Program Name] LIKE '%{kw}%'" for kw in computer_keywords]))
+        elif program == "Electronics":
+            program_conditions.append(" OR ".join([f"[Academic Program Name] LIKE '%{kw}%'" for kw in electronics_keywords]))
         else:
-            mask |= df["Academic Program Name"] == selected
-    filtered_df = df[mask]
-else:
-    filtered_df = df.copy()
+            program_conditions.append(f"[Academic Program Name] = '{program}'")
+    conditions.append("(" + " OR ".join(program_conditions) + ")")
 
-# Apply other filters
-if gender != "All":
-    filtered_df = filtered_df[filtered_df["Gender"] == gender]
+# Seat Type filter
+if selected_seat_types:
+    seat_conditions = " OR ".join([f"[Seat Type] = '{st}'" for st in selected_seat_types])
+    conditions.append("(" + seat_conditions + ")")
 
-if quota != "All":
-    filtered_df = filtered_df[filtered_df["Quota"] == quota]
+# Final query
+if conditions:
+    query += " AND " + " AND ".join(conditions)
 
-if seat_type != "All":
-    filtered_df = filtered_df[filtered_df["Seat Type"] == seat_type]
+query += " ORDER BY [Closing Rank] ASC"
 
-filtered_df = filtered_df[
-    (filtered_df["Opening Rank"] >= min_rank) &
-    (filtered_df["Closing Rank"] <= max_rank)
-]
+# Execute and display
+df_result = pd.read_sql_query(query, conn)
+st.title("🎓 JEE Seat Finder (Database Powered)")
+st.dataframe(df_result)
 
-# Sort by Closing Rank
-filtered_df = filtered_df.sort_values("Closing Rank")
-
-st.markdown(f"### 🔍 Showing {len(filtered_df)} Results")
-st.dataframe(filtered_df.reset_index(drop=True))
-
-# Download button
-st.download_button("📥 Download Results as CSV", filtered_df.to_csv(index=False), "filtered_results.csv")
+# Close connection
+conn.close()
