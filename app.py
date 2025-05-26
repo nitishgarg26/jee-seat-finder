@@ -1,3 +1,4 @@
+
 import streamlit as st
 import pandas as pd
 
@@ -15,21 +16,39 @@ df = load_data()
 st.title("🎓 JEE College Seat Finder (2024)")
 
 # Sidebar filters
-program = st.sidebar.text_input("Program (e.g., Computer Science)")
+
+# Predefined categories
+category_map = {
+    "Computers": ["computer", "data", "ai", "artificial", "intelligence"],
+    "Electronics": ["electronics"]
+}
+
+all_programs = sorted(df["Academic Program Name"].dropna().unique())
+program_options = ["Computers", "Electronics"] + all_programs
+
+selected_programs = st.sidebar.multiselect("Academic Programs", program_options)
+
 gender = st.sidebar.selectbox("Gender", ["All", "Gender-Neutral", "Female-only (including Supernumerary)"])
 quota = st.sidebar.selectbox("Quota", ["All"] + sorted(df["Quota"].dropna().unique()))
 seat_type = st.sidebar.selectbox("Seat Type", ["All"] + sorted(df["Seat Type"].dropna().unique()))
-
-# Single slider for rank range
 rank_range = st.sidebar.slider("Rank Range", 1, 250000, (1, 75000))
 min_rank, max_rank = rank_range
 
-# Apply filters
-filtered_df = df.copy()
+# Apply program filtering
+if selected_programs:
+    mask = pd.Series([False] * len(df))
+    for selected in selected_programs:
+        if selected in category_map:
+            keywords = category_map[selected]
+            for kw in keywords:
+                mask |= df["Academic Program Name"].str.contains(kw, case=False, na=False)
+        else:
+            mask |= df["Academic Program Name"] == selected
+    filtered_df = df[mask]
+else:
+    filtered_df = df.copy()
 
-if program:
-    filtered_df = filtered_df[filtered_df["Academic Program Name"].str.contains(program, case=False)]
-
+# Apply other filters
 if gender != "All":
     filtered_df = filtered_df[filtered_df["Gender"] == gender]
 
