@@ -6,6 +6,8 @@ import pandas as pd
 conn = sqlite3.connect("jee_data.db")
 cursor = conn.cursor()
 
+
+
 # Load unique values for filters
 programs_df = pd.read_sql_query("SELECT DISTINCT [Academic Program Name] FROM jee_seats", conn)
 programs = sorted(programs_df["Academic Program Name"].dropna().unique().tolist())
@@ -21,6 +23,10 @@ def match_keywords(name, keywords):
 st.sidebar.header("Filter Options")
 rank_range = st.sidebar.slider("Rank Range (Opening to Closing)", 0, 100000, (0, 75000))
 
+# Gender filter
+genders = pd.read_sql_query("SELECT DISTINCT Gender FROM jee_seats", conn)["Gender"].dropna().tolist()
+selected_genders = st.sidebar.multiselect("Select Gender", genders)
+
 # Program multi-select with categories
 custom_program_options = ["Computers", "Electronics"] + programs
 selected_programs = st.sidebar.multiselect("Select Programs", custom_program_options)
@@ -35,6 +41,11 @@ conditions = []
 
 # Rank range filter
 conditions.append(f'"Opening Rank" >= {rank_range[0]} AND "Closing Rank" <= {rank_range[1]}')
+
+# Gender filter condition
+if selected_genders:
+    gender_conditions = " OR ".join([f"Gender = '{g}'" for g in selected_genders])
+    conditions.append(f"({gender_conditions})")
 
 # Program filter logic
 if selected_programs:
