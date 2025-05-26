@@ -5,7 +5,10 @@ st.set_page_config(page_title="College Seat Finder", layout="wide")
 
 @st.cache_data
 def load_data():
-    return pd.read_csv("jee_data.csv")
+    df = pd.read_csv("jee_data.csv")
+    df["Closing Rank"] = pd.to_numeric(df["Closing Rank"], errors="coerce")
+    df["Opening Rank"] = pd.to_numeric(df["Opening Rank"], errors="coerce")
+    return df
 
 df = load_data()
 
