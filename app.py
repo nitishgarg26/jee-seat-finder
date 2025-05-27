@@ -17,69 +17,74 @@ st.sidebar.header("🔍 Filter Options")
 admin_mode = st.sidebar.checkbox("🔑 Admin Login")
 
 if not admin_mode:
-    # User view
-    gender = st.sidebar.multiselect("Gender", options=sorted(df["Gender"].dropna().unique()))
-    seat_type = st.sidebar.multiselect("Seat Type", options=sorted(df["Seat Type"].dropna().unique()))
-    quota = st.sidebar.multiselect("Quota", options=sorted(df["Quota"].dropna().unique()))
-    college_type = st.sidebar.multiselect("College Type", options=sorted(df["Type"].dropna().unique()))
+    # User filters
 
-    # Closing Rank based filter
-    min_rank = int(df["Closing Rank"].min())
-    max_rank = int(df["Closing Rank"].max())
-    rank_range = st.sidebar.slider(
-        "Closing Rank Range",
-        min_rank,
-        max_rank,
-        (min_rank, max_rank),
-        step=1000
+    # College Type filter
+    college_types = sorted(df["Type"].dropna().unique())
+    selected_types = st.sidebar.multiselect("College Type", college_types, default=college_types)
+
+    # Filter dataframe for programs based on selected college types
+    filtered_df_for_programs = df[df["Type"].isin(selected_types)]
+    all_programs = sorted(filtered_df_for_programs["Academic Program Name"].dropna().unique().tolist())
+
+    # Program selection with groups and filtered programs
+    program_group = st.sidebar.multiselect(
+        "Select Program(s)",
+        ["Computers", "Electronics"] + all_programs
     )
 
-    # Program filter with smart groupings + full list
-    program_options = df.copy()
-    if college_type:
-        program_options = program_options[program_options["Type"].isin(college_type)]
+    # Gender filter
+    gender = st.sidebar.multiselect("Gender", options=sorted(df["Gender"].dropna().unique()))
 
-    program_choices = [
-        "Computers",
-        "Electronics"
-    ] + sorted(program_options["Academic Program Name"].dropna().unique())
+    # Quota filter (new)
+    quota = st.sidebar.multiselect("Quota", options=sorted(df["Quota"].dropna().unique()))
 
-    selected_programs = st.sidebar.multiselect("Program", options=program_choices)
+    # Seat type filter
+    seat_type = st.sidebar.multiselect("Seat Type", options=sorted(df["Seat Type"].dropna().unique()))
 
-    final_programs = []
-    for p in selected_programs:
-        if p == "Computers":
-            final_programs += program_options[
-                program_options["Academic Program Name"]
-                .str.contains("Computer|Data|AI|Artificial|Intelligence", case=False, na=False)
-            ]["Academic Program Name"].tolist()
-        elif p == "Electronics":
-            final_programs += program_options[
-                program_options["Academic Program Name"]
-                .str.contains("Electronics", case=False, na=False)
-            ]["Academic Program Name"].tolist()
-        else:
-            final_programs.append(p)
+    # Rank range slider (opening and closing)
+    rank_range = st.sidebar.slider("Rank Range (Opening to Closing)", 0, 200000, (0, 200000), step=1000)
 
-    # Apply filters
-    filtered_df = df.copy()
-    filtered_df = filtered_df[(filtered_df["Closing Rank"] >= rank_range[0]) & (filtered_df["Closing Rank"] <= rank_range[1])]
+    # Apply filters step by step
+    filtered_df = df[df["Type"].isin(selected_types)]
+    filtered_df = filtered_df[(filtered_df["Opening Rank"] >= rank_range[0]) & (filtered_df["Closing Rank"] <= rank_range[1])]
+
     if gender:
         filtered_df = filtered_df[filtered_df["Gender"].isin(gender)]
     if seat_type:
         filtered_df = filtered_df[filtered_df["Seat Type"].isin(seat_type)]
     if quota:
         filtered_df = filtered_df[filtered_df["Quota"].isin(quota)]
-    if college_type:
-        filtered_df = filtered_df[filtered_df["Type"].isin(college_type)]
-    if selected_programs:
-        filtered_df = filtered_df[filtered_df["Academic Program Name"].isin(final_programs)]
 
-    # Sort and display
+    # Program filtering logic with groups
+    selected_programs = []
+    if "Computers" in program_group:
+        selected_programs += filtered_df_for_programs[
+            filtered_df_for_programs["Academic Program Name"].str.contains(
+                "Computer|Data|AI|Artificial|Intelligence", case=False, na=False
+            )
+        ]["Academic Program Name"].unique().tolist()
+
+    if "Electronics" in program_group:
+        selected_programs += filtered_df_for_programs[
+            filtered_df_for_programs["Academic Program Name"].str.contains(
+                "Electronics", case=False, na=False
+            )
+        ]["Academic Program Name"].unique().tolist()
+
+    # Add any explicitly selected programs (not groups)
+    selected_programs += [pg for pg in program_group if pg not in ["Computers", "Electronics"]]
+
+    if selected_programs:
+        filtered_df = filtered_df[filtered_df["Academic Program Name"].isin(selected_programs)]
+
+    # Sort by Closing Rank
     filtered_df = filtered_df.sort_values(by="Closing Rank")
+
+    # Display the filtered dataframe
     st.dataframe(filtered_df, use_container_width=True)
 
-    # CSV download
+    # CSV download option
     csv = filtered_df.to_csv(index=False).encode("utf-8")
     st.download_button(
         label="📥 Download results as CSV",
@@ -89,7 +94,7 @@ if not admin_mode:
     )
 
 else:
-    # Admin login
+    # Admin login and add data panel
     st.subheader("🔒 Admin Panel")
     username = st.text_input("Username")
     password = st.text_input("Password", type="password")
@@ -104,7 +109,6 @@ else:
             existing_locations = sorted(df["Location"].dropna().unique())
             existing_programs = sorted(df["Academic Program Name"].dropna().unique())
 
-            # Form to add new data
             with st.form("data_entry_form"):
                 institute = st.selectbox("Institute", options=[""] + existing_institutes)
                 location = st.selectbox("Location", options=[""] + existing_locations)
