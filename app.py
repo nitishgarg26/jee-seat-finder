@@ -17,39 +17,69 @@ st.sidebar.header("🔍 Filter Options")
 admin_mode = st.sidebar.checkbox("🔑 Admin Login")
 
 if not admin_mode:
-    # User view
+    # User filters
+
+    # College Type filter
+    college_types = sorted(df["Type"].dropna().unique())
+    selected_types = st.sidebar.multiselect("College Type", college_types, default=college_types)
+
+    # Filter dataframe for programs based on selected college types
+    filtered_df_for_programs = df[df["Type"].isin(selected_types)]
+    all_programs = sorted(filtered_df_for_programs["Academic Program Name"].dropna().unique().tolist())
+
+    # Program selection with groups and filtered programs
+    program_group = st.sidebar.multiselect(
+        "Select Program(s)",
+        ["Computers", "Electronics"] + all_programs
+    )
+
+    # Gender filter
     gender = st.sidebar.multiselect("Gender", options=sorted(df["Gender"].dropna().unique()))
+
+    # Seat type filter
     seat_type = st.sidebar.multiselect("Seat Type", options=sorted(df["Seat Type"].dropna().unique()))
+
+    # Rank range slider (opening and closing)
     rank_range = st.sidebar.slider("Rank Range (Opening to Closing)", 0, 200000, (0, 200000), step=1000)
 
-    # Program filter with custom groups
-    all_programs = sorted(df["Academic Program Name"].dropna().unique().tolist())
-    program_group = st.sidebar.multiselect(
-    "Select Program(s)",
-    ["Computers", "Electronics"] + all_programs
-)
-    selected_programs = []
-    if "Computers" in program_group:
-        selected_programs += df[df["Academic Program Name"].str.contains("Computer|Data|AI|Artificial|Intelligence", case=False, na=False)]["Academic Program Name"].unique().tolist()
-    if "Electronics" in program_group:
-        selected_programs += df[df["Academic Program Name"].str.contains("Electronics", case=False, na=False)]["Academic Program Name"].unique().tolist()
-
-    # Apply filters
-    filtered_df = df.copy()
+    # Apply filters step by step
+    filtered_df = df[df["Type"].isin(selected_types)]
     filtered_df = filtered_df[(filtered_df["Opening Rank"] >= rank_range[0]) & (filtered_df["Closing Rank"] <= rank_range[1])]
+
     if gender:
         filtered_df = filtered_df[filtered_df["Gender"].isin(gender)]
     if seat_type:
         filtered_df = filtered_df[filtered_df["Seat Type"].isin(seat_type)]
+
+    # Program filtering logic with groups
+    selected_programs = []
+    if "Computers" in program_group:
+        selected_programs += filtered_df_for_programs[
+            filtered_df_for_programs["Academic Program Name"].str.contains(
+                "Computer|Data|AI|Artificial|Intelligence", case=False, na=False
+            )
+        ]["Academic Program Name"].unique().tolist()
+
+    if "Electronics" in program_group:
+        selected_programs += filtered_df_for_programs[
+            filtered_df_for_programs["Academic Program Name"].str.contains(
+                "Electronics", case=False, na=False
+            )
+        ]["Academic Program Name"].unique().tolist()
+
+    # Add any explicitly selected programs (not groups)
     selected_programs += [pg for pg in program_group if pg not in ["Computers", "Electronics"]]
+
     if selected_programs:
         filtered_df = filtered_df[filtered_df["Academic Program Name"].isin(selected_programs)]
 
-    # Sort and display
+    # Sort by Closing Rank
     filtered_df = filtered_df.sort_values(by="Closing Rank")
+
+    # Display the filtered dataframe
     st.dataframe(filtered_df, use_container_width=True)
 
-    # CSV download
+    # CSV download option
     csv = filtered_df.to_csv(index=False).encode("utf-8")
     st.download_button(
         label="📥 Download results as CSV",
@@ -57,8 +87,9 @@ if not admin_mode:
         file_name="jee_filtered_results.csv",
         mime="text/csv"
     )
+
 else:
-    # Admin login
+    # Admin login and add data panel
     st.subheader("🔒 Admin Panel")
     username = st.text_input("Username")
     password = st.text_input("Password", type="password")
@@ -73,7 +104,6 @@ else:
             existing_locations = sorted(df["Location"].dropna().unique())
             existing_programs = sorted(df["Academic Program Name"].dropna().unique())
 
-            # Form to add new data
             with st.form("data_entry_form"):
                 institute = st.selectbox("Institute", options=[""] + existing_institutes)
                 location = st.selectbox("Location", options=[""] + existing_locations)
