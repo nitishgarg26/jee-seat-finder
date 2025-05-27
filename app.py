@@ -36,6 +36,9 @@ if not admin_mode:
     # Gender filter
     gender = st.sidebar.multiselect("Gender", options=sorted(df["Gender"].dropna().unique()))
 
+    # Quota filter (new)
+    quota = st.sidebar.multiselect("Quota", options=sorted(df["Quota"].dropna().unique()))
+
     # Seat type filter
     seat_type = st.sidebar.multiselect("Seat Type", options=sorted(df["Seat Type"].dropna().unique()))
 
@@ -50,6 +53,8 @@ if not admin_mode:
         filtered_df = filtered_df[filtered_df["Gender"].isin(gender)]
     if seat_type:
         filtered_df = filtered_df[filtered_df["Seat Type"].isin(seat_type)]
+    if quota:
+        filtered_df = filtered_df[filtered_df["Quota"].isin(quota)]
 
     # Program filtering logic with groups
     selected_programs = []
