@@ -18,8 +18,8 @@ admin_mode = st.sidebar.checkbox("🔑 Admin Login")
 
 if not admin_mode:
     # User view
-    gender = st.sidebar.multiselect("Gender", options=sorted(df["Gender"].unique()))
-    seat_type = st.sidebar.multiselect("Seat Type", options=sorted(df["Seat Type"].unique()))
+    gender = st.sidebar.multiselect("Gender", options=sorted(df["Gender"].dropna().unique()))
+    seat_type = st.sidebar.multiselect("Seat Type", options=sorted(df["Seat Type"].dropna().unique()))
     rank_range = st.sidebar.slider("Rank Range (Opening to Closing)", 0, 200000, (0, 200000), step=1000)
 
     # Program filter with custom groups
@@ -33,7 +33,7 @@ if not admin_mode:
     if "Electronics" in program_group:
         custom_programs += df[df["Academic Program Name"].str.contains("Electronics", case=False, na=False)]["Academic Program Name"].unique().tolist()
     if "Custom" in program_group:
-        custom_programs += st.sidebar.multiselect("Select Programs", options=sorted(df["Academic Program Name"].unique()))
+        custom_programs += st.sidebar.multiselect("Select Programs", options=sorted(df["Academic Program Name"].dropna().unique()))
 
     # Apply filters
     filtered_df = df.copy()
@@ -68,17 +68,17 @@ else:
             st.markdown("---")
             st.subheader("➕ Add New Seat Record")
 
+            # Suggestions for admin entry
+            existing_institutes = sorted(df["Institute"].dropna().unique())
+            existing_locations = sorted(df["Location"].dropna().unique())
+            existing_programs = sorted(df["Academic Program Name"].dropna().unique())
+
             # Form to add new data
             with st.form("data_entry_form"):
-                inst_type = st.selectbox("Type", ["IIT", "NIT", "IIIT", "GFTI"])
-                existing_institutes = sorted(df["Institute"].dropna().unique())
-                existing_locations = sorted(df["Location"].dropna().unique())
-                existing_programs = sorted(df["Academic Program Name"].dropna().unique())
-
                 institute = st.selectbox("Institute", options=[""] + existing_institutes)
                 location = st.selectbox("Location", options=[""] + existing_locations)
+                inst_type = st.selectbox("Type", ["IIT", "NIT", "IIIT", "GFTI"])
                 program = st.selectbox("Academic Program Name", options=[""] + existing_programs)
-
                 quota = st.selectbox("Quota", ["AI", "HS", "OS"])
                 seat_type = st.text_input("Seat Type")
                 gender = st.selectbox("Gender", ["Gender-Neutral", "Female-only (including Supernumerary)"])
