@@ -18,19 +18,35 @@ admin_mode = st.sidebar.checkbox("🔑 Admin Login")
 
 if not admin_mode:
     # User filters
-
-    # College Type filter
+    
+    # 1. College Type
     college_types = sorted(df["Type"].dropna().unique())
     selected_types = st.sidebar.multiselect("College Type", college_types, default=college_types)
+    
+    # 2. College Name (filtered by College Type), with "All" option
+    filtered_df_for_colleges = df[df["Type"].isin(selected_types)]
+    college_names = sorted(filtered_df_for_colleges["Institute"].dropna().unique())
+    college_names_with_all = ["All"] + college_names
 
-    # Filter dataframe for programs based on selected college types
-    filtered_df_for_programs = df[df["Type"].isin(selected_types)]
+    selected_colleges = st.sidebar.multiselect(
+    "College Name",
+    college_names_with_all,
+    default=["All"]
+    )   
+
+    # Handle "All" selection logic
+    if "All" in selected_colleges or not selected_colleges:
+        filtered_df_for_programs = filtered_df_for_colleges
+        selected_colleges = college_names  # for further filtering
+    else:
+        filtered_df_for_programs = filtered_df_for_colleges[filtered_df_for_colleges["Institute"].isin(selected_colleges)]
+    
+    # 3. Program (filtered by College Name)
+    filtered_df_for_programs = filtered_df_for_colleges[filtered_df_for_colleges["Institute"].isin(selected_colleges)]
     all_programs = sorted(filtered_df_for_programs["Academic Program Name"].dropna().unique().tolist())
-
-    # Program selection with groups and filtered programs
     program_group = st.sidebar.multiselect(
-        "Select Program(s)",
-        ["Computers", "Electronics"] + all_programs
+    "Select Program(s)",
+    ["Computers", "Electronics"] + all_programs
     )
 
     # Gender filter
@@ -43,11 +59,11 @@ if not admin_mode:
     seat_type = st.sidebar.multiselect("Seat Type", options=sorted(df["Seat Type"].dropna().unique()))
 
     # Rank range slider (opening and closing)
-    rank_range = st.sidebar.slider("Rank Range (Opening to Closing)", 0, 200000, (0, 200000), step=1000)
+    rank_range = st.sidebar.slider("Rank Range (Closing)", 0, 200000, (0, 1000000), step=1000)
 
     # Apply filters step by step
     filtered_df = df[df["Type"].isin(selected_types)]
-    filtered_df = filtered_df[(filtered_df["Opening Rank"] >= rank_range[0]) & (filtered_df["Closing Rank"] <= rank_range[1])]
+    filtered_df = filtered_df[(filtered_df["Closing Rank"] >= rank_range[0]) & (filtered_df["Closing Rank"] <= rank_range[1])]
 
     if gender:
         filtered_df = filtered_df[filtered_df["Gender"].isin(gender)]
