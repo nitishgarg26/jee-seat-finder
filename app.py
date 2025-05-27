@@ -2,103 +2,92 @@ import streamlit as st
 import pandas as pd
 import sqlite3
 
-# Set page layout to wide
-st.set_page_config(layout="wide", page_title="JEE Seat Finder")
+st.set_page_config(page_title="JEE Seat Finder", layout="wide")
+st.title("🎓 JEE Seat Finder")
 
-# Connect to SQLite database
+# Connect to the SQLite database
 conn = sqlite3.connect("jee_data.db")
 cursor = conn.cursor()
+df = pd.read_sql_query("SELECT * FROM jee_seats", conn)
 
 # Sidebar filters
-st.sidebar.header("Filter Options")
-rank_range = st.sidebar.slider("Rank Range (Opening to Closing)", 0, 100000, (0, 75000))
+st.sidebar.header("🔍 Filter Options")
 
-# Load distinct values for dynamic filters
-df = pd.read_sql_query("SELECT DISTINCT Gender, `Seat Type`, `Academic Program Name` FROM jee_seats", conn)
+# Admin mode toggle
+admin_mode = st.sidebar.checkbox("🔑 Admin Login")
 
-# Gender filter
-genders = df["Gender"].dropna().unique().tolist()
-selected_genders = st.sidebar.multiselect("Select Gender", genders)
+if not admin_mode:
+    # User view
+    gender = st.sidebar.multiselect("Gender", options=sorted(df["Gender"].unique()))
+    seat_type = st.sidebar.multiselect("Seat Type", options=sorted(df["Seat Type"].unique()))
+    rank_range = st.sidebar.slider("Rank Range (Opening to Closing)", 0, 200000, (0, 200000), step=1000)
 
-# Seat Type filter
-seat_types = df["Seat Type"].dropna().unique().tolist()
-selected_seat_types = st.sidebar.multiselect("Select Seat Type", seat_types)
-
-# Academic Program filter with categorized options
-programs_df = df["Academic Program Name"].dropna().unique().tolist()
-categorized_programs = [
-    "Computers",
-    "Electronics"
-] + sorted(programs_df)
-
-selected_programs = st.sidebar.multiselect(
-    "Select Academic Programs",
-    categorized_programs,
-    default=[]
-)
-
-# Build SQL query conditions
-conditions = [
-    f"`Opening Rank` >= {rank_range[0]} AND `Closing Rank` <= {rank_range[1]}"
-]
-
-# Gender filter
-if selected_genders:
-    gender_cond = " OR ".join([f"Gender = '{g}'" for g in selected_genders])
-    conditions.append(f"({gender_cond})")
-
-# Seat type filter
-if selected_seat_types:
-    seat_cond = " OR ".join([f"`Seat Type` = '{s}'" for s in selected_seat_types])
-    conditions.append(f"({seat_cond})")
-
-# Academic program filter
-if selected_programs:
-    program_keywords = {
-        "Computers": ["Computer", "Data", "AI", "Artificial", "Intelligence"],
-        "Electronics": ["Electronics"]
-    }
-    keywords = []
-    for prog in selected_programs:
-        if prog in program_keywords:
-            keywords.extend(program_keywords[prog])
-        else:
-            keywords.append(prog)
-    program_cond = " OR ".join([f"`Academic Program Name` LIKE '%{k}%'" for k in keywords])
-    conditions.append(f"({program_cond})")
-
-# Final SQL query
-query = "SELECT * FROM jee_seats"
-if conditions:
-    query += " WHERE " + " AND ".join(conditions)
-query += " ORDER BY `Closing Rank` ASC"
-
-# Fetch data
-try:
-    df_result = pd.read_sql_query(query, conn)
-except Exception as e:
-    st.error(f"Error retrieving data: {e}")
-    df_result = pd.DataFrame()
-
-# Display results
-st.title("\U0001F393 JEE Seat Finder (Database Powered)")
-
-if not df_result.empty:
-    st.markdown(f"### Showing {len(df_result)} results")
-
-    st.dataframe(
-        df_result,
-        use_container_width=True,
-        hide_index=True,
+    # Program filter with custom groups
+    program_group = st.sidebar.multiselect(
+        "Program Group",
+        ["Computers", "Electronics", "Custom"]
     )
+    custom_programs = []
+    if "Computers" in program_group:
+        custom_programs += df[df["Academic Program Name"].str.contains("Computer|Data|AI|Artificial|Intelligence", case=False, na=False)]["Academic Program Name"].unique().tolist()
+    if "Electronics" in program_group:
+        custom_programs += df[df["Academic Program Name"].str.contains("Electronics", case=False, na=False)]["Academic Program Name"].unique().tolist()
+    if "Custom" in program_group:
+        custom_programs += st.sidebar.multiselect("Select Programs", options=sorted(df["Academic Program Name"].unique()))
 
-    # CSV download option
-    csv = df_result.to_csv(index=False).encode('utf-8')
+    # Apply filters
+    filtered_df = df.copy()
+    filtered_df = filtered_df[(filtered_df["Opening Rank"] >= rank_range[0]) & (filtered_df["Closing Rank"] <= rank_range[1])]
+    if gender:
+        filtered_df = filtered_df[filtered_df["Gender"].isin(gender)]
+    if seat_type:
+        filtered_df = filtered_df[filtered_df["Seat Type"].isin(seat_type)]
+    if program_group:
+        filtered_df = filtered_df[filtered_df["Academic Program Name"].isin(custom_programs)]
+
+    # Sort and display
+    filtered_df = filtered_df.sort_values(by="Closing Rank")
+    st.dataframe(filtered_df, use_container_width=True)
+
+    # CSV download
+    csv = filtered_df.to_csv(index=False).encode("utf-8")
     st.download_button(
-        label="\u2B07\uFE0F Download Results as CSV",
+        label="📥 Download results as CSV",
         data=csv,
-        file_name='jee_seat_results.csv',
-        mime='text/csv',
+        file_name="jee_filtered_results.csv",
+        mime="text/csv"
     )
 else:
-    st.warning("No results found. Try adjusting your filters.")
+    # Admin login
+    st.subheader("🔒 Admin Panel")
+    username = st.text_input("Username")
+    password = st.text_input("Password", type="password")
+    if st.button("Login"):
+        if username == "admin" and password == "admin123":
+            st.success("Logged in successfully!")
+            st.markdown("---")
+            st.subheader("➕ Add New Seat Record")
+
+            # Form to add new data
+            with st.form("data_entry_form"):
+                institute = st.text_input("Institute")
+                location = st.text_input("Location")
+                inst_type = st.selectbox("Type", ["IIT", "NIT", "IIIT", "GFTI"])
+                program = st.text_input("Academic Program Name")
+                quota = st.selectbox("Quota", ["AI", "HS", "OS"])
+                seat_type = st.text_input("Seat Type")
+                gender = st.selectbox("Gender", ["Gender-Neutral", "Female-only (including Supernumerary)"])
+                opening = st.number_input("Opening Rank", min_value=0, step=1)
+                closing = st.number_input("Closing Rank", min_value=0, step=1)
+                year = st.selectbox("Year", [2022, 2023, 2024])
+
+                submitted = st.form_submit_button("Add Record")
+                if submitted:
+                    cursor.execute("""
+                        INSERT INTO jee_seats (Institute, Location, Type, `Academic Program Name`, Quota, `Seat Type`, Gender, `Opening Rank`, `Closing Rank`, Year)
+                        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+                    """, (institute, location, inst_type, program, quota, seat_type, gender, opening, closing, year))
+                    conn.commit()
+                    st.success("✅ Record added successfully!")
+        else:
+            st.error("Invalid credentials.")
