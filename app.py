@@ -23,17 +23,16 @@ if not admin_mode:
     rank_range = st.sidebar.slider("Rank Range (Opening to Closing)", 0, 200000, (0, 200000), step=1000)
 
     # Program filter with custom groups
+    all_programs = sorted(df["Academic Program Name"].dropna().unique().tolist())
     program_group = st.sidebar.multiselect(
-        "Program Group",
-        ["Computers", "Electronics", "Custom"]
-    )
-    custom_programs = []
+    "Select Program(s)",
+    ["Computers", "Electronics"] + all_programs
+)
+    selected_programs = []
     if "Computers" in program_group:
-        custom_programs += df[df["Academic Program Name"].str.contains("Computer|Data|AI|Artificial|Intelligence", case=False, na=False)]["Academic Program Name"].unique().tolist()
+        selected_programs += df[df["Academic Program Name"].str.contains("Computer|Data|AI|Artificial|Intelligence", case=False, na=False)]["Academic Program Name"].unique().tolist()
     if "Electronics" in program_group:
-        custom_programs += df[df["Academic Program Name"].str.contains("Electronics", case=False, na=False)]["Academic Program Name"].unique().tolist()
-    if "Custom" in program_group:
-        custom_programs += st.sidebar.multiselect("Select Programs", options=sorted(df["Academic Program Name"].dropna().unique()))
+        selected_programs += df[df["Academic Program Name"].str.contains("Electronics", case=False, na=False)]["Academic Program Name"].unique().tolist()
 
     # Apply filters
     filtered_df = df.copy()
@@ -42,8 +41,9 @@ if not admin_mode:
         filtered_df = filtered_df[filtered_df["Gender"].isin(gender)]
     if seat_type:
         filtered_df = filtered_df[filtered_df["Seat Type"].isin(seat_type)]
-    if program_group:
-        filtered_df = filtered_df[filtered_df["Academic Program Name"].isin(custom_programs)]
+    selected_programs += [pg for pg in program_group if pg not in ["Computers", "Electronics"]]
+    if selected_programs:
+        filtered_df = filtered_df[filtered_df["Academic Program Name"].isin(selected_programs)]
 
     # Sort and display
     filtered_df = filtered_df.sort_values(by="Closing Rank")
