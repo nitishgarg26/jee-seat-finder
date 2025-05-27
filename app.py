@@ -34,27 +34,30 @@ if not admin_mode:
         step=1000
     )
 
-    # Program filter with custom groups and full list
-    program_group = st.sidebar.multiselect("Program Group", ["Computers", "Electronics"])
+    # Program filter with smart groupings + full list
     program_options = df.copy()
     if college_type:
         program_options = program_options[program_options["Type"].isin(college_type)]
 
-    custom_programs = []
-    if "Computers" in program_group:
-        custom_programs += program_options[program_options["Academic Program Name"].str.contains("Computer|Data|AI|Artificial|Intelligence", case=False, na=False)]["Academic Program Name"].unique().tolist()
-    if "Electronics" in program_group:
-        custom_programs += program_options[program_options["Academic Program Name"].str.contains("Electronics", case=False, na=False)]["Academic Program Name"].unique().tolist()
+    program_choices = [
+        "Computers",
+        "Electronics"
+    ] + sorted(program_options["Academic Program Name"].dropna().unique())
 
-    all_programs = sorted(program_options["Academic Program Name"].dropna().unique())
-    selected_programs = st.sidebar.multiselect("Select Program", options=["Computers", "Electronics"] + all_programs)
+    selected_programs = st.sidebar.multiselect("Program", options=program_choices)
 
     final_programs = []
     for p in selected_programs:
         if p == "Computers":
-            final_programs += program_options[program_options["Academic Program Name"].str.contains("Computer|Data|AI|Artificial|Intelligence", case=False, na=False)]["Academic Program Name"].tolist()
+            final_programs += program_options[
+                program_options["Academic Program Name"]
+                .str.contains("Computer|Data|AI|Artificial|Intelligence", case=False, na=False)
+            ]["Academic Program Name"].tolist()
         elif p == "Electronics":
-            final_programs += program_options[program_options["Academic Program Name"].str.contains("Electronics", case=False, na=False)]["Academic Program Name"].tolist()
+            final_programs += program_options[
+                program_options["Academic Program Name"]
+                .str.contains("Electronics", case=False, na=False)
+            ]["Academic Program Name"].tolist()
         else:
             final_programs.append(p)
 
@@ -84,6 +87,7 @@ if not admin_mode:
         file_name="jee_filtered_results.csv",
         mime="text/csv"
     )
+
 else:
     # Admin login
     st.subheader("🔒 Admin Panel")
