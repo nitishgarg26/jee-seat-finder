@@ -38,7 +38,7 @@ if login_button:
         gender = st.selectbox("Gender", ["Gender-Neutral", "Female-only (including Supernumerary)"])
         opening = st.number_input("Opening Rank", min_value=0, step=1)
         closing = st.number_input("Closing Rank", min_value=0, step=1)
-        year = st.selectbox("Year", [2021,2022, 2023, 2024])
+        year = st.selectbox("Year", [2021, 2022, 2023, 2024])
 
         if st.button("➕ Add to Database"):
             cursor.execute("""

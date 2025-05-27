@@ -70,16 +70,21 @@ else:
 
             # Form to add new data
             with st.form("data_entry_form"):
-                institute = st.text_input("Institute")
-                location = st.text_input("Location")
                 inst_type = st.selectbox("Type", ["IIT", "NIT", "IIIT", "GFTI"])
-                program = st.text_input("Academic Program Name")
+                existing_institutes = sorted(df["Institute"].dropna().unique())
+                existing_locations = sorted(df["Location"].dropna().unique())
+                existing_programs = sorted(df["Academic Program Name"].dropna().unique())
+
+                institute = st.selectbox("Institute", options=[""] + existing_institutes)
+                location = st.selectbox("Location", options=[""] + existing_locations)
+                program = st.selectbox("Academic Program Name", options=[""] + existing_programs)
+
                 quota = st.selectbox("Quota", ["AI", "HS", "OS"])
                 seat_type = st.text_input("Seat Type")
                 gender = st.selectbox("Gender", ["Gender-Neutral", "Female-only (including Supernumerary)"])
                 opening = st.number_input("Opening Rank", min_value=0, step=1)
                 closing = st.number_input("Closing Rank", min_value=0, step=1)
-                year = st.selectbox("Year", [2022, 2023, 2024])
+                year = st.selectbox("Year", [2021, 2022, 2023, 2024])
 
                 submitted = st.form_submit_button("Add Record")
                 if submitted:
