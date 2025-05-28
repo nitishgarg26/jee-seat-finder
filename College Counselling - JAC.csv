@@ -1,0 +1,933 @@
+Institute,Location,Type,Academic Program Name,Quota,Seat Type,Gender,Opening Rank,Closing Rank,Year
+NSUT Main Campus,Delhi,JAC Delhi,Computer Science and Engineering (Artificial Intelligence),HS,OPEN,Gender-Neutral,,9717,2024
+NSUT Main Campus,Delhi,JAC Delhi,Computer Science and Engineering (Artificial Intelligence),HS,EWS,Gender-Neutral,,18327,2024
+NSUT Main Campus,Delhi,JAC Delhi,Computer Science and Engineering (Artificial Intelligence),HS,OBC-NCL,Gender-Neutral,,30361,2024
+NSUT Main Campus,Delhi,JAC Delhi,Computer Science and Engineering (Artificial Intelligence),HS,SC,Gender-Neutral,,82671,2024
+NSUT Main Campus,Delhi,JAC Delhi,Computer Science and Engineering (Artificial Intelligence),HS,ST,Gender-Neutral,,254803,2024
+NSUT Main Campus,Delhi,JAC Delhi,Computer Science and Engineering (Artificial Intelligence),HS,OPEN,Female Only,,16573,2024
+NSUT Main Campus,Delhi,JAC Delhi,Computer Science and Engineering (Artificial Intelligence),HS,EWS,Female Only,,31894,2024
+NSUT Main Campus,Delhi,JAC Delhi,Computer Science and Engineering (Artificial Intelligence),HS,OBC-NCL,Female Only,,66077,2024
+NSUT Main Campus,Delhi,JAC Delhi,Computer Science and Engineering (Artificial Intelligence),HS,SC,Female Only,,142608,2024
+NSUT Main Campus,Delhi,JAC Delhi,Computer Science and Engineering (Artificial Intelligence),HS,ST,Female Only,,433104,2024
+NSUT Main Campus,Delhi,JAC Delhi,Computer Science and Engineering (Artificial Intelligence),HS,OPEN (CW),Gender-Neutral,,720686,2024
+NSUT Main Campus,Delhi,JAC Delhi,Computer Science and Engineering (Artificial Intelligence),HS,OBC (CW),Gender-Neutral,,98319,2024
+NSUT Main Campus,Delhi,JAC Delhi,Computer Science and Engineering (Artificial Intelligence),HS,SC (CW),Gender-Neutral,,555672,2024
+NSUT Main Campus,Delhi,JAC Delhi,Computer Science and Engineering (Artificial Intelligence),HS,OPEN (PwD),Gender-Neutral,,105902,2024
+NSUT Main Campus,Delhi,JAC Delhi,Computer Science and Engineering (Artificial Intelligence),HS,OBC (PwD),Gender-Neutral,,314106,2024
+NSUT Main Campus,Delhi,JAC Delhi,Computer Science and Engineering (Artificial Intelligence),HS,SC (PwD),Gender-Neutral,,473332,2024
+NSUT Main Campus,Delhi,JAC Delhi,Computer Science and Engineering (Artificial Intelligence),HS,OPEN (KM),Gender-Neutral,,43084,2024
+NSUT Main Campus,Delhi,JAC Delhi,Computer Science and Engineering,HS,OPEN,Gender-Neutral,,12803,2024
+NSUT Main Campus,Delhi,JAC Delhi,Computer Science and Engineering,HS,EWS,Gender-Neutral,,25468,2024
+NSUT Main Campus,Delhi,JAC Delhi,Computer Science and Engineering,HS,OBC-NCL,Gender-Neutral,,49996,2024
+NSUT Main Campus,Delhi,JAC Delhi,Computer Science and Engineering,HS,SC,Gender-Neutral,,113605,2024
+NSUT Main Campus,Delhi,JAC Delhi,Computer Science and Engineering,HS,ST,Gender-Neutral,,314867,2024
+NSUT Main Campus,Delhi,JAC Delhi,Computer Science and Engineering,HS,OPEN,Female Only,,18509,2024
+NSUT Main Campus,Delhi,JAC Delhi,Computer Science and Engineering,HS,EWS,Female Only,,30260,2024
+NSUT Main Campus,Delhi,JAC Delhi,Computer Science and Engineering,HS,OBC-NCL,Female Only,,74635,2024
+NSUT Main Campus,Delhi,JAC Delhi,Computer Science and Engineering,HS,SC,Female Only,,180198,2024
+NSUT Main Campus,Delhi,JAC Delhi,Computer Science and Engineering,HS,ST,Female Only,,422005,2024
+NSUT Main Campus,Delhi,JAC Delhi,Computer Science and Engineering,HS,OPEN (CW),Gender-Neutral,,575902,2024
+NSUT Main Campus,Delhi,JAC Delhi,Computer Science and Engineering,HS,EWS (CW),Gender-Neutral,,66884,2024
+NSUT Main Campus,Delhi,JAC Delhi,Computer Science and Engineering,HS,OBC (CW),Gender-Neutral,,99626,2024
+NSUT Main Campus,Delhi,JAC Delhi,Computer Science and Engineering,HS,SC (CW),Gender-Neutral,,304195,2024
+NSUT Main Campus,Delhi,JAC Delhi,Computer Science and Engineering,HS,OPEN (PwD),Gender-Neutral,,199938,2024
+NSUT Main Campus,Delhi,JAC Delhi,Computer Science and Engineering,HS,EWS (PwD),Gender-Neutral,,1290052,2024
+NSUT Main Campus,Delhi,JAC Delhi,Computer Science and Engineering,HS,OBC (PwD),Gender-Neutral,,756719,2024
+NSUT Main Campus,Delhi,JAC Delhi,Computer Science and Engineering,HS,SC (PwD),Gender-Neutral,,473332,2024
+NSUT Main Campus,Delhi,JAC Delhi,Computer Science and Engineering (Data Science),HS,OPEN,Gender-Neutral,,15264,2024
+NSUT Main Campus,Delhi,JAC Delhi,Computer Science and Engineering (Data Science),HS,EWS,Gender-Neutral,,26286,2024
+NSUT Main Campus,Delhi,JAC Delhi,Computer Science and Engineering (Data Science),HS,OBC-NCL,Gender-Neutral,,57736,2024
+NSUT Main Campus,Delhi,JAC Delhi,Computer Science and Engineering (Data Science),HS,SC,Gender-Neutral,,130553,2024
+NSUT Main Campus,Delhi,JAC Delhi,Computer Science and Engineering (Data Science),HS,ST,Gender-Neutral,,384101,2024
+NSUT Main Campus,Delhi,JAC Delhi,Computer Science and Engineering (Data Science),HS,OPEN,Female Only,,20647,2024
+NSUT Main Campus,Delhi,JAC Delhi,Computer Science and Engineering (Data Science),HS,EWS,Female Only,,36547,2024
+NSUT Main Campus,Delhi,JAC Delhi,Computer Science and Engineering (Data Science),HS,OBC-NCL,Female Only,,85371,2024
+NSUT Main Campus,Delhi,JAC Delhi,Computer Science and Engineering (Data Science),HS,SC,Female Only,,191918,2024
+NSUT Main Campus,Delhi,JAC Delhi,Computer Science and Engineering (Data Science),HS,OPEN (CW),Gender-Neutral,,55989,2024
+NSUT Main Campus,Delhi,JAC Delhi,Computer Science and Engineering (Data Science),HS,OBC (CW),Gender-Neutral,,111264,2024
+NSUT Main Campus,Delhi,JAC Delhi,Computer Science and Engineering (Data Science),HS,OPEN (PwD),Gender-Neutral,,242254,2024
+NSUT Main Campus,Delhi,JAC Delhi,Computer Science and Engineering (Data Science),HS,OBC (PwD),Gender-Neutral,,347355,2024
+NSUT Main Campus,Delhi,JAC Delhi,Information Technology,HS,OPEN,Gender-Neutral,,19074,2024
+NSUT Main Campus,Delhi,JAC Delhi,Information Technology,HS,EWS,Gender-Neutral,,30826,2024
+NSUT Main Campus,Delhi,JAC Delhi,Information Technology,HS,OBC-NCL,Gender-Neutral,,76935,2024
+NSUT Main Campus,Delhi,JAC Delhi,Information Technology,HS,SC,Gender-Neutral,,161096,2024
+NSUT Main Campus,Delhi,JAC Delhi,Information Technology,HS,ST,Gender-Neutral,,542855,2024
+NSUT Main Campus,Delhi,JAC Delhi,Information Technology,HS,OPEN,Female Only,,23859,2024
+NSUT Main Campus,Delhi,JAC Delhi,Information Technology,HS,EWS,Female Only,,38128,2024
+NSUT Main Campus,Delhi,JAC Delhi,Information Technology,HS,OBC-NCL,Female Only,,97244,2024
+NSUT Main Campus,Delhi,JAC Delhi,Information Technology,HS,SC,Female Only,,203606,2024
+NSUT Main Campus,Delhi,JAC Delhi,Information Technology,HS,ST,Female Only,,763740,2024
+NSUT Main Campus,Delhi,JAC Delhi,Information Technology,HS,OPEN (CW),Gender-Neutral,,124881,2024
+NSUT Main Campus,Delhi,JAC Delhi,Information Technology,HS,EWS (CW),Gender-Neutral,,128362,2024
+NSUT Main Campus,Delhi,JAC Delhi,Information Technology,HS,OBC (CW),Gender-Neutral,,141718,2024
+NSUT Main Campus,Delhi,JAC Delhi,Information Technology,HS,OPEN (PwD),Gender-Neutral,,322320,2024
+NSUT Main Campus,Delhi,JAC Delhi,Information Technology,HS,OBC (PwD),Gender-Neutral,,1100498,2024
+NSUT Main Campus,Delhi,JAC Delhi,Information Technology (Network and Information Security),HS,OPEN,Gender-Neutral,,21874,2024
+NSUT Main Campus,Delhi,JAC Delhi,Information Technology (Network and Information Security),HS,EWS,Gender-Neutral,,33072,2024
+NSUT Main Campus,Delhi,JAC Delhi,Information Technology (Network and Information Security),HS,OBC-NCL,Gender-Neutral,,84388,2024
+NSUT Main Campus,Delhi,JAC Delhi,Information Technology (Network and Information Security),HS,SC,Gender-Neutral,,187910,2024
+NSUT Main Campus,Delhi,JAC Delhi,Information Technology (Network and Information Security),HS,ST,Gender-Neutral,,568571,2024
+NSUT Main Campus,Delhi,JAC Delhi,Information Technology (Network and Information Security),HS,OPEN,Female Only,,25681,2024
+NSUT Main Campus,Delhi,JAC Delhi,Information Technology (Network and Information Security),HS,EWS,Female Only,,41163,2024
+NSUT Main Campus,Delhi,JAC Delhi,Information Technology (Network and Information Security),HS,OBC-NCL,Female Only,,105143,2024
+NSUT Main Campus,Delhi,JAC Delhi,Information Technology (Network and Information Security),HS,SC,Female Only,,250069,2024
+NSUT Main Campus,Delhi,JAC Delhi,Information Technology (Network and Information Security),HS,OPEN (CW),Gender-Neutral,,897901,2024
+NSUT Main Campus,Delhi,JAC Delhi,Information Technology (Network and Information Security),HS,OPEN (PwD),Gender-Neutral,,348976,2024
+NSUT Main Campus,Delhi,JAC Delhi,Mathematics and Computing,HS,OPEN,Gender-Neutral,,24436,2024
+NSUT Main Campus,Delhi,JAC Delhi,Mathematics and Computing,HS,EWS,Gender-Neutral,,38028,2024
+NSUT Main Campus,Delhi,JAC Delhi,Mathematics and Computing,HS,OBC-NCL,Gender-Neutral,,90670,2024
+NSUT Main Campus,Delhi,JAC Delhi,Mathematics and Computing,HS,SC,Gender-Neutral,,217029,2024
+NSUT Main Campus,Delhi,JAC Delhi,Mathematics and Computing,HS,ST,Gender-Neutral,,722781,2024
+NSUT Main Campus,Delhi,JAC Delhi,Mathematics and Computing,HS,OPEN,Female Only,,30048,2024
+NSUT Main Campus,Delhi,JAC Delhi,Mathematics and Computing,HS,EWS,Female Only,,47972,2024
+NSUT Main Campus,Delhi,JAC Delhi,Mathematics and Computing,HS,OBC-NCL,Female Only,,129421,2024
+NSUT Main Campus,Delhi,JAC Delhi,Mathematics and Computing,HS,SC,Female Only,,266532,2024
+NSUT Main Campus,Delhi,JAC Delhi,Mathematics and Computing,HS,ST,Female Only,,1012026,2024
+NSUT Main Campus,Delhi,JAC Delhi,Mathematics and Computing,HS,OPEN (CW),Gender-Neutral,,35192,2024
+NSUT Main Campus,Delhi,JAC Delhi,Mathematics and Computing,HS,OPEN (PwD),Gender-Neutral,,276906,2024
+NSUT Main Campus,Delhi,JAC Delhi,Electronics and Communication Engineering,HS,OPEN,Gender-Neutral,,30182,2024
+NSUT Main Campus,Delhi,JAC Delhi,Electronics and Communication Engineering,HS,EWS,Gender-Neutral,,48352,2024
+NSUT Main Campus,Delhi,JAC Delhi,Electronics and Communication Engineering,HS,OBC-NCL,Gender-Neutral,,117158,2024
+NSUT Main Campus,Delhi,JAC Delhi,Electronics and Communication Engineering,HS,SC,Gender-Neutral,,243281,2024
+NSUT Main Campus,Delhi,JAC Delhi,Electronics and Communication Engineering,HS,ST,Gender-Neutral,,1195863,2024
+NSUT Main Campus,Delhi,JAC Delhi,Electronics and Communication Engineering,HS,OPEN,Female Only,,37404,2024
+NSUT Main Campus,Delhi,JAC Delhi,Electronics and Communication Engineering,HS,EWS,Female Only,,80526,2024
+NSUT Main Campus,Delhi,JAC Delhi,Electronics and Communication Engineering,HS,OBC-NCL,Female Only,,224857,2024
+NSUT Main Campus,Delhi,JAC Delhi,Electronics and Communication Engineering,HS,SC,Female Only,,350407,2024
+NSUT Main Campus,Delhi,JAC Delhi,Electronics and Communication Engineering,HS,OPEN (CW),Gender-Neutral,,41050,2024
+NSUT Main Campus,Delhi,JAC Delhi,Electronics and Communication Engineering,HS,EWS (CW),Gender-Neutral,,332321,2024
+NSUT Main Campus,Delhi,JAC Delhi,Electronics and Communication Engineering,HS,OBC (CW),Gender-Neutral,,189446,2024
+NSUT Main Campus,Delhi,JAC Delhi,Electronics and Communication Engineering,HS,OPEN (PwD),Gender-Neutral,,707821,2024
+NSUT Main Campus,Delhi,JAC Delhi,Electronics Engineering (VLSI Design and Technology),HS,OPEN,Gender-Neutral,,31542,2024
+NSUT Main Campus,Delhi,JAC Delhi,Electronics Engineering (VLSI Design and Technology),HS,EWS,Gender-Neutral,,53078,2024
+NSUT Main Campus,Delhi,JAC Delhi,Electronics Engineering (VLSI Design and Technology),HS,OBC-NCL,Gender-Neutral,,124554,2024
+NSUT Main Campus,Delhi,JAC Delhi,Electronics Engineering (VLSI Design and Technology),HS,SC,Gender-Neutral,,268558,2024
+NSUT Main Campus,Delhi,JAC Delhi,Electronics Engineering (VLSI Design and Technology),HS,OPEN,Female Only,,39639,2024
+NSUT Main Campus,Delhi,JAC Delhi,Electronics Engineering (VLSI Design and Technology),HS,EWS,Female Only,,123074,2024
+NSUT Main Campus,Delhi,JAC Delhi,Electronics Engineering (VLSI Design and Technology),HS,OBC-NCL,Female Only,,271991,2024
+NSUT Main Campus,Delhi,JAC Delhi,Electronics Engineering (VLSI Design and Technology),HS,SC,Female Only,,399514,2024
+NSUT Main Campus,Delhi,JAC Delhi,Electronics Engineering (VLSI Design and Technology),HS,OPEN (CW),Gender-Neutral,,65191,2024
+NSUT Main Campus,Delhi,JAC Delhi,Electronics Engineering (VLSI Design and Technology),HS,OBC (CW),Gender-Neutral,,228918,2024
+NSUT Main Campus,Delhi,JAC Delhi,Electronics Engineering (VLSI Design and Technology),HS,OPEN (PwD),Gender-Neutral,,1205019,2024
+NSUT Main Campus,Delhi,JAC Delhi,Electrical Engineering,HS,OPEN,Gender-Neutral,,39515,2024
+NSUT Main Campus,Delhi,JAC Delhi,Electrical Engineering,HS,EWS,Gender-Neutral,,65267,2024
+NSUT Main Campus,Delhi,JAC Delhi,Electrical Engineering,HS,OBC-NCL,Gender-Neutral,,162609,2024
+NSUT Main Campus,Delhi,JAC Delhi,Electrical Engineering,HS,SC,Gender-Neutral,,382617,2024
+NSUT Main Campus,Delhi,JAC Delhi,Electrical Engineering,HS,ST,Gender-Neutral,,1089198,2024
+NSUT Main Campus,Delhi,JAC Delhi,Electrical Engineering,HS,OPEN,Female Only,,70420,2024
+NSUT Main Campus,Delhi,JAC Delhi,Electrical Engineering,HS,EWS,Female Only,,153929,2024
+NSUT Main Campus,Delhi,JAC Delhi,Electrical Engineering,HS,OBC-NCL,Female Only,,283338,2024
+NSUT Main Campus,Delhi,JAC Delhi,Electrical Engineering,HS,SC,Female Only,,611426,2024
+NSUT Main Campus,Delhi,JAC Delhi,Electrical Engineering,HS,OPEN (CW),Gender-Neutral,,92422,2024
+NSUT Main Campus,Delhi,JAC Delhi,Electrical Engineering,HS,EWS (CW),Gender-Neutral,,474793,2024
+NSUT Main Campus,Delhi,JAC Delhi,Electrical Engineering,HS,OBC (CW),Gender-Neutral,,203785,2024
+NSUT Main Campus,Delhi,JAC Delhi,Instrumentation and Control Engineering,HS,OPEN,Gender-Neutral,,49909,2024
+NSUT Main Campus,Delhi,JAC Delhi,Instrumentation and Control Engineering,HS,EWS,Gender-Neutral,,74833,2024
+NSUT Main Campus,Delhi,JAC Delhi,Instrumentation and Control Engineering,HS,OBC-NCL,Gender-Neutral,,199619,2024
+NSUT Main Campus,Delhi,JAC Delhi,Instrumentation and Control Engineering,HS,SC,Gender-Neutral,,592273,2024
+NSUT Main Campus,Delhi,JAC Delhi,Instrumentation and Control Engineering,HS,OPEN,Female Only,,83030,2024
+NSUT Main Campus,Delhi,JAC Delhi,Instrumentation and Control Engineering,HS,EWS,Female Only,,170834,2024
+NSUT Main Campus,Delhi,JAC Delhi,Instrumentation and Control Engineering,HS,OBC-NCL,Female Only,,382011,2024
+NSUT Main Campus,Delhi,JAC Delhi,Instrumentation and Control Engineering,HS,SC,Female Only,,940457,2024
+NSUT Main Campus,Delhi,JAC Delhi,Instrumentation and Control Engineering,HS,OPEN (CW),Gender-Neutral,,127177,2024
+NSUT Main Campus,Delhi,JAC Delhi,Instrumentation and Control Engineering,HS,EWS (CW),Gender-Neutral,,761651,2024
+NSUT Main Campus,Delhi,JAC Delhi,Instrumentation and Control Engineering,HS,OBC (CW),Gender-Neutral,,327217,2024
+NSUT Main Campus,Delhi,JAC Delhi,Instrumentation and Control Engineering,HS,OPEN (PwD),Gender-Neutral,,826961,2024
+NSUT Main Campus,Delhi,JAC Delhi,Mechanical Engineering,HS,OPEN,Gender-Neutral,,61154,2024
+NSUT Main Campus,Delhi,JAC Delhi,Mechanical Engineering,HS,EWS,Gender-Neutral,,96473,2024
+NSUT Main Campus,Delhi,JAC Delhi,Mechanical Engineering,HS,OBC-NCL,Gender-Neutral,,245326,2024
+NSUT Main Campus,Delhi,JAC Delhi,Mechanical Engineering,HS,SC,Gender-Neutral,,680587,2024
+NSUT Main Campus,Delhi,JAC Delhi,Mechanical Engineering,HS,OPEN,Female Only,,88025,2024
+NSUT Main Campus,Delhi,JAC Delhi,Mechanical Engineering,HS,EWS,Female Only,,165335,2024
+NSUT Main Campus,Delhi,JAC Delhi,Mechanical Engineering,HS,OBC-NCL,Female Only,,453070,2024
+NSUT Main Campus,Delhi,JAC Delhi,Mechanical Engineering,HS,SC,Female Only,,1130973,2024
+NSUT Main Campus,Delhi,JAC Delhi,Mechanical Engineering,HS,OPEN (CW),Gender-Neutral,,436193,2024
+NSUT Main Campus,Delhi,JAC Delhi,Mechanical Engineering,HS,OBC (CW),Gender-Neutral,,280128,2024
+NSUT Main Campus,Delhi,JAC Delhi,Bio-Technology,HS,OPEN,Gender-Neutral,,79890,2024
+NSUT Main Campus,Delhi,JAC Delhi,Bio-Technology,HS,EWS,Gender-Neutral,,149099,2024
+NSUT Main Campus,Delhi,JAC Delhi,Bio-Technology,HS,OBC-NCL,Gender-Neutral,,425798,2024
+NSUT Main Campus,Delhi,JAC Delhi,Bio-Technology,HS,SC,Gender-Neutral,,921597,2024
+NSUT Main Campus,Delhi,JAC Delhi,Bio-Technology,HS,OPEN,Female Only,,83821,2024
+NSUT Main Campus,Delhi,JAC Delhi,Bio-Technology,HS,EWS,Female Only,,184979,2024
+NSUT Main Campus,Delhi,JAC Delhi,Bio-Technology,HS,OBC-NCL,Female Only,,471268,2024
+NSUT Main Campus,Delhi,JAC Delhi,Bio-Technology,HS,SC,Female Only,,1204554,2024
+NSUT Main Campus,Delhi,JAC Delhi,Bio-Technology,HS,OPEN (CW),Gender-Neutral,,179646,2024
+NSUT East Campus,Delhi,JAC Delhi,Computer Science and Engineering (Big Data Analytics),HS,OPEN,Gender-Neutral,,35335,2024
+NSUT East Campus,Delhi,JAC Delhi,Computer Science and Engineering (Big Data Analytics),HS,EWS,Gender-Neutral,,54376,2024
+NSUT East Campus,Delhi,JAC Delhi,Computer Science and Engineering (Big Data Analytics),HS,OBC-NCL,Gender-Neutral,,122106,2024
+NSUT East Campus,Delhi,JAC Delhi,Computer Science and Engineering (Big Data Analytics),HS,SC,Gender-Neutral,,242397,2024
+NSUT East Campus,Delhi,JAC Delhi,Computer Science and Engineering (Big Data Analytics),HS,ST,Gender-Neutral,,586310,2024
+NSUT East Campus,Delhi,JAC Delhi,Computer Science and Engineering (Big Data Analytics),HS,OPEN,Female Only,,55920,2024
+NSUT East Campus,Delhi,JAC Delhi,Computer Science and Engineering (Big Data Analytics),HS,EWS,Female Only,,85784,2024
+NSUT East Campus,Delhi,JAC Delhi,Computer Science and Engineering (Big Data Analytics),HS,OBC-NCL,Female Only,,213821,2024
+NSUT East Campus,Delhi,JAC Delhi,Computer Science and Engineering (Big Data Analytics),HS,SC,Female Only,,411039,2024
+NSUT East Campus,Delhi,JAC Delhi,Computer Science and Engineering (Big Data Analytics),HS,OPEN (CW),Gender-Neutral,,52420,2024
+NSUT East Campus,Delhi,JAC Delhi,Computer Science and Engineering (Big Data Analytics),HS,OBC (CW),Gender-Neutral,,171584,2024
+NSUT East Campus,Delhi,JAC Delhi,Computer Science and Engineering (Big Data Analytics),HS,OPEN (PwD),Gender-Neutral,,492106,2024
+NSUT East Campus,Delhi,JAC Delhi,Computer Science and Engineering (Internet of Things),HS,OPEN,Gender-Neutral,,39235,2024
+NSUT East Campus,Delhi,JAC Delhi,Computer Science and Engineering (Internet of Things),HS,EWS,Gender-Neutral,,58980,2024
+NSUT East Campus,Delhi,JAC Delhi,Computer Science and Engineering (Internet of Things),HS,OBC-NCL,Gender-Neutral,,148000,2024
+NSUT East Campus,Delhi,JAC Delhi,Computer Science and Engineering (Internet of Things),HS,SC,Gender-Neutral,,320932,2024
+NSUT East Campus,Delhi,JAC Delhi,Computer Science and Engineering (Internet of Things),HS,ST,Gender-Neutral,,824815,2024
+NSUT East Campus,Delhi,JAC Delhi,Computer Science and Engineering (Internet of Things),HS,OPEN,Female Only,,70486,2024
+NSUT East Campus,Delhi,JAC Delhi,Computer Science and Engineering (Internet of Things),HS,EWS,Female Only,,104695,2024
+NSUT East Campus,Delhi,JAC Delhi,Computer Science and Engineering (Internet of Things),HS,OBC-NCL,Female Only,,260997,2024
+NSUT East Campus,Delhi,JAC Delhi,Computer Science and Engineering (Internet of Things),HS,SC,Female Only,,489798,2024
+NSUT East Campus,Delhi,JAC Delhi,Computer Science and Engineering (Internet of Things),HS,OPEN (CW),Gender-Neutral,,53904,2024
+NSUT East Campus,Delhi,JAC Delhi,Computer Science and Engineering (Internet of Things),HS,EWS (CW),Gender-Neutral,,89568,2024
+NSUT East Campus,Delhi,JAC Delhi,Computer Science and Engineering (Internet of Things),HS,OPEN (PwD),Gender-Neutral,,441136,2024
+NSUT East Campus,Delhi,JAC Delhi,Electronics and Communication Engineering (AI and ML),HS,OPEN,Gender-Neutral,,47145,2024
+NSUT East Campus,Delhi,JAC Delhi,Electronics and Communication Engineering (AI and ML),HS,EWS,Gender-Neutral,,70752,2024
+NSUT East Campus,Delhi,JAC Delhi,Electronics and Communication Engineering (AI and ML),HS,OBC-NCL,Gender-Neutral,,181233,2024
+NSUT East Campus,Delhi,JAC Delhi,Electronics and Communication Engineering (AI and ML),HS,SC,Gender-Neutral,,455021,2024
+NSUT East Campus,Delhi,JAC Delhi,Electronics and Communication Engineering (AI and ML),HS,OPEN,Female Only,,82978,2024
+NSUT East Campus,Delhi,JAC Delhi,Electronics and Communication Engineering (AI and ML),HS,EWS,Female Only,,165130,2024
+NSUT East Campus,Delhi,JAC Delhi,Electronics and Communication Engineering (AI and ML),HS,OBC-NCL,Female Only,,321682,2024
+NSUT East Campus,Delhi,JAC Delhi,Electronics and Communication Engineering (AI and ML),HS,SC,Female Only,,690714,2024
+NSUT East Campus,Delhi,JAC Delhi,Electronics and Communication Engineering (AI and ML),HS,OPEN (CW),Gender-Neutral,,67666,2024
+NSUT East Campus,Delhi,JAC Delhi,Electronics and Communication Engineering (AI and ML),HS,EWS (CW),Gender-Neutral,,495783,2024
+NSUT East Campus,Delhi,JAC Delhi,Electronics and Communication Engineering (AI and ML),HS,OBC (CW),Gender-Neutral,,501552,2024
+NSUT East Campus,Delhi,JAC Delhi,Electronics and Communication Engineering (AI and ML),HS,OPEN (PwD),Gender-Neutral,,1004135,2024
+NSUT West Campus,Delhi,JAC Delhi,Mechanical Engineering (Electric Vehicles),HS,OPEN,Gender-Neutral,,75156,2024
+NSUT West Campus,Delhi,JAC Delhi,Mechanical Engineering (Electric Vehicles),HS,EWS,Gender-Neutral,,148509,2024
+NSUT West Campus,Delhi,JAC Delhi,Mechanical Engineering (Electric Vehicles),HS,OBC-NCL,Gender-Neutral,,429105,2024
+NSUT West Campus,Delhi,JAC Delhi,Mechanical Engineering (Electric Vehicles),HS,SC,Gender-Neutral,,901257,2024
+NSUT West Campus,Delhi,JAC Delhi,Mechanical Engineering (Electric Vehicles),HS,OPEN,Female Only,,105529,2024
+NSUT West Campus,Delhi,JAC Delhi,Mechanical Engineering (Electric Vehicles),HS,EWS,Female Only,,190122,2024
+NSUT West Campus,Delhi,JAC Delhi,Mechanical Engineering (Electric Vehicles),HS,OBC-NCL,Female Only,,500605,2024
+NSUT West Campus,Delhi,JAC Delhi,Mechanical Engineering (Electric Vehicles),HS,SC,Female Only,,973904,2024
+NSUT West Campus,Delhi,JAC Delhi,Mechanical Engineering (Electric Vehicles),HS,OPEN (CW),Gender-Neutral,,184421,2024
+NSUT West Campus,Delhi,JAC Delhi,Mechanical Engineering (Electric Vehicles),HS,OBC (CW),Gender-Neutral,,997627,2024
+NSUT West Campus,Delhi,JAC Delhi,Civil Engineering,HS,OPEN,Gender-Neutral,,84121,2024
+NSUT West Campus,Delhi,JAC Delhi,Civil Engineering,HS,EWS,Gender-Neutral,,158779,2024
+NSUT West Campus,Delhi,JAC Delhi,Civil Engineering,HS,OBC-NCL,Gender-Neutral,,474810,2024
+NSUT West Campus,Delhi,JAC Delhi,Civil Engineering,HS,SC,Gender-Neutral,,842323,2024
+NSUT West Campus,Delhi,JAC Delhi,Civil Engineering,HS,ST,Gender-Neutral,,894734,2024
+NSUT West Campus,Delhi,JAC Delhi,Civil Engineering,HS,OPEN,Female Only,,107062,2024
+NSUT West Campus,Delhi,JAC Delhi,Civil Engineering,HS,EWS,Female Only,,218460,2024
+NSUT West Campus,Delhi,JAC Delhi,Civil Engineering,HS,OBC-NCL,Female Only,,572569,2024
+NSUT West Campus,Delhi,JAC Delhi,Civil Engineering,HS,SC,Female Only,,1106765,2024
+NSUT West Campus,Delhi,JAC Delhi,Civil Engineering,HS,OPEN (CW),Gender-Neutral,,193015,2024
+NSUT West Campus,Delhi,JAC Delhi,Geoinformatics,HS,OPEN,Gender-Neutral,,88631,2024
+NSUT West Campus,Delhi,JAC Delhi,Geoinformatics,HS,EWS,Gender-Neutral,,173994,2024
+NSUT West Campus,Delhi,JAC Delhi,Geoinformatics,HS,OBC-NCL,Gender-Neutral,,570334,2024
+NSUT West Campus,Delhi,JAC Delhi,Geoinformatics,HS,SC,Gender-Neutral,,1064756,2024
+NSUT West Campus,Delhi,JAC Delhi,Geoinformatics,HS,OPEN,Female Only,,116027,2024
+NSUT West Campus,Delhi,JAC Delhi,Geoinformatics,HS,EWS,Female Only,,242518,2024
+NSUT West Campus,Delhi,JAC Delhi,Geoinformatics,HS,OBC-NCL,Female Only,,621009,2024
+NSUT West Campus,Delhi,JAC Delhi,Geoinformatics,HS,OPEN (CW),Gender-Neutral,,195338,2024
+NSUT West Campus,Delhi,JAC Delhi,Bachelor of Architecture,HS,OPEN,Gender-Neutral,,6219,2024
+NSUT West Campus,Delhi,JAC Delhi,Bachelor of Architecture,HS,EWS,Gender-Neutral,,21924,2024
+NSUT West Campus,Delhi,JAC Delhi,Bachelor of Architecture,HS,OBC-NCL,Gender-Neutral,,37937,2024
+NSUT West Campus,Delhi,JAC Delhi,Bachelor of Architecture,HS,SC,Gender-Neutral,,61765,2024
+NSUT West Campus,Delhi,JAC Delhi,Bachelor of Architecture,HS,OPEN (CW),Gender-Neutral,,34909,2024
+NSUT Main Campus,Delhi,JAC Delhi,Computer Science and Engineering (Artificial Intelligence),OS,OPEN,Gender-Neutral,,7417,2024
+NSUT Main Campus,Delhi,JAC Delhi,Computer Science and Engineering (Artificial Intelligence),OS,EWS,Gender-Neutral,,10522,2024
+NSUT Main Campus,Delhi,JAC Delhi,Computer Science and Engineering (Artificial Intelligence),OS,OBC-NCL,Gender-Neutral,,16445,2024
+NSUT Main Campus,Delhi,JAC Delhi,Computer Science and Engineering (Artificial Intelligence),OS,SC,Gender-Neutral,,59869,2024
+NSUT Main Campus,Delhi,JAC Delhi,Computer Science and Engineering (Artificial Intelligence),OS,ST,Gender-Neutral,,92299,2024
+NSUT Main Campus,Delhi,JAC Delhi,Computer Science and Engineering (Artificial Intelligence),OS,OPEN,Female Only,,12369,2024
+NSUT Main Campus,Delhi,JAC Delhi,Computer Science and Engineering (Artificial Intelligence),OS,EWS,Female Only,,17491,2024
+NSUT Main Campus,Delhi,JAC Delhi,Computer Science and Engineering (Artificial Intelligence),OS,OBC-NCL,Female Only,,27060,2024
+NSUT Main Campus,Delhi,JAC Delhi,Computer Science and Engineering (Artificial Intelligence),OS,OPEN (CW),Gender-Neutral,,750303,2024
+NSUT Main Campus,Delhi,JAC Delhi,Computer Science and Engineering,OS,OPEN,Gender-Neutral,,8168,2024
+NSUT Main Campus,Delhi,JAC Delhi,Computer Science and Engineering,OS,EWS,Gender-Neutral,,9983,2024
+NSUT Main Campus,Delhi,JAC Delhi,Computer Science and Engineering,OS,OBC-NCL,Gender-Neutral,,17193,2024
+NSUT Main Campus,Delhi,JAC Delhi,Computer Science and Engineering,OS,SC,Gender-Neutral,,65585,2024
+NSUT Main Campus,Delhi,JAC Delhi,Computer Science and Engineering,OS,ST,Gender-Neutral,,54467,2024
+NSUT Main Campus,Delhi,JAC Delhi,Computer Science and Engineering,OS,OPEN,Female Only,,11265,2024
+NSUT Main Campus,Delhi,JAC Delhi,Computer Science and Engineering,OS,OBC-NCL,Female Only,,28474,2024
+NSUT Main Campus,Delhi,JAC Delhi,Computer Science and Engineering,OS,SC,Female Only,,97048,2024
+NSUT Main Campus,Delhi,JAC Delhi,Computer Science and Engineering,OS,OPEN (CW),Gender-Neutral,,63023,2024
+NSUT Main Campus,Delhi,JAC Delhi,Computer Science and Engineering,OS,EWS (CW),Gender-Neutral,,80070,2024
+NSUT Main Campus,Delhi,JAC Delhi,Computer Science and Engineering,OS,OPEN (PwD),Gender-Neutral,,49910,2024
+NSUT Main Campus,Delhi,JAC Delhi,Computer Science and Engineering,OS,OBC (PwD),Gender-Neutral,,290556,2024
+NSUT Main Campus,Delhi,JAC Delhi,Computer Science and Engineering,OS,SC (PwD),Gender-Neutral,,259791,2024
+NSUT Main Campus,Delhi,JAC Delhi,Computer Science and Engineering (Data Science),OS,OPEN,Gender-Neutral,,8757,2024
+NSUT Main Campus,Delhi,JAC Delhi,Computer Science and Engineering (Data Science),OS,EWS,Gender-Neutral,,12350,2024
+NSUT Main Campus,Delhi,JAC Delhi,Computer Science and Engineering (Data Science),OS,OBC-NCL,Gender-Neutral,,18717,2024
+NSUT Main Campus,Delhi,JAC Delhi,Computer Science and Engineering (Data Science),OS,SC,Gender-Neutral,,75070,2024
+NSUT Main Campus,Delhi,JAC Delhi,Computer Science and Engineering (Data Science),OS,ST,Gender-Neutral,,101936,2024
+NSUT Main Campus,Delhi,JAC Delhi,Computer Science and Engineering (Data Science),OS,OPEN,Female Only,,22348,2024
+NSUT Main Campus,Delhi,JAC Delhi,Computer Science and Engineering (Data Science),OS,SC,Female Only,,97401,2024
+NSUT Main Campus,Delhi,JAC Delhi,Information Technology,OS,OPEN,Gender-Neutral,,9422,2024
+NSUT Main Campus,Delhi,JAC Delhi,Information Technology,OS,EWS,Gender-Neutral,,12820,2024
+NSUT Main Campus,Delhi,JAC Delhi,Information Technology,OS,OBC-NCL,Gender-Neutral,,20551,2024
+NSUT Main Campus,Delhi,JAC Delhi,Information Technology,OS,SC,Gender-Neutral,,90292,2024
+NSUT Main Campus,Delhi,JAC Delhi,Information Technology,OS,ST,Gender-Neutral,,120795,2024
+NSUT Main Campus,Delhi,JAC Delhi,Information Technology,OS,OPEN,Female Only,,14623,2024
+NSUT Main Campus,Delhi,JAC Delhi,Information Technology,OS,OBC-NCL,Female Only,,32335,2024
+NSUT Main Campus,Delhi,JAC Delhi,Information Technology,OS,SC,Female Only,,138500,2024
+NSUT Main Campus,Delhi,JAC Delhi,Information Technology,OS,OPEN (PwD),Gender-Neutral,,92882,2024
+NSUT Main Campus,Delhi,JAC Delhi,Information Technology (Network and Information Security),OS,OPEN,Gender-Neutral,,10632,2024
+NSUT Main Campus,Delhi,JAC Delhi,Information Technology (Network and Information Security),OS,EWS,Gender-Neutral,,12846,2024
+NSUT Main Campus,Delhi,JAC Delhi,Information Technology (Network and Information Security),OS,OBC-NCL,Gender-Neutral,,23144,2024
+NSUT Main Campus,Delhi,JAC Delhi,Information Technology (Network and Information Security),OS,SC,Gender-Neutral,,98810,2024
+NSUT Main Campus,Delhi,JAC Delhi,Information Technology (Network and Information Security),OS,ST,Gender-Neutral,,132971,2024
+NSUT Main Campus,Delhi,JAC Delhi,Information Technology (Network and Information Security),OS,OPEN,Female Only,,15112,2024
+NSUT Main Campus,Delhi,JAC Delhi,Information Technology (Network and Information Security),OS,ST,Female Only,,258750,2024
+NSUT Main Campus,Delhi,JAC Delhi,Mathematics and Computing,OS,OPEN,Gender-Neutral,,10680,2024
+NSUT Main Campus,Delhi,JAC Delhi,Mathematics and Computing,OS,EWS,Gender-Neutral,,13947,2024
+NSUT Main Campus,Delhi,JAC Delhi,Mathematics and Computing,OS,OBC-NCL,Gender-Neutral,,24652,2024
+NSUT Main Campus,Delhi,JAC Delhi,Mathematics and Computing,OS,SC,Gender-Neutral,,106590,2024
+NSUT Main Campus,Delhi,JAC Delhi,Mathematics and Computing,OS,ST,Gender-Neutral,,136201,2024
+NSUT Main Campus,Delhi,JAC Delhi,Mathematics and Computing,OS,OPEN,Female Only,,17031,2024
+NSUT Main Campus,Delhi,JAC Delhi,Mathematics and Computing,OS,OBC-NCL,Female Only,,33167,2024
+NSUT Main Campus,Delhi,JAC Delhi,Electronics and Communication Engineering,OS,OPEN,Gender-Neutral,,12368,2024
+NSUT Main Campus,Delhi,JAC Delhi,Electronics and Communication Engineering,OS,EWS,Gender-Neutral,,15727,2024
+NSUT Main Campus,Delhi,JAC Delhi,Electronics and Communication Engineering,OS,OBC-NCL,Gender-Neutral,,28427,2024
+NSUT Main Campus,Delhi,JAC Delhi,Electronics and Communication Engineering,OS,SC,Gender-Neutral,,115393,2024
+NSUT Main Campus,Delhi,JAC Delhi,Electronics and Communication Engineering,OS,ST,Gender-Neutral,,193912,2024
+NSUT Main Campus,Delhi,JAC Delhi,Electronics and Communication Engineering,OS,OPEN,Female Only,,19534,2024
+NSUT Main Campus,Delhi,JAC Delhi,Electronics and Communication Engineering,OS,EWS,Female Only,,33527,2024
+NSUT Main Campus,Delhi,JAC Delhi,Electronics and Communication Engineering,OS,OBC-NCL,Female Only,,35842,2024
+NSUT Main Campus,Delhi,JAC Delhi,Electronics and Communication Engineering,OS,SC,Female Only,,135073,2024
+NSUT Main Campus,Delhi,JAC Delhi,Electronics and Communication Engineering,OS,ST,Female Only,,285306,2024
+NSUT Main Campus,Delhi,JAC Delhi,Electronics and Communication Engineering,OS,OPEN (PwD),Gender-Neutral,,197118,2024
+NSUT Main Campus,Delhi,JAC Delhi,Electronics and Communication Engineering,OS,OBC (PwD),Gender-Neutral,,209427,2024
+NSUT East Campus,Delhi,JAC Delhi,Computer Science and Engineering (Big Data Analytics),OS,OPEN,Gender-Neutral,,11227,2024
+NSUT East Campus,Delhi,JAC Delhi,Computer Science and Engineering (Big Data Analytics),OS,EWS,Gender-Neutral,,15002,2024
+NSUT East Campus,Delhi,JAC Delhi,Computer Science and Engineering (Big Data Analytics),OS,OBC-NCL,Gender-Neutral,,24079,2024
+NSUT East Campus,Delhi,JAC Delhi,Computer Science and Engineering (Big Data Analytics),OS,SC,Gender-Neutral,,114392,2024
+NSUT East Campus,Delhi,JAC Delhi,Computer Science and Engineering (Big Data Analytics),OS,ST,Gender-Neutral,,322282,2024
+NSUT East Campus,Delhi,JAC Delhi,Computer Science and Engineering (Big Data Analytics),OS,OBC-NCL,Female Only,,38248,2024
+NSUT East Campus,Delhi,JAC Delhi,Computer Science and Engineering (Big Data Analytics),OS,SC,Female Only,,160055,2024
+NSUT East Campus,Delhi,JAC Delhi,Computer Science and Engineering (Big Data Analytics),OS,OPEN (PwD),Gender-Neutral,,115477,2024
+NSUT East Campus,Delhi,JAC Delhi,Computer Science and Engineering (Internet of Things),OS,OPEN,Gender-Neutral,,12659,2024
+NSUT East Campus,Delhi,JAC Delhi,Computer Science and Engineering (Internet of Things),OS,EWS,Gender-Neutral,,16993,2024
+NSUT East Campus,Delhi,JAC Delhi,Computer Science and Engineering (Internet of Things),OS,OBC-NCL,Gender-Neutral,,30278,2024
+NSUT East Campus,Delhi,JAC Delhi,Computer Science and Engineering (Internet of Things),OS,SC,Gender-Neutral,,112680,2024
+NSUT East Campus,Delhi,JAC Delhi,Computer Science and Engineering (Internet of Things),OS,ST,Gender-Neutral,,339085,2024
+NSUT East Campus,Delhi,JAC Delhi,Computer Science and Engineering (Internet of Things),OS,OPEN,Female Only,,20758,2024
+NSUT East Campus,Delhi,JAC Delhi,Computer Science and Engineering (Internet of Things),OS,OBC-NCL,Female Only,,45361,2024
+NSUT East Campus,Delhi,JAC Delhi,Electronics and Communication Engineering (AI and ML),OS,OPEN,Gender-Neutral,,13497,2024
+NSUT East Campus,Delhi,JAC Delhi,Electronics and Communication Engineering (AI and ML),OS,EWS,Gender-Neutral,,17679,2024
+NSUT East Campus,Delhi,JAC Delhi,Electronics and Communication Engineering (AI and ML),OS,OBC-NCL,Gender-Neutral,,31758,2024
+NSUT East Campus,Delhi,JAC Delhi,Electronics and Communication Engineering (AI and ML),OS,SC,Gender-Neutral,,123462,2024
+NSUT East Campus,Delhi,JAC Delhi,Electronics and Communication Engineering (AI and ML),OS,ST,Gender-Neutral,,358129,2024
+NSUT East Campus,Delhi,JAC Delhi,Electronics and Communication Engineering (AI and ML),OS,OPEN,Female Only,,23575,2024
+NSUT East Campus,Delhi,JAC Delhi,Electronics and Communication Engineering (AI and ML),OS,EWS,Female Only,,43342,2024
+NSUT East Campus,Delhi,JAC Delhi,Electronics and Communication Engineering (AI and ML),OS,OBC-NCL,Female Only,,53660,2024
+NSUT East Campus,Delhi,JAC Delhi,Electronics and Communication Engineering (AI and ML),OS,ST,Female Only,,403138,2024
+NSUT East Campus,Delhi,JAC Delhi,Electronics and Communication Engineering (AI and ML),OS,OPEN (CW),Gender-Neutral,,56013,2024
+NSUT East Campus,Delhi,JAC Delhi,Electronics and Communication Engineering (AI and ML),OS,EWS (CW),Gender-Neutral,,37143,2024
+NSUT East Campus,Delhi,JAC Delhi,Electronics and Communication Engineering (AI and ML),OS,SC (PwD),Gender-Neutral,,630962,2024
+NSUT East Campus,Delhi,JAC Delhi,Electronics and Communication Engineering (AI and ML),OS,ST (PwD),Gender-Neutral,,861393,2024
+NSUT Main Campus,Delhi,JAC Delhi,Electronics Engineering (VLSI Design and Technology),OS,OPEN,Gender-Neutral,,12959,2024
+NSUT Main Campus,Delhi,JAC Delhi,Electronics Engineering (VLSI Design and Technology),OS,EWS,Gender-Neutral,,16175,2024
+NSUT Main Campus,Delhi,JAC Delhi,Electronics Engineering (VLSI Design and Technology),OS,OBC-NCL,Gender-Neutral,,30206,2024
+NSUT Main Campus,Delhi,JAC Delhi,Electronics Engineering (VLSI Design and Technology),OS,SC,Gender-Neutral,,121494,2024
+NSUT Main Campus,Delhi,JAC Delhi,Electronics Engineering (VLSI Design and Technology),OS,ST,Gender-Neutral,,222532,2024
+NSUT Main Campus,Delhi,JAC Delhi,Electronics Engineering (VLSI Design and Technology),OS,OPEN,Female Only,,18827,2024
+NSUT Main Campus,Delhi,JAC Delhi,Electronics Engineering (VLSI Design and Technology),OS,OBC-NCL,Female Only,,37553,2024
+NSUT Main Campus,Delhi,JAC Delhi,Electrical Engineering,OS,OPEN,Gender-Neutral,,16229,2024
+NSUT Main Campus,Delhi,JAC Delhi,Electrical Engineering,OS,EWS,Gender-Neutral,,19354,2024
+NSUT Main Campus,Delhi,JAC Delhi,Electrical Engineering,OS,OBC-NCL,Gender-Neutral,,34836,2024
+NSUT Main Campus,Delhi,JAC Delhi,Electrical Engineering,OS,SC,Gender-Neutral,,130342,2024
+NSUT Main Campus,Delhi,JAC Delhi,Electrical Engineering,OS,ST,Gender-Neutral,,287287,2024
+NSUT Main Campus,Delhi,JAC Delhi,Electrical Engineering,OS,OPEN,Female Only,,25855,2024
+NSUT Main Campus,Delhi,JAC Delhi,Electrical Engineering,OS,OBC-NCL,Female Only,,37437,2024
+NSUT Main Campus,Delhi,JAC Delhi,Electrical Engineering,OS,ST,Female Only,,404216,2024
+NSUT Main Campus,Delhi,JAC Delhi,Electrical Engineering,OS,OPEN (CW),Gender-Neutral,,112859,2024
+NSUT Main Campus,Delhi,JAC Delhi,Electrical Engineering,OS,OBC (CW),Gender-Neutral,,145019,2024
+NSUT Main Campus,Delhi,JAC Delhi,Instrumentation and Control Engineering,OS,OPEN,Gender-Neutral,,18602,2024
+NSUT Main Campus,Delhi,JAC Delhi,Instrumentation and Control Engineering,OS,EWS,Gender-Neutral,,19970,2024
+NSUT Main Campus,Delhi,JAC Delhi,Instrumentation and Control Engineering,OS,OBC-NCL,Gender-Neutral,,47638,2024
+NSUT Main Campus,Delhi,JAC Delhi,Instrumentation and Control Engineering,OS,SC,Gender-Neutral,,179684,2024
+NSUT Main Campus,Delhi,JAC Delhi,Instrumentation and Control Engineering,OS,ST,Gender-Neutral,,383479,2024
+NSUT Main Campus,Delhi,JAC Delhi,Instrumentation and Control Engineering,OS,OPEN,Female Only,,35891,2024
+NSUT Main Campus,Delhi,JAC Delhi,Instrumentation and Control Engineering,OS,OBC-NCL,Female Only,,58424,2024
+NSUT Main Campus,Delhi,JAC Delhi,Instrumentation and Control Engineering,OS,SC,Female Only,,206724,2024
+NSUT Main Campus,Delhi,JAC Delhi,Instrumentation and Control Engineering,OS,OPEN (CW),Gender-Neutral,,230851,2024
+NSUT Main Campus,Delhi,JAC Delhi,Instrumentation and Control Engineering,OS,SC (PwD),Gender-Neutral,,521592,2024
+NSUT Main Campus,Delhi,JAC Delhi,Instrumentation and Control Engineering,OS,OPEN (PwD),Gender-Neutral,,246070,2024
+NSUT Main Campus,Delhi,JAC Delhi,Mechanical Engineering,OS,OPEN,Gender-Neutral,,22083,2024
+NSUT Main Campus,Delhi,JAC Delhi,Mechanical Engineering,OS,EWS,Gender-Neutral,,26025,2024
+NSUT Main Campus,Delhi,JAC Delhi,Mechanical Engineering,OS,OBC-NCL,Gender-Neutral,,48389,2024
+NSUT Main Campus,Delhi,JAC Delhi,Mechanical Engineering,OS,SC,Gender-Neutral,,180632,2024
+NSUT Main Campus,Delhi,JAC Delhi,Mechanical Engineering,OS,ST,Gender-Neutral,,372164,2024
+NSUT Main Campus,Delhi,JAC Delhi,Mechanical Engineering,OS,OPEN,Female Only,,36192,2024
+NSUT Main Campus,Delhi,JAC Delhi,Mechanical Engineering,OS,EWS,Female Only,,43629,2024
+NSUT Main Campus,Delhi,JAC Delhi,Mechanical Engineering,OS,OBC-NCL,Female Only,,59568,2024
+NSUT Main Campus,Delhi,JAC Delhi,Mechanical Engineering,OS,SC,Female Only,,208028,2024
+NSUT Main Campus,Delhi,JAC Delhi,Mechanical Engineering,OS,SC (PwD),Gender-Neutral,,284488,2024
+NSUT Main Campus,Delhi,JAC Delhi,Mechanical Engineering,OS,OPEN (PwD),Gender-Neutral,,412737,2024
+NSUT Main Campus,Delhi,JAC Delhi,Bio-Technology,OS,OPEN,Gender-Neutral,,29585,2024
+NSUT Main Campus,Delhi,JAC Delhi,Bio-Technology,OS,EWS,Gender-Neutral,,39335,2024
+NSUT Main Campus,Delhi,JAC Delhi,Bio-Technology,OS,OBC-NCL,Gender-Neutral,,55940,2024
+NSUT Main Campus,Delhi,JAC Delhi,Bio-Technology,OS,SC,Gender-Neutral,,194807,2024
+NSUT Main Campus,Delhi,JAC Delhi,Bio-Technology,OS,ST,Gender-Neutral,,384046,2024
+NSUT Main Campus,Delhi,JAC Delhi,Bio-Technology,OS,OPEN,Female Only,,37635,2024
+NSUT Main Campus,Delhi,JAC Delhi,Bio-Technology,OS,OBC-NCL,Female Only,,61767,2024
+NSUT Main Campus,Delhi,JAC Delhi,Bio-Technology,OS,SC (PwD),Gender-Neutral,,240557,2024
+NSUT West Campus,Delhi,JAC Delhi,Mechanical Engineering (Electric Vehicles),OS,OPEN,Gender-Neutral,,25061,2024
+NSUT West Campus,Delhi,JAC Delhi,Mechanical Engineering (Electric Vehicles),OS,EWS,Gender-Neutral,,34499,2024
+NSUT West Campus,Delhi,JAC Delhi,Mechanical Engineering (Electric Vehicles),OS,OBC-NCL,Gender-Neutral,,50318,2024
+NSUT West Campus,Delhi,JAC Delhi,Mechanical Engineering (Electric Vehicles),OS,SC,Gender-Neutral,,185194,2024
+NSUT West Campus,Delhi,JAC Delhi,Mechanical Engineering (Electric Vehicles),OS,OPEN,Female Only,,39574,2024
+NSUT West Campus,Delhi,JAC Delhi,Mechanical Engineering (Electric Vehicles),OS,OBC-NCL,Female Only,,60641,2024
+NSUT West Campus,Delhi,JAC Delhi,Civil Engineering,OS,OPEN,Gender-Neutral,,30115,2024
+NSUT West Campus,Delhi,JAC Delhi,Civil Engineering,OS,EWS,Gender-Neutral,,40251,2024
+NSUT West Campus,Delhi,JAC Delhi,Civil Engineering,OS,OBC-NCL,Gender-Neutral,,56502,2024
+NSUT West Campus,Delhi,JAC Delhi,Civil Engineering,OS,SC,Gender-Neutral,,201942,2024
+NSUT West Campus,Delhi,JAC Delhi,Geoinformatics,OS,OPEN,Gender-Neutral,,31389,2024
+NSUT West Campus,Delhi,JAC Delhi,Geoinformatics,OS,OBC-NCL,Gender-Neutral,,57665,2024
+NSUT West Campus,Delhi,JAC Delhi,Geoinformatics,OS,SC,Gender-Neutral,,193937,2024
+NSUT West Campus,Delhi,JAC Delhi,Geoinformatics,OS,ST,Gender-Neutral,,409628,2024
+NSUT West Campus,Delhi,JAC Delhi,Geoinformatics,OS,OPEN,Female Only,,40724,2024
+NSUT West Campus,Delhi,JAC Delhi,Bachelor of Architecture,OS,OPEN,Gender-Neutral,,1449,2024
+NSUT West Campus,Delhi,JAC Delhi,Bachelor of Architecture,OS,EWS,Gender-Neutral,,5628,2024
+NSUT West Campus,Delhi,JAC Delhi,Bachelor of Architecture,OS,OBC-NCL,Gender-Neutral,,3059,2024
+NSUT West Campus,Delhi,JAC Delhi,Bachelor of Architecture,OS,SC,Gender-Neutral,,4739,2024
+Delhi Technological University (DTU),Delhi,JAC Delhi,Computer Science and Engineering,OS,OPEN,Gender-Neutral,,6406,2024
+Delhi Technological University (DTU),Delhi,JAC Delhi,Computer Science and Engineering,OS,EWS,Gender-Neutral,,10421,2024
+Delhi Technological University (DTU),Delhi,JAC Delhi,Computer Science and Engineering,OS,OBC-NCL,Gender-Neutral,,12590,2024
+Delhi Technological University (DTU),Delhi,JAC Delhi,Computer Science and Engineering,OS,SC,Gender-Neutral,,66040,2024
+Delhi Technological University (DTU),Delhi,JAC Delhi,Computer Science and Engineering,OS,ST,Gender-Neutral,,88837,2024
+Delhi Technological University (DTU),Delhi,JAC Delhi,Information Technology,OS,OPEN,Gender-Neutral,,6871,2024
+Delhi Technological University (DTU),Delhi,JAC Delhi,Information Technology,OS,EWS,Gender-Neutral,,12088,2024
+Delhi Technological University (DTU),Delhi,JAC Delhi,Information Technology,OS,OBC-NCL,Gender-Neutral,,15893,2024
+Delhi Technological University (DTU),Delhi,JAC Delhi,Information Technology,OS,SC,Gender-Neutral,,73585,2024
+Delhi Technological University (DTU),Delhi,JAC Delhi,Information Technology,OS,ST,Gender-Neutral,,125374,2024
+Delhi Technological University (DTU),Delhi,JAC Delhi,Software Engineering,OS,OPEN,Gender-Neutral,,10046,2024
+Delhi Technological University (DTU),Delhi,JAC Delhi,Software Engineering,OS,EWS,Gender-Neutral,,14131,2024
+Delhi Technological University (DTU),Delhi,JAC Delhi,Software Engineering,OS,OBC-NCL,Gender-Neutral,,21624,2024
+Delhi Technological University (DTU),Delhi,JAC Delhi,Software Engineering,OS,SC,Gender-Neutral,,86411,2024
+Delhi Technological University (DTU),Delhi,JAC Delhi,Software Engineering,OS,ST,Gender-Neutral,,106627,2024
+Delhi Technological University (DTU),Delhi,JAC Delhi,Mathematics and Computing,OS,OPEN,Gender-Neutral,,10289,2024
+Delhi Technological University (DTU),Delhi,JAC Delhi,Mathematics and Computing,OS,EWS,Gender-Neutral,,14223,2024
+Delhi Technological University (DTU),Delhi,JAC Delhi,Mathematics and Computing,OS,OBC-NCL,Gender-Neutral,,24179,2024
+Delhi Technological University (DTU),Delhi,JAC Delhi,Mathematics and Computing,OS,SC,Gender-Neutral,,96377,2024
+Delhi Technological University (DTU),Delhi,JAC Delhi,Mathematics and Computing,OS,ST,Gender-Neutral,,129675,2024
+Delhi Technological University (DTU),Delhi,JAC Delhi,Electronics and Communication Engineering,OS,OPEN,Gender-Neutral,,11787,2024
+Delhi Technological University (DTU),Delhi,JAC Delhi,Electronics and Communication Engineering,OS,EWS,Gender-Neutral,,15529,2024
+Delhi Technological University (DTU),Delhi,JAC Delhi,Electronics and Communication Engineering,OS,OBC-NCL,Gender-Neutral,,25615,2024
+Delhi Technological University (DTU),Delhi,JAC Delhi,Electronics and Communication Engineering,OS,SC,Gender-Neutral,,99941,2024
+Delhi Technological University (DTU),Delhi,JAC Delhi,Electronics and Communication Engineering,OS,ST,Gender-Neutral,,151748,2024
+Delhi Technological University (DTU),Delhi,JAC Delhi,Electrical Engineering,OS,OPEN,Gender-Neutral,,15907,2024
+Delhi Technological University (DTU),Delhi,JAC Delhi,Electrical Engineering,OS,EWS,Gender-Neutral,,17614,2024
+Delhi Technological University (DTU),Delhi,JAC Delhi,Electrical Engineering,OS,OBC-NCL,Gender-Neutral,,33509,2024
+Delhi Technological University (DTU),Delhi,JAC Delhi,Electrical Engineering,OS,SC,Gender-Neutral,,128524,2024
+Delhi Technological University (DTU),Delhi,JAC Delhi,Electrical Engineering,OS,ST,Gender-Neutral,,194690,2024
+Delhi Technological University (DTU),Delhi,JAC Delhi,Mechanical Engineering,OS,OPEN,Gender-Neutral,,20977,2024
+Delhi Technological University (DTU),Delhi,JAC Delhi,Mechanical Engineering,OS,EWS,Gender-Neutral,,24501,2024
+Delhi Technological University (DTU),Delhi,JAC Delhi,Mechanical Engineering,OS,OBC-NCL,Gender-Neutral,,44147,2024
+Delhi Technological University (DTU),Delhi,JAC Delhi,Mechanical Engineering,OS,SC,Gender-Neutral,,170442,2024
+Delhi Technological University (DTU),Delhi,JAC Delhi,Mechanical Engineering,OS,ST,Gender-Neutral,,260436,2024
+Delhi Technological University (DTU),Delhi,JAC Delhi,Mechanical Engineering with specialization in Automotive Engineering,OS,OPEN,Gender-Neutral,,16830,2024
+Delhi Technological University (DTU),Delhi,JAC Delhi,Mechanical Engineering with specialization in Automotive Engineering,OS,EWS,Gender-Neutral,,23791,2024
+Delhi Technological University (DTU),Delhi,JAC Delhi,Mechanical Engineering with specialization in Automotive Engineering,OS,OBC-NCL,Gender-Neutral,,45219,2024
+Delhi Technological University (DTU),Delhi,JAC Delhi,Mechanical Engineering with specialization in Automotive Engineering,OS,SC,Gender-Neutral,,173048,2024
+Delhi Technological University (DTU),Delhi,JAC Delhi,Mechanical Engineering with specialization in Automotive Engineering,OS,ST,Gender-Neutral,,368939,2024
+Delhi Technological University (DTU),Delhi,JAC Delhi,Engineering Physics,OS,OPEN,Gender-Neutral,,19657,2024
+Delhi Technological University (DTU),Delhi,JAC Delhi,Engineering Physics,OS,EWS,Gender-Neutral,,24442,2024
+Delhi Technological University (DTU),Delhi,JAC Delhi,Engineering Physics,OS,OBC-NCL,Gender-Neutral,,49002,2024
+Delhi Technological University (DTU),Delhi,JAC Delhi,Engineering Physics,OS,SC,Gender-Neutral,,187998,2024
+Delhi Technological University (DTU),Delhi,JAC Delhi,Engineering Physics,OS,ST,Gender-Neutral,,375857,2024
+Delhi Technological University (DTU),Delhi,JAC Delhi,Chemical Engineering,OS,OPEN,Gender-Neutral,,22845,2024
+Delhi Technological University (DTU),Delhi,JAC Delhi,Chemical Engineering,OS,EWS,Gender-Neutral,,25367,2024
+Delhi Technological University (DTU),Delhi,JAC Delhi,Chemical Engineering,OS,OBC-NCL,Gender-Neutral,,50025,2024
+Delhi Technological University (DTU),Delhi,JAC Delhi,Chemical Engineering,OS,SC,Gender-Neutral,,180128,2024
+Delhi Technological University (DTU),Delhi,JAC Delhi,Chemical Engineering,OS,ST,Gender-Neutral,,206487,2024
+Delhi Technological University (DTU),Delhi,JAC Delhi,Civil Engineering,OS,OPEN,Gender-Neutral,,28180,2024
+Delhi Technological University (DTU),Delhi,JAC Delhi,Civil Engineering,OS,EWS,Gender-Neutral,,37215,2024
+Delhi Technological University (DTU),Delhi,JAC Delhi,Civil Engineering,OS,OBC-NCL,Gender-Neutral,,53032,2024
+Delhi Technological University (DTU),Delhi,JAC Delhi,Civil Engineering,OS,SC,Gender-Neutral,,178296,2024
+Delhi Technological University (DTU),Delhi,JAC Delhi,Civil Engineering,OS,ST,Gender-Neutral,,252579,2024
+Delhi Technological University (DTU),Delhi,JAC Delhi,Production & Industrial Engineering,OS,OPEN,Gender-Neutral,,25875,2024
+Delhi Technological University (DTU),Delhi,JAC Delhi,Production & Industrial Engineering,OS,EWS,Gender-Neutral,,29899,2024
+Delhi Technological University (DTU),Delhi,JAC Delhi,Production & Industrial Engineering,OS,OBC-NCL,Gender-Neutral,,54184,2024
+Delhi Technological University (DTU),Delhi,JAC Delhi,Production & Industrial Engineering,OS,SC,Gender-Neutral,,188464,2024
+Delhi Technological University (DTU),Delhi,JAC Delhi,Production & Industrial Engineering,OS,ST,Gender-Neutral,,383834,2024
+Delhi Technological University (DTU),Delhi,JAC Delhi,Environmental Engineering,OS,OPEN,Gender-Neutral,,27789,2024
+Delhi Technological University (DTU),Delhi,JAC Delhi,Environmental Engineering,OS,EWS,Gender-Neutral,,37686,2024
+Delhi Technological University (DTU),Delhi,JAC Delhi,Environmental Engineering,OS,OBC-NCL,Gender-Neutral,,55534,2024
+Delhi Technological University (DTU),Delhi,JAC Delhi,Environmental Engineering,OS,SC,Gender-Neutral,,201699,2024
+Delhi Technological University (DTU),Delhi,JAC Delhi,Environmental Engineering,OS,ST,Gender-Neutral,,387956,2024
+Delhi Technological University (DTU),Delhi,JAC Delhi,Bio-Technology,OS,OPEN,Gender-Neutral,,26859,2024
+Delhi Technological University (DTU),Delhi,JAC Delhi,Bio-Technology,OS,EWS,Gender-Neutral,,37660,2024
+Delhi Technological University (DTU),Delhi,JAC Delhi,Bio-Technology,OS,OBC-NCL,Gender-Neutral,,55770,2024
+Delhi Technological University (DTU),Delhi,JAC Delhi,Bio-Technology,OS,SC,Gender-Neutral,,197944,2024
+Delhi Technological University (DTU),Delhi,JAC Delhi,Bio-Technology,OS,ST,Gender-Neutral,,282632,2024
+Delhi Technological University (DTU),Delhi,JAC Delhi,Computer Science and Engineering,HS,OPEN,Gender-Neutral,,13567,2024
+Delhi Technological University (DTU),Delhi,JAC Delhi,Computer Science and Engineering,HS,EWS,Gender-Neutral,,25062,2024
+Delhi Technological University (DTU),Delhi,JAC Delhi,Computer Science and Engineering,HS,OBC-NCL,Gender-Neutral,,57096,2024
+Delhi Technological University (DTU),Delhi,JAC Delhi,Computer Science and Engineering,HS,SC,Gender-Neutral,,122763,2024
+Delhi Technological University (DTU),Delhi,JAC Delhi,Computer Science and Engineering,HS,ST,Gender-Neutral,,361124,2024
+Delhi Technological University (DTU),Delhi,JAC Delhi,Information Technology,HS,OPEN,Gender-Neutral,,17916,2024
+Delhi Technological University (DTU),Delhi,JAC Delhi,Information Technology,HS,EWS,Gender-Neutral,,27361,2024
+Delhi Technological University (DTU),Delhi,JAC Delhi,Information Technology,HS,OBC-NCL,Gender-Neutral,,71245,2024
+Delhi Technological University (DTU),Delhi,JAC Delhi,Information Technology,HS,SC,Gender-Neutral,,140198,2024
+Delhi Technological University (DTU),Delhi,JAC Delhi,Information Technology,HS,ST,Gender-Neutral,,494782,2024
+Delhi Technological University (DTU),Delhi,JAC Delhi,Software Engineering,HS,OPEN,Gender-Neutral,,21614,2024
+Delhi Technological University (DTU),Delhi,JAC Delhi,Software Engineering,HS,EWS,Gender-Neutral,,30793,2024
+Delhi Technological University (DTU),Delhi,JAC Delhi,Software Engineering,HS,OBC-NCL,Gender-Neutral,,83824,2024
+Delhi Technological University (DTU),Delhi,JAC Delhi,Software Engineering,HS,SC,Gender-Neutral,,175806,2024
+Delhi Technological University (DTU),Delhi,JAC Delhi,Software Engineering,HS,ST,Gender-Neutral,,515808,2024
+Delhi Technological University (DTU),Delhi,JAC Delhi,Mathematics and Computing,HS,OPEN,Gender-Neutral,,24053,2024
+Delhi Technological University (DTU),Delhi,JAC Delhi,Mathematics and Computing,HS,EWS,Gender-Neutral,,35773,2024
+Delhi Technological University (DTU),Delhi,JAC Delhi,Mathematics and Computing,HS,OBC-NCL,Gender-Neutral,,93741,2024
+Delhi Technological University (DTU),Delhi,JAC Delhi,Mathematics and Computing,HS,SC,Gender-Neutral,,213200,2024
+Delhi Technological University (DTU),Delhi,JAC Delhi,Mathematics and Computing,HS,ST,Gender-Neutral,,967013,2024
+Delhi Technological University (DTU),Delhi,JAC Delhi,Electronics and Communication Engineering,HS,OPEN,Gender-Neutral,,28173,2024
+Delhi Technological University (DTU),Delhi,JAC Delhi,Electronics and Communication Engineering,HS,EWS,Gender-Neutral,,41619,2024
+Delhi Technological University (DTU),Delhi,JAC Delhi,Electronics and Communication Engineering,HS,OBC-NCL,Gender-Neutral,,109062,2024
+Delhi Technological University (DTU),Delhi,JAC Delhi,Electronics and Communication Engineering,HS,SC,Gender-Neutral,,222834,2024
+Delhi Technological University (DTU),Delhi,JAC Delhi,Electronics and Communication Engineering,HS,ST,Gender-Neutral,,1176223,2024
+Delhi Technological University (DTU),Delhi,JAC Delhi,Electrical Engineering,HS,OPEN,Gender-Neutral,,37098,2024
+Delhi Technological University (DTU),Delhi,JAC Delhi,Electrical Engineering,HS,EWS,Gender-Neutral,,56169,2024
+Delhi Technological University (DTU),Delhi,JAC Delhi,Electrical Engineering,HS,OBC-NCL,Gender-Neutral,,149952,2024
+Delhi Technological University (DTU),Delhi,JAC Delhi,Electrical Engineering,HS,SC,Gender-Neutral,,346626,2024
+Delhi Technological University (DTU),Delhi,JAC Delhi,Electrical Engineering,HS,ST,Gender-Neutral,,1268457,2024
+Delhi Technological University (DTU),Delhi,JAC Delhi,Mechanical Engineering,HS,OPEN,Gender-Neutral,,54356,2024
+Delhi Technological University (DTU),Delhi,JAC Delhi,Mechanical Engineering,HS,EWS,Gender-Neutral,,79877,2024
+Delhi Technological University (DTU),Delhi,JAC Delhi,Mechanical Engineering,HS,OBC-NCL,Gender-Neutral,,203069,2024
+Delhi Technological University (DTU),Delhi,JAC Delhi,Mechanical Engineering,HS,SC,Gender-Neutral,,459706,2024
+Delhi Technological University (DTU),Delhi,JAC Delhi,Mechanical Engineering,HS,ST,Gender-Neutral,,732816,2024
+Delhi Technological University (DTU),Delhi,JAC Delhi,Mechanical Engg. with Automotive Engg.,HS,OPEN,Gender-Neutral,,56014,2024
+Delhi Technological University (DTU),Delhi,JAC Delhi,Mechanical Engg. with Automotive Engg.,HS,EWS,Gender-Neutral,,86511,2024
+Delhi Technological University (DTU),Delhi,JAC Delhi,Mechanical Engg. with Automotive Engg.,HS,OBC-NCL,Gender-Neutral,,210234,2024
+Delhi Technological University (DTU),Delhi,JAC Delhi,Mechanical Engg. with Automotive Engg.,HS,SC,Gender-Neutral,,479584,2024
+Delhi Technological University (DTU),Delhi,JAC Delhi,Engineering Physics,HS,OPEN,Gender-Neutral,,53492,2024
+Delhi Technological University (DTU),Delhi,JAC Delhi,Engineering Physics,HS,EWS,Gender-Neutral,,82675,2024
+Delhi Technological University (DTU),Delhi,JAC Delhi,Engineering Physics,HS,OBC-NCL,Gender-Neutral,,200510,2024
+Delhi Technological University (DTU),Delhi,JAC Delhi,Engineering Physics,HS,SC,Gender-Neutral,,615180,2024
+Delhi Technological University (DTU),Delhi,JAC Delhi,Chemical Engineering,HS,OPEN,Gender-Neutral,,62712,2024
+Delhi Technological University (DTU),Delhi,JAC Delhi,Chemical Engineering,HS,EWS,Gender-Neutral,,103693,2024
+Delhi Technological University (DTU),Delhi,JAC Delhi,Chemical Engineering,HS,OBC-NCL,Gender-Neutral,,254518,2024
+Delhi Technological University (DTU),Delhi,JAC Delhi,Chemical Engineering,HS,SC,Gender-Neutral,,618505,2024
+Delhi Technological University (DTU),Delhi,JAC Delhi,Civil Engineering,HS,OPEN,Gender-Neutral,,71914,2024
+Delhi Technological University (DTU),Delhi,JAC Delhi,Civil Engineering,HS,EWS,Gender-Neutral,,118803,2024
+Delhi Technological University (DTU),Delhi,JAC Delhi,Civil Engineering,HS,OBC-NCL,Gender-Neutral,,294176,2024
+Delhi Technological University (DTU),Delhi,JAC Delhi,Civil Engineering,HS,SC,Gender-Neutral,,580756,2024
+Delhi Technological University (DTU),Delhi,JAC Delhi,Civil Engineering,HS,ST,Gender-Neutral,,468166,2024
+Delhi Technological University (DTU),Delhi,JAC Delhi,Production & Industrial Engineering,HS,OPEN,Gender-Neutral,,65734,2024
+Delhi Technological University (DTU),Delhi,JAC Delhi,Production & Industrial Engineering,HS,EWS,Gender-Neutral,,113617,2024
+Delhi Technological University (DTU),Delhi,JAC Delhi,Production & Industrial Engineering,HS,OBC-NCL,Gender-Neutral,,317506,2024
+Delhi Technological University (DTU),Delhi,JAC Delhi,Production & Industrial Engineering,HS,SC,Gender-Neutral,,812707,2024
+Delhi Technological University (DTU),Delhi,JAC Delhi,Environmental Engineering,HS,OPEN,Gender-Neutral,,75960,2024
+Delhi Technological University (DTU),Delhi,JAC Delhi,Environmental Engineering,HS,EWS,Gender-Neutral,,137948,2024
+Delhi Technological University (DTU),Delhi,JAC Delhi,Environmental Engineering,HS,OBC-NCL,Gender-Neutral,,382735,2024
+Delhi Technological University (DTU),Delhi,JAC Delhi,Environmental Engineering,HS,SC,Gender-Neutral,,924695,2024
+Delhi Technological University (DTU),Delhi,JAC Delhi,Bio-Technology,HS,OPEN,Gender-Neutral,,76007,2024
+Delhi Technological University (DTU),Delhi,JAC Delhi,Bio-Technology,HS,EWS,Gender-Neutral,,141758,2024
+Delhi Technological University (DTU),Delhi,JAC Delhi,Bio-Technology,HS,OBC-NCL,Gender-Neutral,,320922,2024
+Delhi Technological University (DTU),Delhi,JAC Delhi,Bio-Technology,HS,SC,Gender-Neutral,,738541,2024
+Delhi Technological University (DTU),Delhi,JAC Delhi,Electrical Engineering,HS,OPEN (PwD),Gender-Neutral,,1229037,2024
+Delhi Technological University (DTU),Delhi,JAC Delhi,Computer Science and Engineering,HS,EWS (PwD),Gender-Neutral,,915664,2024
+Delhi Technological University (DTU),Delhi,JAC Delhi,Computer Science and Engineering,HS,OBC (PwD),Gender-Neutral,,1298763,2024
+Delhi Technological University (DTU),Delhi,JAC Delhi,Computer Science and Engineering,HS,SC (PwD),Gender-Neutral,,578916,2024
+Delhi Technological University (DTU),Delhi,JAC Delhi,Civil Engineering,HS,OPEN (CW),Gender-Neutral,,162479,2024
+Delhi Technological University (DTU),Delhi,JAC Delhi,Civil Engineering,HS,EWS (CW),Gender-Neutral,,995288,2024
+Delhi Technological University (DTU),Delhi,JAC Delhi,Civil Engineering,HS,OBC (CW),Gender-Neutral,,321067,2024
+Delhi Technological University (DTU),Delhi,JAC Delhi,Computer Science and Engineering,HS,SC (CW),Gender-Neutral,,350698,2024
+Delhi Technological University (DTU),Delhi,JAC Delhi,Computer Science and Engineering,HS,ST (CW),Gender-Neutral,,390010,2024
+Delhi Technological University (DTU),Delhi,JAC Delhi,Mathematics and Computing,HS,OPEN (KM),Gender-Neutral,,25139,2024
+NSUT West Campus,Delhi,JAC Delhi,Civil Engineering,OS,OPEN,Female Only,,42085,2024
+NSUT West Campus,Delhi,JAC Delhi,Civil Engineering,OS,EWS,Female Only,,53241,2024
+NSUT West Campus,Delhi,JAC Delhi,Civil Engineering,OS,OBC (CW),Gender-Neutral,,409568,2024
+IIIT Delhi,Delhi,JAC Delhi,Computer Science and Applied Mathematics,HS,OBC (CW),Gender-Neutral,,177071,2024
+IIIT Delhi,Delhi,JAC Delhi,Computer Science and Applied Mathematics,HS,OBC-NCL,Gender-Neutral,,92637,2024
+IIIT Delhi,Delhi,JAC Delhi,Computer Science and Applied Mathematics,OS,OBC-NCL,Gender-Neutral,,23566,2024
+IIIT Delhi,Delhi,JAC Delhi,Computer Science and Applied Mathematics,HS,EWS,Gender-Neutral,,40351,2024
+IIIT Delhi,Delhi,JAC Delhi,Computer Science and Applied Mathematics,OS,EWS,Gender-Neutral,,13240,2024
+IIIT Delhi,Delhi,JAC Delhi,Computer Science and Applied Mathematics,HS,OPEN (KM),Gender-Neutral,,20879,2024
+IIIT Delhi,Delhi,JAC Delhi,Computer Science and Applied Mathematics,HS,OPEN (CW),Gender-Neutral,,19736,2024
+IIIT Delhi,Delhi,JAC Delhi,Computer Science and Applied Mathematics,HS,OPEN,Gender-Neutral,,18442,2024
+IIIT Delhi,Delhi,JAC Delhi,Computer Science and Applied Mathematics,OS,OPEN,Gender-Neutral,,9301,2024
+IIIT Delhi,Delhi,JAC Delhi,Computer Science and Applied Mathematics,HS,OPEN (PwD),Gender-Neutral,,408025,2024
+IIIT Delhi,Delhi,JAC Delhi,Computer Science and Applied Mathematics,HS,SC,Gender-Neutral,,236266,2024
+IIIT Delhi,Delhi,JAC Delhi,Computer Science and Applied Mathematics,OS,SC,Gender-Neutral,,94128,2024
+IIIT Delhi,Delhi,JAC Delhi,Computer Science and Applied Mathematics,OS,ST,Gender-Neutral,,103550,2024
+IIIT Delhi,Delhi,JAC Delhi,Computer Science and Artificial Intelligence,HS,OBC (CW),Gender-Neutral,,77706,2024
+IIIT Delhi,Delhi,JAC Delhi,Computer Science and Artificial Intelligence,HS,OBC-NCL,Gender-Neutral,,70819,2024
+IIIT Delhi,Delhi,JAC Delhi,Computer Science and Artificial Intelligence,OS,OBC-NCL,Gender-Neutral,,17970,2024
+IIIT Delhi,Delhi,JAC Delhi,Computer Science and Artificial Intelligence,HS,EWS,Gender-Neutral,,25210,2024
+IIIT Delhi,Delhi,JAC Delhi,Computer Science and Artificial Intelligence,OS,EWS,Gender-Neutral,,10748,2024
+IIIT Delhi,Delhi,JAC Delhi,Computer Science and Artificial Intelligence,HS,OPEN (KM),Gender-Neutral,,150678,2024
+IIIT Delhi,Delhi,JAC Delhi,Computer Science and Artificial Intelligence,HS,OPEN (CW),Gender-Neutral,,310232,2024
+IIIT Delhi,Delhi,JAC Delhi,Computer Science and Artificial Intelligence,HS,OPEN,Gender-Neutral,,8952,2024
+IIIT Delhi,Delhi,JAC Delhi,Computer Science and Artificial Intelligence,OS,OPEN,Gender-Neutral,,7865,2024
+IIIT Delhi,Delhi,JAC Delhi,Computer Science and Artificial Intelligence,HS,OPEN (PwD),Gender-Neutral,,83476,2024
+IIIT Delhi,Delhi,JAC Delhi,Computer Science and Artificial Intelligence,HS,SC,Gender-Neutral,,156240,2024
+IIIT Delhi,Delhi,JAC Delhi,Computer Science and Artificial Intelligence,OS,SC,Gender-Neutral,,66859,2024
+IIIT Delhi,Delhi,JAC Delhi,Computer Science and Artificial Intelligence,HS,ST,Gender-Neutral,,822638,2024
+IIIT Delhi,Delhi,JAC Delhi,Computer Science and Artificial Intelligence,OS,ST,Gender-Neutral,,133028,2024
+IIIT Delhi,Delhi,JAC Delhi,Computer Science and Biosciences,HS,OBC (CW),Gender-Neutral,,323227,2024
+IIIT Delhi,Delhi,JAC Delhi,Computer Science and Biosciences,HS,OBC-NCL,Gender-Neutral,,120851,2024
+IIIT Delhi,Delhi,JAC Delhi,Computer Science and Biosciences,OS,OBC-NCL,Gender-Neutral,,26207,2024
+IIIT Delhi,Delhi,JAC Delhi,Computer Science and Biosciences,HS,EWS,Gender-Neutral,,48347,2024
+IIIT Delhi,Delhi,JAC Delhi,Computer Science and Biosciences,OS,EWS,Gender-Neutral,,16781,2024
+IIIT Delhi,Delhi,JAC Delhi,Computer Science and Biosciences,HS,OPEN (KM),Gender-Neutral,,46816,2024
+IIIT Delhi,Delhi,JAC Delhi,Computer Science and Biosciences,HS,OPEN (CW),Gender-Neutral,,48262,2024
+IIIT Delhi,Delhi,JAC Delhi,Computer Science and Biosciences,HS,OPEN,Gender-Neutral,,28006,2024
+IIIT Delhi,Delhi,JAC Delhi,Computer Science and Biosciences,OS,OPEN,Gender-Neutral,,10174,2024
+IIIT Delhi,Delhi,JAC Delhi,Computer Science and Biosciences,HS,OPEN (PwD),Gender-Neutral,,,2024
+IIIT Delhi,Delhi,JAC Delhi,Computer Science and Biosciences,HS,SC (CW),Gender-Neutral,,900774,2024
+IIIT Delhi,Delhi,JAC Delhi,Computer Science and Biosciences,HS,SC,Gender-Neutral,,345521,2024
+IIIT Delhi,Delhi,JAC Delhi,Computer Science and Biosciences,OS,SC,Gender-Neutral,,108531,2024
+IIIT Delhi,Delhi,JAC Delhi,Computer Science and Biosciences,OS,ST,Gender-Neutral,,372673,2024
+IIIT Delhi,Delhi,JAC Delhi,Computer Science and Design,HS,OBC (CW),Gender-Neutral,,142445,2024
+IIIT Delhi,Delhi,JAC Delhi,Computer Science and Design,HS,OBC-NCL,Gender-Neutral,,94985,2024
+IIIT Delhi,Delhi,JAC Delhi,Computer Science and Design,OS,OBC-NCL,Gender-Neutral,,23573,2024
+IIIT Delhi,Delhi,JAC Delhi,Computer Science and Design,HS,EWS,Gender-Neutral,,40390,2024
+IIIT Delhi,Delhi,JAC Delhi,Computer Science and Design,OS,EWS,Gender-Neutral,,14404,2024
+IIIT Delhi,Delhi,JAC Delhi,Computer Science and Design,HS,OPEN (CW),Gender-Neutral,,22262,2024
+IIIT Delhi,Delhi,JAC Delhi,Computer Science and Design,HS,OPEN,Gender-Neutral,,20091,2024
+IIIT Delhi,Delhi,JAC Delhi,Computer Science and Design,OS,OPEN,Gender-Neutral,,9847,2024
+IIIT Delhi,Delhi,JAC Delhi,Computer Science and Design,HS,OPEN (PwD),Gender-Neutral,,422761,2024
+IIIT Delhi,Delhi,JAC Delhi,Computer Science and Design,HS,SC,Gender-Neutral,,251288,2024
+IIIT Delhi,Delhi,JAC Delhi,Computer Science and Design,OS,SC,Gender-Neutral,,70651,2024
+IIIT Delhi,Delhi,JAC Delhi,Computer Science and Design,HS,ST,Gender-Neutral,,631551,2024
+IIIT Delhi,Delhi,JAC Delhi,Computer Science and Design,OS,ST,,,,2024
+IIIT Delhi,Delhi,JAC Delhi,Computer Science and Engineering,HS,OBC (CW),Gender-Neutral,,85498,2024
+IIIT Delhi,Delhi,JAC Delhi,Computer Science and Engineering,HS,OBC-NCL,Gender-Neutral,,78633,2024
+IIIT Delhi,Delhi,JAC Delhi,Computer Science and Engineering,OS,OBC-NCL,Gender-Neutral,,17594,2024
+IIIT Delhi,Delhi,JAC Delhi,Computer Science and Engineering,HS,EWS (CW),Gender-Neutral,,44866,2024
+IIIT Delhi,Delhi,JAC Delhi,Computer Science and Engineering,HS,EWS,Gender-Neutral,,31877,2024
+IIIT Delhi,Delhi,JAC Delhi,Computer Science and Engineering,OS,EWS,Gender-Neutral,,14251,2024
+IIIT Delhi,Delhi,JAC Delhi,Computer Science and Engineering,HS,OPEN (KM),Gender-Neutral,,121036,2024
+IIIT Delhi,Delhi,JAC Delhi,Computer Science and Engineering,HS,OPEN (CW),Gender-Neutral,,199515,2024
+IIIT Delhi,Delhi,JAC Delhi,Computer Science and Engineering,HS,OPEN,Gender-Neutral,,12595,2024
+IIIT Delhi,Delhi,JAC Delhi,Computer Science and Engineering,OS,OPEN,Gender-Neutral,,6695,2024
+IIIT Delhi,Delhi,JAC Delhi,Computer Science and Engineering,HS,OPEN (PwD),Gender-Neutral,,304157,2024
+IIIT Delhi,Delhi,JAC Delhi,Computer Science and Engineering,HS,SC,Gender-Neutral,,178150,2024
+IIIT Delhi,Delhi,JAC Delhi,Computer Science and Engineering,OS,SC,Gender-Neutral,,93441,2024
+IIIT Delhi,Delhi,JAC Delhi,Computer Science and Social Sciences,HS,OBC (CW),Gender-Neutral,,197359,2024
+IIIT Delhi,Delhi,JAC Delhi,Computer Science and Social Sciences,HS,OBC-NCL,Gender-Neutral,,111206,2024
+IIIT Delhi,Delhi,JAC Delhi,Computer Science and Social Sciences,OS,OBC-NCL,Gender-Neutral,,24194,2024
+IIIT Delhi,Delhi,JAC Delhi,Computer Science and Social Sciences,HS,EWS,Gender-Neutral,,43881,2024
+IIIT Delhi,Delhi,JAC Delhi,Computer Science and Social Sciences,OS,EWS,Gender-Neutral,,16780,2024
+IIIT Delhi,Delhi,JAC Delhi,Computer Science and Social Sciences,HS,OPEN,Gender-Neutral,,25587,2024
+IIIT Delhi,Delhi,JAC Delhi,Computer Science and Social Sciences,OS,OPEN,Gender-Neutral,,9975,2024
+IIIT Delhi,Delhi,JAC Delhi,Computer Science and Social Sciences,HS,SC,Gender-Neutral,,311776,2024
+IIIT Delhi,Delhi,JAC Delhi,Computer Science and Social Sciences,OS,SC,Gender-Neutral,,108493,2024
+IIIT Delhi,Delhi,JAC Delhi,Electronics and Communication Engineering,HS,OBC (CW),Gender-Neutral,,211433,2024
+IIIT Delhi,Delhi,JAC Delhi,Electronics and Communication Engineering,HS,OBC-NCL,Gender-Neutral,,132636,2024
+IIIT Delhi,Delhi,JAC Delhi,Electronics and Communication Engineering,OS,OBC-NCL,Gender-Neutral,,25872,2024
+IIIT Delhi,Delhi,JAC Delhi,Electronics and Communication Engineering,HS,EWS (CW),Gender-Neutral,,78647,2024
+IIIT Delhi,Delhi,JAC Delhi,Electronics and Communication Engineering,HS,EWS,Gender-Neutral,,51292,2024
+IIIT Delhi,Delhi,JAC Delhi,Electronics and Communication Engineering,OS,EWS,Gender-Neutral,,17464,2024
+IIIT Delhi,Delhi,JAC Delhi,Electronics and Communication Engineering,HS,OPEN (KM),Gender-Neutral,,81442,2024
+IIIT Delhi,Delhi,JAC Delhi,Electronics and Communication Engineering,HS,OPEN (CW),Gender-Neutral,,48549,2024
+IIIT Delhi,Delhi,JAC Delhi,Electronics and Communication Engineering,HS,OPEN,Gender-Neutral,,28529,2024
+IIIT Delhi,Delhi,JAC Delhi,Electronics and Communication Engineering,OS,OPEN,Gender-Neutral,,10559,2024
+IIIT Delhi,Delhi,JAC Delhi,Electronics and Communication Engineering,HS,SC,Gender-Neutral,,327480,2024
+IIIT Delhi,Delhi,JAC Delhi,Electronics and Communication Engineering,OS,SC,Gender-Neutral,,125926,2024
+IIIT Delhi,Delhi,JAC Delhi,Electronics and VLSI Engineering,HS,OBC (CW),Gender-Neutral,,297700,2024
+IIIT Delhi,Delhi,JAC Delhi,Electronics and VLSI Engineering,HS,OBC-NCL,Gender-Neutral,,143554,2024
+IIIT Delhi,Delhi,JAC Delhi,Electronics and VLSI Engineering,OS,OBC-NCL,Gender-Neutral,,30776,2024
+IIIT Delhi,Delhi,JAC Delhi,Electronics and VLSI Engineering,HS,EWS,Gender-Neutral,,59587,2024
+IIIT Delhi,Delhi,JAC Delhi,Electronics and VLSI Engineering,OS,EWS,Gender-Neutral,,17799,2024
+IIIT Delhi,Delhi,JAC Delhi,Electronics and VLSI Engineering,HS,OPEN (KM),Gender-Neutral,,78495,2024
+IIIT Delhi,Delhi,JAC Delhi,Electronics and VLSI Engineering,HS,OPEN (CW),Gender-Neutral,,52846,2024
+IIIT Delhi,Delhi,JAC Delhi,Electronics and VLSI Engineering,HS,OPEN,Gender-Neutral,,32814,2024
+IIIT Delhi,Delhi,JAC Delhi,Electronics and VLSI Engineering,OS,OPEN,Gender-Neutral,,11064,2024
+IIIT Delhi,Delhi,JAC Delhi,Electronics and VLSI Engineering,HS,SC,Gender-Neutral,,501765,2024
+IIIT Delhi,Delhi,JAC Delhi,Electronics and VLSI Engineering,OS,SC,Gender-Neutral,,105367,2024
+IIIT Delhi,Delhi,JAC Delhi,Electronics and VLSI Engineering,OS,ST,Gender-Neutral,,321950,2024
+Name of College,Delhi,JAC Delhi,Full Form,Quota,Seat Type,Gender,,Closing Rank,2024
+IGDTUW,Delhi,JAC Delhi,Computer Science and Engineering (Artificial Intelligence),HS,OPEN,Female Only,,45739,2024
+IGDTUW,Delhi,JAC Delhi,Computer Science and Engineering,HS,OPEN,Female Only,,53980,2024
+IGDTUW,Delhi,JAC Delhi,Electronics and Communication Engineering (AI),HS,OPEN,Female Only,,80292,2024
+IGDTUW,Delhi,JAC Delhi,Electronics and Communication Engineering,HS,OPEN,Female Only,,82462,2024
+IGDTUW,Delhi,JAC Delhi,Information Technology,HS,OPEN,Female Only,,68272,2024
+IGDTUW,Delhi,JAC Delhi,Artificial Intelligence and Machine Learning,HS,OPEN,Female Only,,69333,2024
+IGDTUW,Delhi,JAC Delhi,Mechanical and Automation Engineering,HS,OPEN,Female Only,,98257,2024
+IGDTUW,Delhi,JAC Delhi,Dual Degree B.Tech. MAE + MBA,HS,OPEN,Female Only,,105940,2024
+IGDTUW,Delhi,JAC Delhi,Bachelor of Architecture,HS,OPEN,Female Only,,6954,2024
+IGDTUW,Delhi,JAC Delhi,Computer Science and Engineering (Artificial Intelligence),HS,OPEN,Female Only,,82958,2024
+IGDTUW,Delhi,JAC Delhi,Computer Science and Engineering,HS,OPEN,Female Only,,119580,2024
+IGDTUW,Delhi,JAC Delhi,Electronics and Communication Engineering (AI),HS,OPEN,Female Only,,194657,2024
+IGDTUW,Delhi,JAC Delhi,Electronics and Communication Engineering,HS,OPEN,Female Only,,151427,2024
+IGDTUW,Delhi,JAC Delhi,Information Technology,HS,OPEN,Female Only,,147045,2024
+IGDTUW,Delhi,JAC Delhi,Artificial Intelligence and Machine Learning,HS,OPEN,Female Only,,104561,2024
+IGDTUW,Delhi,JAC Delhi,Mechanical and Automation Engineering,HS,OPEN,Female Only,,202715,2024
+IGDTUW,Delhi,JAC Delhi,Dual Degree B.Tech. MAE + MBA,HS,OPEN,Female Only,,385431,2024
+IGDTUW,Delhi,JAC Delhi,Bachelor of Architecture,HS,OPEN,Female Only,,10126,2024
+IGDTUW,Delhi,JAC Delhi,Computer Science and Engineering (Artificial Intelligence),HS,OPEN (PwD),Female Only,,959513,2024
+IGDTUW,Delhi,JAC Delhi,Computer Science and Engineering,HS,OPEN (PwD),Female Only,,640722,2024
+IGDTUW,Delhi,JAC Delhi,Information Technology,HS,OPEN (PwD),Female Only,,805191,2024
+IGDTUW,Delhi,JAC Delhi,Computer Science and Engineering (Artificial Intelligence),HS,SC,Female Only,,387848,2024
+IGDTUW,Delhi,JAC Delhi,Computer Science and Engineering,HS,SC,Female Only,,311015,2024
+IGDTUW,Delhi,JAC Delhi,Electronics and Communication Engineering (AI),HS,SC,Female Only,,743436,2024
+IGDTUW,Delhi,JAC Delhi,Electronics and Communication Engineering,HS,SC,Female Only,,655685,2024
+IGDTUW,Delhi,JAC Delhi,Information Technology,HS,SC,Female Only,,511481,2024
+IGDTUW,Delhi,JAC Delhi,Artificial Intelligence and Machine Learning,HS,SC,Female Only,,528188,2024
+IGDTUW,Delhi,JAC Delhi,Mechanical and Automation Engineering,HS,SC,Female Only,,1349056,2024
+IGDTUW,Delhi,JAC Delhi,Dual Degree B.Tech. MAE + MBA,HS,SC,Female Only,,1099401,2024
+IGDTUW,Delhi,JAC Delhi,Bachelor of Architecture,HS,SC,Female Only,,54831,2024
+IGDTUW,Delhi,JAC Delhi,Computer Science and Engineering (Artificial Intelligence),HS,SC,Female Only,,709472,2024
+IGDTUW,Delhi,JAC Delhi,Computer Science and Engineering (Artificial Intelligence),HS,ST,Female Only,,899995,2024
+IGDTUW,Delhi,JAC Delhi,Computer Science and Engineering,HS,ST,Female Only,,927894,2024
+IGDTUW,Delhi,JAC Delhi,Computer Science and Engineering (Artificial Intelligence),HS,OBC-NCL,Female Only,,176593,2024
+IGDTUW,Delhi,JAC Delhi,Computer Science and Engineering,HS,OBC-NCL,Female Only,,192010,2024
+IGDTUW,Delhi,JAC Delhi,Electronics and Communication Engineering (AI),HS,OBC-NCL,Female Only,,308601,2024
+IGDTUW,Delhi,JAC Delhi,Electronics and Communication Engineering,HS,OBC-NCL,Female Only,,319412,2024
+IGDTUW,Delhi,JAC Delhi,Information Technology,HS,OBC-NCL,Female Only,,236462,2024
+IGDTUW,Delhi,JAC Delhi,Artificial Intelligence and Machine Learning,HS,OBC-NCL,Female Only,,259846,2024
+IGDTUW,Delhi,JAC Delhi,Mechanical and Automation Engineering,HS,OBC-NCL,Female Only,,402391,2024
+IGDTUW,Delhi,JAC Delhi,Dual Degree B.Tech. MAE + MBA,HS,OBC-NCL,Female Only,,461613,2024
+IGDTUW,Delhi,JAC Delhi,Bachelor of Architecture,HS,OBC-NCL,Female Only,,49419,2024
+IGDTUW,Delhi,JAC Delhi,Computer Science and Engineering (Artificial Intelligence),HS,OBC (CW),Female Only,,356758,2024
+IGDTUW,Delhi,JAC Delhi,Computer Science and Engineering,HS,OBC (CW),Female Only,,567533,2024
+IGDTUW,Delhi,JAC Delhi,Electronics and Communication Engineering (AI),HS,OBC (CW),Female Only,,471154,2024
+IGDTUW,Delhi,JAC Delhi,Electronics and Communication Engineering,HS,OBC (CW),Female Only,,388633,2024
+IGDTUW,Delhi,JAC Delhi,Information Technology,HS,OBC (CW),Female Only,,770468,2024
+IGDTUW,Delhi,JAC Delhi,Artificial Intelligence and Machine Learning,HS,OBC (CW),Female Only,,626081,2024
+IGDTUW,Delhi,JAC Delhi,Dual Degree B.Tech. MAE + MBA,HS,OBC (CW),Female Only,,632143,2024
+IGDTUW,Delhi,JAC Delhi,Computer Science and Engineering (Artificial Intelligence),HS,EWS,Female Only,,92955,2024
+IGDTUW,Delhi,JAC Delhi,Computer Science and Engineering,HS,EWS,Female Only,,110352,2024
+IGDTUW,Delhi,JAC Delhi,Electronics and Communication Engineering (AI),HS,EWS,Female Only,,156473,2024
+IGDTUW,Delhi,JAC Delhi,Electronics and Communication Engineering,HS,EWS,Female Only,,160216,2024
+IGDTUW,Delhi,JAC Delhi,Information Technology,HS,EWS,Female Only,,130914,2024
+IGDTUW,Delhi,JAC Delhi,Artificial Intelligence and Machine Learning,HS,EWS,Female Only,,132471,2024
+IGDTUW,Delhi,JAC Delhi,Mechanical and Automation Engineering,HS,EWS,Female Only,,217017,2024
+IGDTUW,Delhi,JAC Delhi,Dual Degree B.Tech. MAE + MBA,HS,EWS,Female Only,,245318,2024
+IGDTUW,Delhi,JAC Delhi,Bachelor of Architecture,HS,EWS,Female Only,,29348,2024
+IGDTUW,Delhi,JAC Delhi,Computer Science and Engineering (Artificial Intelligence),HS,EWS (CW),Female Only,,284244,2024
+IGDTUW,Delhi,JAC Delhi,Computer Science and Engineering,HS,EWS (CW),Female Only,,181967,2024
+IGDTUW,Delhi,JAC Delhi,Computer Science and Engineering (Artificial Intelligence),HS,OPEN,Single Girl,,52461,2024
+IGDTUW,Delhi,JAC Delhi,Computer Science and Engineering,HS,OPEN,Single Girl,,56018,2024
+IGDTUW,Delhi,JAC Delhi,Electronics and Communication Engineering (AI),HS,OPEN,Single Girl,,84931,2024
+IGDTUW,Delhi,JAC Delhi,Electronics and Communication Engineering,HS,OPEN,Single Girl,,90650,2024
+IGDTUW,Delhi,JAC Delhi,Information Technology,HS,OPEN,Single Girl,,72946,2024
+IGDTUW,Delhi,JAC Delhi,Artificial Intelligence and Machine Learning,HS,OPEN,Single Girl,,73291,2024
+IGDTUW,Delhi,JAC Delhi,Mechanical and Automation Engineering,HS,OPEN,Single Girl,,105724,2024
+IGDTUW,Delhi,JAC Delhi,Dual Degree B.Tech. MAE + MBA,HS,OPEN,Single Girl,,114543,2024
+IGDTUW,Delhi,JAC Delhi,Computer Science and Engineering,HS,OPEN,Female Only,,124747,2024
+IGDTUW,Delhi,JAC Delhi,Computer Science and Engineering (Artificial Intelligence),OS,OPEN,Female Only,,28410,2024
+IGDTUW,Delhi,JAC Delhi,Computer Science and Engineering,OS,OPEN,Female Only,,25613,2024
+IGDTUW,Delhi,JAC Delhi,Electronics and Communication Engineering (AI),OS,OPEN,Female Only,,33187,2024
+IGDTUW,Delhi,JAC Delhi,Electronics and Communication Engineering,OS,OPEN,Female Only,,32355,2024
+IGDTUW,Delhi,JAC Delhi,Information Technology,OS,OPEN,Female Only,,30706,2024
+IGDTUW,Delhi,JAC Delhi,Artificial Intelligence and Machine Learning,OS,OPEN,Female Only,,31349,2024
+IGDTUW,Delhi,JAC Delhi,Mechanical and Automation Engineering,OS,OPEN,Female Only,,42614,2024
+IGDTUW,Delhi,JAC Delhi,Dual Degree B.Tech. MAE + MBA,OS,OPEN,Female Only,,39598,2024
+IGDTUW,Delhi,JAC Delhi,Bachelor of Architecture,OS,OPEN,Female Only,,2490,2024
+IGDTUW,Delhi,JAC Delhi,Computer Science and Engineering (Artificial Intelligence),OS,OPEN,Female Only,,965191,2024
+IGDTUW,Delhi,JAC Delhi,Computer Science and Engineering,OS,OPEN,Female Only,,95937,2024
+IGDTUW,Delhi,JAC Delhi,Electronics and Communication Engineering (AI),OS,OPEN,Female Only,,202419,2024
+IGDTUW,Delhi,JAC Delhi,Information Technology,OS,OPEN,Female Only,,201819,2024
+IGDTUW,Delhi,JAC Delhi,Mechanical and Automation Engineering,OS,OPEN,Female Only,,71430,2024
+IGDTUW,Delhi,JAC Delhi,Computer Science and Engineering (Artificial Intelligence),OS,OPEN (PwD),Female Only,,350097,2024
+IGDTUW,Delhi,JAC Delhi,Computer Science and Engineering,OS,OPEN (PwD),Female Only,,363291,2024
+IGDTUW,Delhi,JAC Delhi,Computer Science and Engineering (Artificial Intelligence),OS,SC,Female Only,,159725,2024
+IGDTUW,Delhi,JAC Delhi,Computer Science and Engineering,OS,SC,Female Only,,146930,2024
+IGDTUW,Delhi,JAC Delhi,Electronics and Communication Engineering (AI),OS,SC,Female Only,,202505,2024
+IGDTUW,Delhi,JAC Delhi,Electronics and Communication Engineering,OS,SC,Female Only,,198604,2024
+IGDTUW,Delhi,JAC Delhi,Information Technology,OS,SC,Female Only,,184959,2024
+IGDTUW,Delhi,JAC Delhi,Artificial Intelligence and Machine Learning,OS,SC,Female Only,,171956,2024
+IGDTUW,Delhi,JAC Delhi,Mechanical and Automation Engineering,OS,SC,Female Only,,208106,2024
+IGDTUW,Delhi,JAC Delhi,Dual Degree B.Tech. MAE + MBA,OS,SC,Female Only,,217146,2024
+IGDTUW,Delhi,JAC Delhi,Computer Science and Engineering (Artificial Intelligence),OS,ST,Female Only,,387863,2024
+IGDTUW,Delhi,JAC Delhi,Computer Science and Engineering,OS,ST,Female Only,,269936,2024
+IGDTUW,Delhi,JAC Delhi,Electronics and Communication Engineering (AI),OS,ST,Female Only,,401236,2024
+IGDTUW,Delhi,JAC Delhi,Electronics and Communication Engineering,OS,ST,Female Only,,298635,2024
+IGDTUW,Delhi,JAC Delhi,Information Technology,OS,ST,Female Only,,317316,2024
+IGDTUW,Delhi,JAC Delhi,Artificial Intelligence and Machine Learning,OS,ST,Female Only,,319091,2024
+IGDTUW,Delhi,JAC Delhi,Mechanical and Automation Engineering,OS,ST,Female Only,,366596,2024
+IGDTUW,Delhi,JAC Delhi,Bachelor of Architecture,OS,ST,Female Only,,6588,2024
+IGDTUW,Delhi,JAC Delhi,Computer Science and Engineering (Artificial Intelligence),OS,OBC-NCL,Female Only,,42200,2024
+IGDTUW,Delhi,JAC Delhi,Computer Science and Engineering,OS,OBC-NCL,Female Only,,41586,2024
+IGDTUW,Delhi,JAC Delhi,Electronics and Communication Engineering (AI),OS,OBC-NCL,Female Only,,57864,2024
+IGDTUW,Delhi,JAC Delhi,Electronics and Communication Engineering,OS,OBC-NCL,Female Only,,54311,2024
+IGDTUW,Delhi,JAC Delhi,Information Technology,OS,OBC-NCL,Female Only,,48060,2024
+IGDTUW,Delhi,JAC Delhi,Artificial Intelligence and Machine Learning,OS,OBC-NCL,Female Only,,49718,2024
+IGDTUW,Delhi,JAC Delhi,Mechanical and Automation Engineering,OS,OBC-NCL,Female Only,,60444,2024
+IGDTUW,Delhi,JAC Delhi,Dual Degree B.Tech. MAE + MBA,OS,OBC-NCL,Female Only,,60739,2024
+IGDTUW,Delhi,JAC Delhi,Bachelor of Architecture,OS,OBC-NCL,Female Only,,5695,2024
+IGDTUW,Delhi,JAC Delhi,Computer Science and Engineering (Artificial Intelligence),OS,OBC (CW),Female Only,,48257,2024
+IGDTUW,Delhi,JAC Delhi,Computer Science and Engineering,OS,OBC (CW),Female Only,,178178,2024
+IGDTUW,Delhi,JAC Delhi,Mechanical and Automation Engineering,OS,OBC (CW),Female Only,,71430,2024
+IGDTUW,Delhi,JAC Delhi,Computer Science and Engineering (Artificial Intelligence),OS,EWS,Female Only,,33195,2024
+IGDTUW,Delhi,JAC Delhi,Computer Science and Engineering,OS,EWS,Female Only,,27588,2024
+IGDTUW,Delhi,JAC Delhi,Electronics and Communication Engineering (AI),OS,EWS,Female Only,,43572,2024
+IGDTUW,Delhi,JAC Delhi,Electronics and Communication Engineering,OS,EWS,Female Only,,41440,2024
+IGDTUW,Delhi,JAC Delhi,Information Technology,OS,EWS,Female Only,,34638,2024
+IGDTUW,Delhi,JAC Delhi,Artificial Intelligence and Machine Learning,OS,EWS,Female Only,,38824,2024
+IGDTUW,Delhi,JAC Delhi,Mechanical and Automation Engineering,OS,EWS,Female Only,,44649,2024
+DELHI SKILL AND ENTREPREURSHIP UNIVERSITY,Delhi,JAC Delhi,Electrical Engineering (Pusa),HS,OPEN,Gender-Neutral,,137390,2024
+DELHI SKILL AND ENTREPREURSHIP UNIVERSITY,Delhi,JAC Delhi,Electrical Engineering (Pusa),HS,OPEN,Gender-Neutral,,309252,2024
+DELHI SKILL AND ENTREPREURSHIP UNIVERSITY,Delhi,JAC Delhi,Electrical Engineering (Pusa),HS,EWS,Gender-Neutral,,281397,2024
+DELHI SKILL AND ENTREPREURSHIP UNIVERSITY,Delhi,JAC Delhi,Electrical Engineering (Pusa),HS,OBC-NCL,Gender-Neutral,,587565,2024
+DELHI SKILL AND ENTREPREURSHIP UNIVERSITY,Delhi,JAC Delhi,Electrical Engineering (Pusa),HS,OBC (CW),Gender-Neutral,,1154098,2024
+DELHI SKILL AND ENTREPREURSHIP UNIVERSITY,Delhi,JAC Delhi,Electrical Engineering (Pusa),HS,SC,Gender-Neutral,,378379,2024
+DELHI SKILL AND ENTREPREURSHIP UNIVERSITY,Delhi,JAC Delhi,Printing Technology (Pusa),HS,OPEN,Gender-Neutral,,157050,2024
+DELHI SKILL AND ENTREPREURSHIP UNIVERSITY,Delhi,JAC Delhi,Printing Technology (Pusa),HS,OPEN,Gender-Neutral,,390670,2024
+DELHI SKILL AND ENTREPREURSHIP UNIVERSITY,Delhi,JAC Delhi,Printing Technology (Pusa),HS,EWS,Gender-Neutral,,360132,2024
+DELHI SKILL AND ENTREPREURSHIP UNIVERSITY,Delhi,JAC Delhi,Printing Technology (Pusa),HS,OBC-NCL,Gender-Neutral,,825639,2024
+DELHI SKILL AND ENTREPREURSHIP UNIVERSITY,Delhi,JAC Delhi,Printing Technology (Pusa),HS,OBC (CW),Gender-Neutral,,1389185,2024
+DELHI SKILL AND ENTREPREURSHIP UNIVERSITY,Delhi,JAC Delhi,Electronics & Comm. (Shakarpur-I),HS,OPEN,Gender-Neutral,,124222,2024
+DELHI SKILL AND ENTREPREURSHIP UNIVERSITY,Delhi,JAC Delhi,Electronics & Comm. (Shakarpur-I),HS,OPEN,Gender-Neutral,,276212,2024
+DELHI SKILL AND ENTREPREURSHIP UNIVERSITY,Delhi,JAC Delhi,Electronics & Comm. (Shakarpur-I),HS,EWS,Gender-Neutral,,264840,2024
+DELHI SKILL AND ENTREPREURSHIP UNIVERSITY,Delhi,JAC Delhi,Electronics & Comm. (Shakarpur-I),HS,OBC-NCL,Gender-Neutral,,507738,2024
+DELHI SKILL AND ENTREPREURSHIP UNIVERSITY,Delhi,JAC Delhi,Electronics & Comm. (Shakarpur-I),HS,OBC (CW),Gender-Neutral,,860643,2024
+DELHI SKILL AND ENTREPREURSHIP UNIVERSITY,Delhi,JAC Delhi,Electronics & Comm. (Okhla-I),HS,OPEN,Gender-Neutral,,133986,2024
+DELHI SKILL AND ENTREPREURSHIP UNIVERSITY,Delhi,JAC Delhi,Electronics & Comm. (Okhla-I),HS,OPEN,Gender-Neutral,,342877,2024
+DELHI SKILL AND ENTREPREURSHIP UNIVERSITY,Delhi,JAC Delhi,Electronics & Comm. (Okhla-I),HS,EWS,Gender-Neutral,,268475,2024
+DELHI SKILL AND ENTREPREURSHIP UNIVERSITY,Delhi,JAC Delhi,Electronics & Comm. (Okhla-I),HS,OBC-NCL,Gender-Neutral,,549283,2024
+DELHI SKILL AND ENTREPREURSHIP UNIVERSITY,Delhi,JAC Delhi,Electronics & Comm. (Okhla-I),HS,OBC (CW),Gender-Neutral,,1159291,2024
+DELHI SKILL AND ENTREPREURSHIP UNIVERSITY,Delhi,JAC Delhi,Artificial Intelligence (Shakarpur-I),HS,OPEN,Gender-Neutral,,104368,2024
+DELHI SKILL AND ENTREPREURSHIP UNIVERSITY,Delhi,JAC Delhi,Artificial Intelligence (Shakarpur-I),HS,OPEN,Gender-Neutral,,237603,2024
+DELHI SKILL AND ENTREPREURSHIP UNIVERSITY,Delhi,JAC Delhi,Artificial Intelligence (Shakarpur-I),HS,EWS,Gender-Neutral,,196101,2024
+DELHI SKILL AND ENTREPREURSHIP UNIVERSITY,Delhi,JAC Delhi,Artificial Intelligence (Shakarpur-I),HS,OBC-NCL,Gender-Neutral,,383254,2024
+DELHI SKILL AND ENTREPREURSHIP UNIVERSITY,Delhi,JAC Delhi,Artificial Intelligence (Shakarpur-I),HS,SC,Gender-Neutral,,1077216,2024
+DELHI SKILL AND ENTREPREURSHIP UNIVERSITY,Delhi,JAC Delhi,Data Analytics (Shakarpur-I),HS,OPEN,Gender-Neutral,,121765,2024
+DELHI SKILL AND ENTREPREURSHIP UNIVERSITY,Delhi,JAC Delhi,Data Analytics (Shakarpur-I),HS,OPEN,Gender-Neutral,,272930,2024
+DELHI SKILL AND ENTREPREURSHIP UNIVERSITY,Delhi,JAC Delhi,Data Analytics (Shakarpur-I),HS,EWS,Gender-Neutral,,236321,2024
+DELHI SKILL AND ENTREPREURSHIP UNIVERSITY,Delhi,JAC Delhi,Data Analytics (Shakarpur-I),HS,OBC-NCL,Gender-Neutral,,496646,2024
+DELHI SKILL AND ENTREPREURSHIP UNIVERSITY,Delhi,JAC Delhi,Data Analytics (Shakarpur-I),HS,OBC (CW),Gender-Neutral,,905661,2024
+DELHI SKILL AND ENTREPREURSHIP UNIVERSITY,Delhi,JAC Delhi,Data Analytics (Okhla-II),HS,OPEN,Gender-Neutral,,116042,2024
+DELHI SKILL AND ENTREPREURSHIP UNIVERSITY,Delhi,JAC Delhi,Data Analytics (Okhla-II),HS,OPEN,Gender-Neutral,,335252,2024
+DELHI SKILL AND ENTREPREURSHIP UNIVERSITY,Delhi,JAC Delhi,Data Analytics (Okhla-II),HS,EWS,Gender-Neutral,,210790,2024
+DELHI SKILL AND ENTREPREURSHIP UNIVERSITY,Delhi,JAC Delhi,Data Analytics (Okhla-II),HS,OBC-NCL,Gender-Neutral,,437535,2024
+DELHI SKILL AND ENTREPREURSHIP UNIVERSITY,Delhi,JAC Delhi,Data Analytics (Okhla-II),HS,OBC (CW),Gender-Neutral,,849708,2024
+DELHI SKILL AND ENTREPREURSHIP UNIVERSITY,Delhi,JAC Delhi,Civil Engineering (Ashok Vihar),HS,OPEN,Gender-Neutral,,154884,2024
+DELHI SKILL AND ENTREPREURSHIP UNIVERSITY,Delhi,JAC Delhi,Civil Engineering (Ashok Vihar),HS,OPEN,Gender-Neutral,,387389,2024
+DELHI SKILL AND ENTREPREURSHIP UNIVERSITY,Delhi,JAC Delhi,Civil Engineering (Ashok Vihar),HS,EWS,Gender-Neutral,,338172,2024
+DELHI SKILL AND ENTREPREURSHIP UNIVERSITY,Delhi,JAC Delhi,Civil Engineering (Ashok Vihar),HS,OBC-NCL,Gender-Neutral,,681781,2024
+DELHI SKILL AND ENTREPREURSHIP UNIVERSITY,Delhi,JAC Delhi,Civil Engineering (Ashok Vihar),HS,OBC (CW),Gender-Neutral,,1233891,2024
+DELHI SKILL AND ENTREPREURSHIP UNIVERSITY,Delhi,JAC Delhi,Mechanical Engineering (Ashok Vihar),HS,OPEN,Gender-Neutral,,143594,2024
+DELHI SKILL AND ENTREPREURSHIP UNIVERSITY,Delhi,JAC Delhi,Mechanical Engineering (Ashok Vihar),HS,OPEN,Gender-Neutral,,355859,2024
+DELHI SKILL AND ENTREPREURSHIP UNIVERSITY,Delhi,JAC Delhi,Mechanical Engineering (Ashok Vihar),HS,EWS,Gender-Neutral,,313947,2024
+DELHI SKILL AND ENTREPREURSHIP UNIVERSITY,Delhi,JAC Delhi,Mechanical Engineering (Ashok Vihar),HS,OBC-NCL,Gender-Neutral,,613040,2024
+DELHI SKILL AND ENTREPREURSHIP UNIVERSITY,Delhi,JAC Delhi,Mechanical Engineering (Ashok Vihar),HS,OBC (CW),Gender-Neutral,,1235567,2024
+DELHI SKILL AND ENTREPREURSHIP UNIVERSITY,Delhi,JAC Delhi,Mechanical Engineering (Okhla-I),HS,OPEN,Gender-Neutral,,149556,2024
+DELHI SKILL AND ENTREPREURSHIP UNIVERSITY,Delhi,JAC Delhi,Mechanical Engineering (Okhla-I),HS,OPEN,Gender-Neutral,,383119,2024
+DELHI SKILL AND ENTREPREURSHIP UNIVERSITY,Delhi,JAC Delhi,Mechanical Engineering (Okhla-I),HS,EWS,Gender-Neutral,,313198,2024
+DELHI SKILL AND ENTREPREURSHIP UNIVERSITY,Delhi,JAC Delhi,Mechanical Engineering (Okhla-I),HS,OBC-NCL,Gender-Neutral,,712288,2024
+DELHI SKILL AND ENTREPREURSHIP UNIVERSITY,Delhi,JAC Delhi,Mechanical Engineering (Okhla-I),HS,OBC (CW),Gender-Neutral,,1300810,2024
+DELHI SKILL AND ENTREPREURSHIP UNIVERSITY,Delhi,JAC Delhi,Computer Science (Rohini),HS,OPEN,Gender-Neutral,,95524,2024
+DELHI SKILL AND ENTREPREURSHIP UNIVERSITY,Delhi,JAC Delhi,Computer Science (Rohini),HS,OPEN (PwD),Gender-Neutral,,972059,2024
+DELHI SKILL AND ENTREPREURSHIP UNIVERSITY,Delhi,JAC Delhi,Computer Science (Rohini),HS,OPEN,Gender-Neutral,,191394,2024
+DELHI SKILL AND ENTREPREURSHIP UNIVERSITY,Delhi,JAC Delhi,Computer Science (Rohini),HS,EWS,Gender-Neutral,,177663,2024
+DELHI SKILL AND ENTREPREURSHIP UNIVERSITY,Delhi,JAC Delhi,Computer Science (Rohini),HS,EWS (CW),Gender-Neutral,,354467,2024
+DELHI SKILL AND ENTREPREURSHIP UNIVERSITY,Delhi,JAC Delhi,Computer Science (Rohini),HS,OBC-NCL,Gender-Neutral,,304678,2024
+DELHI SKILL AND ENTREPREURSHIP UNIVERSITY,Delhi,JAC Delhi,Computer Science (Rohini),HS,OBC (CW),Gender-Neutral,,1208572,2024
+DELHI SKILL AND ENTREPREURSHIP UNIVERSITY,Delhi,JAC Delhi,Computer Science (Rohini),HS,SC,Gender-Neutral,,569382,2024
+DELHI SKILL AND ENTREPREURSHIP UNIVERSITY,Delhi,JAC Delhi,Computer Science (Okhla-I),HS,OPEN,Gender-Neutral,,98662,2024
+DELHI SKILL AND ENTREPREURSHIP UNIVERSITY,Delhi,JAC Delhi,Computer Science (Okhla-I),HS,OPEN,Gender-Neutral,,176075,2024
+DELHI SKILL AND ENTREPREURSHIP UNIVERSITY,Delhi,JAC Delhi,Computer Science (Okhla-I),HS,EWS,Gender-Neutral,,190092,2024
+DELHI SKILL AND ENTREPREURSHIP UNIVERSITY,Delhi,JAC Delhi,Computer Science (Okhla-I),HS,OBC-NCL,Gender-Neutral,,302294,2024
+DELHI SKILL AND ENTREPREURSHIP UNIVERSITY,Delhi,JAC Delhi,Computer Science (Okhla-I),HS,OBC (CW),Gender-Neutral,,620544,2024
+DELHI SKILL AND ENTREPREURSHIP UNIVERSITY,Delhi,JAC Delhi,Computer Science (Okhla-I),HS,SC,Gender-Neutral,,651861,2024
+DELHI SKILL AND ENTREPREURSHIP UNIVERSITY,Delhi,JAC Delhi,Computer Science (Okhla-I),HS,ST,Gender-Neutral,,971893,2024
+DELHI SKILL AND ENTREPREURSHIP UNIVERSITY,Delhi,JAC Delhi,Tool Engineering (Wazirpur),HS,OPEN,Gender-Neutral,,157638,2024
+DELHI SKILL AND ENTREPREURSHIP UNIVERSITY,Delhi,JAC Delhi,Tool Engineering (Wazirpur),HS,OPEN,Gender-Neutral,,388196,2024
+DELHI SKILL AND ENTREPREURSHIP UNIVERSITY,Delhi,JAC Delhi,Tool Engineering (Wazirpur),HS,EWS,Gender-Neutral,,363032,2024
+DELHI SKILL AND ENTREPREURSHIP UNIVERSITY,Delhi,JAC Delhi,Tool Engineering (Wazirpur),HS,OBC-NCL,Gender-Neutral,,792518,2024
+DELHI SKILL AND ENTREPREURSHIP UNIVERSITY,Delhi,JAC Delhi,Mechatronics Engineering (Okhla-II),HS,OPEN,Gender-Neutral,,146482,2024
+DELHI SKILL AND ENTREPREURSHIP UNIVERSITY,Delhi,JAC Delhi,Mechatronics Engineering (Okhla-II),HS,OPEN,Gender-Neutral,,347924,2024
+DELHI SKILL AND ENTREPREURSHIP UNIVERSITY,Delhi,JAC Delhi,Mechatronics Engineering (Okhla-II),HS,EWS,Gender-Neutral,,300541,2024
+DELHI SKILL AND ENTREPREURSHIP UNIVERSITY,Delhi,JAC Delhi,Mechatronics Engineering (Okhla-II),HS,OBC-NCL,Gender-Neutral,,687960,2024
+DELHI SKILL AND ENTREPREURSHIP UNIVERSITY,Delhi,JAC Delhi,Mechatronics Engineering (Okhla-II),HS,OBC (CW),Gender-Neutral,,1236038,2024
+DELHI SKILL AND ENTREPREURSHIP UNIVERSITY,Delhi,JAC Delhi,Network Eng. & Security (Dwarka),HS,OPEN,Gender-Neutral,,136230,2024
+DELHI SKILL AND ENTREPREURSHIP UNIVERSITY,Delhi,JAC Delhi,Network Eng. & Security (Dwarka),HS,OPEN,Gender-Neutral,,321781,2024
+DELHI SKILL AND ENTREPREURSHIP UNIVERSITY,Delhi,JAC Delhi,Network Eng. & Security (Dwarka),HS,EWS,Gender-Neutral,,254157,2024
+DELHI SKILL AND ENTREPREURSHIP UNIVERSITY,Delhi,JAC Delhi,Network Eng. & Security (Dwarka),HS,OBC-NCL,Gender-Neutral,,519470,2024
+DELHI SKILL AND ENTREPREURSHIP UNIVERSITY,Delhi,JAC Delhi,Network Eng. & Security (Dwarka),HS,OBC (CW),Gender-Neutral,,934304,2024
+DELHI SKILL AND ENTREPREURSHIP UNIVERSITY,Delhi,JAC Delhi,Network Eng. & Security (Okhla-II),HS,OPEN,Gender-Neutral,,137153,2024
+DELHI SKILL AND ENTREPREURSHIP UNIVERSITY,Delhi,JAC Delhi,Network Eng. & Security (Okhla-II),HS,OPEN,Gender-Neutral,,256841,2024
+DELHI SKILL AND ENTREPREURSHIP UNIVERSITY,Delhi,JAC Delhi,Network Eng. & Security (Okhla-II),HS,EWS,Gender-Neutral,,275779,2024
+DELHI SKILL AND ENTREPREURSHIP UNIVERSITY,Delhi,JAC Delhi,Network Eng. & Security (Okhla-II),HS,OBC-NCL,Gender-Neutral,,561060,2024
+DELHI SKILL AND ENTREPREURSHIP UNIVERSITY,Delhi,JAC Delhi,Network Eng. & Security (Okhla-II),HS,OBC (CW),Gender-Neutral,,1039559,2024
+DELHI SKILL AND ENTREPREURSHIP UNIVERSITY,Delhi,JAC Delhi,Branch (Campus),Quota,Seat Type,Gender,,Closing Rank,2024
+DELHI SKILL AND ENTREPREURSHIP UNIVERSITY,Delhi,JAC Delhi,Electrical Engineering (Pusa),OS,OPEN,Gender-Neutral,,40459,2024
+DELHI SKILL AND ENTREPREURSHIP UNIVERSITY,Delhi,JAC Delhi,Electrical Engineering (Pusa),OS,EWS,Gender-Neutral,,45707,2024
+DELHI SKILL AND ENTREPREURSHIP UNIVERSITY,Delhi,JAC Delhi,Electrical Engineering (Pusa),OS,OBC-NCL,Gender-Neutral,,57730,2024
+DELHI SKILL AND ENTREPREURSHIP UNIVERSITY,Delhi,JAC Delhi,Electrical Engineering (Pusa),OS,SC,Gender-Neutral,,190767,2024
+DELHI SKILL AND ENTREPREURSHIP UNIVERSITY,Delhi,JAC Delhi,Electrical Engineering (Pusa),OS,ST,Gender-Neutral,,378379,2024
+DELHI SKILL AND ENTREPREURSHIP UNIVERSITY,Delhi,JAC Delhi,Printing Technology (Pusa),OS,OPEN,Gender-Neutral,,43357,2024
+DELHI SKILL AND ENTREPREURSHIP UNIVERSITY,Delhi,JAC Delhi,Printing Technology (Pusa),OS,EWS,Gender-Neutral,,49102,2024
+DELHI SKILL AND ENTREPREURSHIP UNIVERSITY,Delhi,JAC Delhi,Printing Technology (Pusa),OS,OBC-NCL,Gender-Neutral,,60877,2024
+DELHI SKILL AND ENTREPREURSHIP UNIVERSITY,Delhi,JAC Delhi,Printing Technology (Pusa),OS,SC,Gender-Neutral,,210930,2024
+DELHI SKILL AND ENTREPREURSHIP UNIVERSITY,Delhi,JAC Delhi,Printing Technology (Pusa),OS,ST,Gender-Neutral,,418467,2024
+DELHI SKILL AND ENTREPREURSHIP UNIVERSITY,Delhi,JAC Delhi,Electronics & Comm. (Shakarpur-I),OS,OPEN,Gender-Neutral,,39245,2024
+DELHI SKILL AND ENTREPREURSHIP UNIVERSITY,Delhi,JAC Delhi,Electronics & Comm. (Shakarpur-I),OS,EWS,Gender-Neutral,,44421,2024
+DELHI SKILL AND ENTREPREURSHIP UNIVERSITY,Delhi,JAC Delhi,Electronics & Comm. (Shakarpur-I),OS,OBC-NCL,Gender-Neutral,,57217,2024
+DELHI SKILL AND ENTREPREURSHIP UNIVERSITY,Delhi,JAC Delhi,Electronics & Comm. (Shakarpur-I),OS,SC,Gender-Neutral,,200064,2024
+DELHI SKILL AND ENTREPREURSHIP UNIVERSITY,Delhi,JAC Delhi,Electronics & Comm. (Shakarpur-I),OS,ST,Gender-Neutral,,381816,2024
+DELHI SKILL AND ENTREPREURSHIP UNIVERSITY,Delhi,JAC Delhi,Electronics & Comm. (Okhla-I),OS,OPEN,Gender-Neutral,,39348,2024
+DELHI SKILL AND ENTREPREURSHIP UNIVERSITY,Delhi,JAC Delhi,Electronics & Comm. (Okhla-I),OS,EWS,Gender-Neutral,,44877,2024
+DELHI SKILL AND ENTREPREURSHIP UNIVERSITY,Delhi,JAC Delhi,Electronics & Comm. (Okhla-I),OS,OBC-NCL,Gender-Neutral,,57933,2024
+DELHI SKILL AND ENTREPREURSHIP UNIVERSITY,Delhi,JAC Delhi,Electronics & Comm. (Okhla-I),OS,SC,Gender-Neutral,,204716,2024
+DELHI SKILL AND ENTREPREURSHIP UNIVERSITY,Delhi,JAC Delhi,Electronics & Comm. (Okhla-I),OS,ST,Gender-Neutral,,381423,2024
+DELHI SKILL AND ENTREPREURSHIP UNIVERSITY,Delhi,JAC Delhi,Artificial Intelligence (Shakarpur-I),OS,OPEN,Gender-Neutral,,35385,2024
+DELHI SKILL AND ENTREPREURSHIP UNIVERSITY,Delhi,JAC Delhi,Artificial Intelligence (Shakarpur-I),OS,EWS,Gender-Neutral,,39748,2024
+DELHI SKILL AND ENTREPREURSHIP UNIVERSITY,Delhi,JAC Delhi,Artificial Intelligence (Shakarpur-I),OS,OBC-NCL,Gender-Neutral,,57143,2024
+DELHI SKILL AND ENTREPREURSHIP UNIVERSITY,Delhi,JAC Delhi,Artificial Intelligence (Shakarpur-I),OS,SC,Gender-Neutral,,160673,2024
+DELHI SKILL AND ENTREPREURSHIP UNIVERSITY,Delhi,JAC Delhi,Artificial Intelligence (Shakarpur-I),OS,ST,Gender-Neutral,,381035,2024
+DELHI SKILL AND ENTREPREURSHIP UNIVERSITY,Delhi,JAC Delhi,Data Analytics (Shakarpur-I),OS,OPEN,Gender-Neutral,,36963,2024
+DELHI SKILL AND ENTREPREURSHIP UNIVERSITY,Delhi,JAC Delhi,Data Analytics (Shakarpur-I),OS,EWS,Gender-Neutral,,44062,2024
+DELHI SKILL AND ENTREPREURSHIP UNIVERSITY,Delhi,JAC Delhi,Data Analytics (Shakarpur-I),OS,OBC-NCL,Gender-Neutral,,56623,2024
+DELHI SKILL AND ENTREPREURSHIP UNIVERSITY,Delhi,JAC Delhi,Data Analytics (Shakarpur-I),OS,SC,Gender-Neutral,,204286,2024
+DELHI SKILL AND ENTREPREURSHIP UNIVERSITY,Delhi,JAC Delhi,Data Analytics (Okhla-II),OS,OPEN,Gender-Neutral,,36706,2024
+DELHI SKILL AND ENTREPREURSHIP UNIVERSITY,Delhi,JAC Delhi,Data Analytics (Okhla-II),OS,EWS,Gender-Neutral,,43485,2024
+DELHI SKILL AND ENTREPREURSHIP UNIVERSITY,Delhi,JAC Delhi,Data Analytics (Okhla-II),OS,OBC-NCL,Gender-Neutral,,56379,2024
+DELHI SKILL AND ENTREPREURSHIP UNIVERSITY,Delhi,JAC Delhi,Data Analytics (Okhla-II),OS,SC,Gender-Neutral,,201326,2024
+DELHI SKILL AND ENTREPREURSHIP UNIVERSITY,Delhi,JAC Delhi,Civil Engineering (Ashok Vihar),OS,OPEN,Gender-Neutral,,43299,2024
+DELHI SKILL AND ENTREPREURSHIP UNIVERSITY,Delhi,JAC Delhi,Civil Engineering (Ashok Vihar),OS,EWS,Gender-Neutral,,49982,2024
+DELHI SKILL AND ENTREPREURSHIP UNIVERSITY,Delhi,JAC Delhi,Civil Engineering (Ashok Vihar),OS,OBC-NCL,Gender-Neutral,,59069,2024
+DELHI SKILL AND ENTREPREURSHIP UNIVERSITY,Delhi,JAC Delhi,Civil Engineering (Ashok Vihar),OS,SC,Gender-Neutral,,203319,2024
+DELHI SKILL AND ENTREPREURSHIP UNIVERSITY,Delhi,JAC Delhi,Civil Engineering (Ashok Vihar),OS,ST,Gender-Neutral,,343034,2024
+DELHI SKILL AND ENTREPREURSHIP UNIVERSITY,Delhi,JAC Delhi,Mechanical Engineering (Ashok Vihar),OS,OPEN,Gender-Neutral,,42034,2024
+DELHI SKILL AND ENTREPREURSHIP UNIVERSITY,Delhi,JAC Delhi,Mechanical Engineering (Ashok Vihar),OS,EWS,Gender-Neutral,,47494,2024
+DELHI SKILL AND ENTREPREURSHIP UNIVERSITY,Delhi,JAC Delhi,Mechanical Engineering (Ashok Vihar),OS,OBC-NCL,Gender-Neutral,,59562,2024
+DELHI SKILL AND ENTREPREURSHIP UNIVERSITY,Delhi,JAC Delhi,Mechanical Engineering (Ashok Vihar),OS,SC,Gender-Neutral,,207115,2024
+DELHI SKILL AND ENTREPREURSHIP UNIVERSITY,Delhi,JAC Delhi,Mechanical Engineering (Ashok Vihar),OS,ST,Gender-Neutral,,380841,2024
+DELHI SKILL AND ENTREPREURSHIP UNIVERSITY,Delhi,JAC Delhi,Mechanical Engineering (Okhla-I),OS,OPEN,Gender-Neutral,,42538,2024
+DELHI SKILL AND ENTREPREURSHIP UNIVERSITY,Delhi,JAC Delhi,Mechanical Engineering (Okhla-I),OS,EWS,Gender-Neutral,,48731,2024
+DELHI SKILL AND ENTREPREURSHIP UNIVERSITY,Delhi,JAC Delhi,Mechanical Engineering (Okhla-I),OS,OBC-NCL,Gender-Neutral,,60526,2024
+DELHI SKILL AND ENTREPREURSHIP UNIVERSITY,Delhi,JAC Delhi,Mechanical Engineering (Okhla-I),OS,SC,Gender-Neutral,,209727,2024
+DELHI SKILL AND ENTREPREURSHIP UNIVERSITY,Delhi,JAC Delhi,Mechanical Engineering (Okhla-I),OS,ST,Gender-Neutral,,400041,2024
+DELHI SKILL AND ENTREPREURSHIP UNIVERSITY,Delhi,JAC Delhi,Computer Science (Rohini),OS,OPEN,Gender-Neutral,,31128,2024
+DELHI SKILL AND ENTREPREURSHIP UNIVERSITY,Delhi,JAC Delhi,Computer Science (Rohini),OS,EWS,Gender-Neutral,,42015,2024
+DELHI SKILL AND ENTREPREURSHIP UNIVERSITY,Delhi,JAC Delhi,Computer Science (Rohini),OS,OBC-NCL,Gender-Neutral,,54547,2024
+DELHI SKILL AND ENTREPREURSHIP UNIVERSITY,Delhi,JAC Delhi,Computer Science (Rohini),OS,SC,Gender-Neutral,,163523,2024
+DELHI SKILL AND ENTREPREURSHIP UNIVERSITY,Delhi,JAC Delhi,Computer Science (Rohini),OS,ST,Gender-Neutral,,378337,2024
+DELHI SKILL AND ENTREPREURSHIP UNIVERSITY,Delhi,JAC Delhi,Computer Science (Okhla-I),OS,OPEN,Gender-Neutral,,34635,2024
+DELHI SKILL AND ENTREPREURSHIP UNIVERSITY,Delhi,JAC Delhi,Computer Science (Okhla-I),OS,EWS,Gender-Neutral,,43340,2024
+DELHI SKILL AND ENTREPREURSHIP UNIVERSITY,Delhi,JAC Delhi,Computer Science (Okhla-I),OS,OBC-NCL,Gender-Neutral,,55318,2024
+DELHI SKILL AND ENTREPREURSHIP UNIVERSITY,Delhi,JAC Delhi,Computer Science (Okhla-I),OS,SC,Gender-Neutral,,183837,2024
+DELHI SKILL AND ENTREPREURSHIP UNIVERSITY,Delhi,JAC Delhi,Computer Science (Okhla-I),OS,ST,Gender-Neutral,,268249,2024
+DELHI SKILL AND ENTREPREURSHIP UNIVERSITY,Delhi,JAC Delhi,Tool Engineering (Wazirpur),OS,OPEN,Gender-Neutral,,43423,2024
+DELHI SKILL AND ENTREPREURSHIP UNIVERSITY,Delhi,JAC Delhi,Tool Engineering (Wazirpur),OS,EWS,Gender-Neutral,,49668,2024
+DELHI SKILL AND ENTREPREURSHIP UNIVERSITY,Delhi,JAC Delhi,Tool Engineering (Wazirpur),OS,OBC-NCL,Gender-Neutral,,60631,2024
+DELHI SKILL AND ENTREPREURSHIP UNIVERSITY,Delhi,JAC Delhi,Tool Engineering (Wazirpur),OS,SC,Gender-Neutral,,212028,2024
+DELHI SKILL AND ENTREPREURSHIP UNIVERSITY,Delhi,JAC Delhi,Mechatronics Engg. (Okhla-II),OS,OPEN,Gender-Neutral,,41936,2024
+DELHI SKILL AND ENTREPREURSHIP UNIVERSITY,Delhi,JAC Delhi,Mechatronics Engg. (Okhla-II),OS,EWS,Gender-Neutral,,46593,2024
+DELHI SKILL AND ENTREPREURSHIP UNIVERSITY,Delhi,JAC Delhi,Mechatronics Engg. (Okhla-II),OS,OBC-NCL,Gender-Neutral,,59504,2024
+DELHI SKILL AND ENTREPREURSHIP UNIVERSITY,Delhi,JAC Delhi,Mechatronics Engg. (Okhla-II),OS,SC,Gender-Neutral,,206543,2024
+DELHI SKILL AND ENTREPREURSHIP UNIVERSITY,Delhi,JAC Delhi,Mechatronics Engg. (Okhla-II),OS,ST,Gender-Neutral,,387602,2024
+DELHI SKILL AND ENTREPREURSHIP UNIVERSITY,Delhi,JAC Delhi,Network Eng. & Security (Dwarka),OS,OPEN,Gender-Neutral,,38753,2024
+DELHI SKILL AND ENTREPREURSHIP UNIVERSITY,Delhi,JAC Delhi,Network Eng. & Security (Dwarka),OS,EWS,Gender-Neutral,,46189,2024
+DELHI SKILL AND ENTREPREURSHIP UNIVERSITY,Delhi,JAC Delhi,Network Eng. & Security (Dwarka),OS,OBC-NCL,Gender-Neutral,,57756,2024
+DELHI SKILL AND ENTREPREURSHIP UNIVERSITY,Delhi,JAC Delhi,Network Eng. & Security (Dwarka),OS,SC,Gender-Neutral,,209864,2024
+DELHI SKILL AND ENTREPREURSHIP UNIVERSITY,Delhi,JAC Delhi,Network Eng. & Security (Okhla-II),OS,OPEN,Gender-Neutral,,38516,2024
+DELHI SKILL AND ENTREPREURSHIP UNIVERSITY,Delhi,JAC Delhi,Network Eng. & Security (Okhla-II),OS,EWS,Gender-Neutral,,45974,2024
+DELHI SKILL AND ENTREPREURSHIP UNIVERSITY,Delhi,JAC Delhi,Network Eng. & Security (Okhla-II),OS,OBC-NCL,Gender-Neutral,,56589,2024
+DELHI SKILL AND ENTREPREURSHIP UNIVERSITY,Delhi,JAC Delhi,Network Eng. & Security (Okhla-II),OS,SC,Gender-Neutral,,208421,2024
+Delhi Technological University (DTU),Delhi,JAC Delhi,Computer Science and Engineering,OS,ST (CW),Gender-Neutral,,141177,2024
+Delhi Technological University (DTU),Delhi,JAC Delhi,Computer Science and Engineering,HS,OPEN,Single Girl,,15060,2024
+Delhi Technological University (DTU),Delhi,JAC Delhi,Information Technology,HS,OPEN,Single Girl,,20928,2024
+Delhi Technological University (DTU),Delhi,JAC Delhi,Software Engineering,HS,OPEN,Single Girl,,24512,2024
+Delhi Technological University (DTU),Delhi,JAC Delhi,Mathematics and Computing,HS,OPEN,Single Girl,,26715,2024
+Delhi Technological University (DTU),Delhi,JAC Delhi,Electronics and Communication Engineering,HS,OPEN,Single Girl,,31492,2024
+Delhi Technological University (DTU),Delhi,JAC Delhi,Electrical Engineering,HS,OPEN,Single Girl,,54011,2024
+Delhi Technological University (DTU),Delhi,JAC Delhi,Mechanical Engineering,HS,OPEN,Single Girl,,100098,2024
+Delhi Technological University (DTU),Delhi,JAC Delhi,Mechanical Engineering with specialization in Automotive Engg.,HS,OPEN,Single Girl,,81079,2024
+Delhi Technological University (DTU),Delhi,JAC Delhi,Engineering Physics,HS,OPEN,Single Girl,,96283,2024
+Delhi Technological University (DTU),Delhi,JAC Delhi,Chemical Engineering,HS,OPEN,Single Girl,,95849,2024
+Delhi Technological University (DTU),Delhi,JAC Delhi,Civil Engineering,HS,OPEN,Single Girl,,112350,2024
+Delhi Technological University (DTU),Delhi,JAC Delhi,Production & Industrial Engineering,HS,OPEN,Single Girl,,120929,2024
+Delhi Technological University (DTU),Delhi,JAC Delhi,Environmental Engineering,HS,OPEN,Single Girl,,104831,2024
+Delhi Technological University (DTU),Delhi,JAC Delhi,Bio-Technology,HS,OPEN,Single Girl,,83845,2024
+Delhi Technological University (DTU),Delhi,JAC Delhi,Electrical Engineering,OS,EWS (PwD),Gender-Neutral,,380604,2024
+Delhi Technological University (DTU),Delhi,JAC Delhi,Electrical Engineering,OS,OBC (CW),Gender-Neutral,,1034615,2024
+Delhi Technological University (DTU),Delhi,JAC Delhi,Electrical Engineering,OS,SC (CW),Gender-Neutral,,710577,2024
+Delhi Technological University (DTU),Delhi,JAC Delhi,Civil Engineering,OS,OPEN (CW),Gender-Neutral,,451311,2024
+Delhi Technological University (DTU),Delhi,JAC Delhi,Mathematics and Computing,OS,ST (PwD),Gender-Neutral,,543117,2024
+Delhi Technological University (DTU),Delhi,JAC Delhi,Engineering Physics,OS,OPEN (CW),Gender-Neutral,,151637,2024
+Delhi Technological University (DTU),Delhi,JAC Delhi,Mechanical Engineering,OS,OBC (CW),Gender-Neutral,,299646,2024
+Delhi Technological University (DTU),Delhi,JAC Delhi,Mechanical Engineering,OS,SC (CW),Gender-Neutral,,191480,2024
