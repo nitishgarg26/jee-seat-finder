@@ -1,6 +1,7 @@
 import streamlit as st
 import sqlite3
 import pandas as pd
+from hashlib import sha256
 
 # Set up page
 st.set_page_config(page_title="Admin - Add JEE Data", layout="centered")
@@ -8,7 +9,7 @@ st.title("🔒 Admin Panel: Add New Seat Data")
 
 # --- Hardcoded login credentials (you can replace this with a secure method) ---
 USERNAME = "admin"
-PASSWORD = "admin123"
+PASSWORD = "0xc7282ea501f7b9491be0a7e2409293f4ee823d9f7247d986695a975f894259ce"
 
 # --- Login Form ---
 with st.sidebar:
@@ -16,10 +17,11 @@ with st.sidebar:
     username = st.text_input("Username")
     password = st.text_input("Password", type="password")
     login_button = st.button("Login")
+    
 
 # --- Authentication ---
 if login_button:
-    if username == USERNAME and password == PASSWORD:
+    if username == USERNAME and sha256(password.encode('utf-8')).hexdigest() == PASSWORD:
         st.success("Logged in successfully!")
 
         # Connect to database
