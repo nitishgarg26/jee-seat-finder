@@ -77,7 +77,9 @@ else:
 # --- FILTER LOGIC (same as before, using selected_* variables) ---
 if not admin_mode:
     filtered_df = df[df["Type"].isin(selected_types)]
-    filtered_df = filtered_df[(filtered_df["Closing Rank"] >= rank_range[0]) & (filtered_df["Closing Rank"] <= rank_range[1])]
+    if selected_colleges and "All" not in selected_colleges:
+        filtered_df = filtered_df[filtered_df["Institute"].isin(selected_colleges)]
+        filtered_df = filtered_df[(filtered_df["Closing Rank"] >= rank_range[0]) & (filtered_df["Closing Rank"] <= rank_range[1])]
 
     if gender:
         filtered_df = filtered_df[filtered_df["Gender"].isin(gender)]
