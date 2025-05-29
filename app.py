@@ -12,6 +12,7 @@ is_mobile = width is not None and width < 768
 
 # --- HEADER ---
 st.title("🎓 JEE Seat Finder")
+st.markdown(width)
 st.markdown(
     """
     <div style='font-size:15px; color:#444; margin-bottom:10px;'>
