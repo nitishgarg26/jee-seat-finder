@@ -2,13 +2,13 @@ import streamlit as st
 import pandas as pd
 import sqlite3
 from hashlib import sha256
+from streamlit_javascript import st_javascript
 
-st.set_page_config(
-    page_title="JEE Seat Finder",
-    page_icon="🎓",
-    layout="wide",
-    initial_sidebar_state="expanded"
-)
+# Detect screen width
+width = st_javascript("window.innerWidth")
+
+# Set a threshold for mobile (e.g., 768px)
+is_mobile = width is not None and width < 768
 
 # --- HEADER ---
 st.title("🎓 JEE Seat Finder")
@@ -30,45 +30,52 @@ conn = sqlite3.connect("jee_data.db", check_same_thread=False)
 cursor = conn.cursor()
 df = pd.read_sql_query("SELECT * FROM jee_seats", conn)
 
-# --- SIDEBAR FILTERS ---
-with st.sidebar:
-    st.header("🔍 Filters")
+def filter_widgets():
+    college_types = sorted(df["Type"].dropna().unique())
+    selected_types = st.multiselect("🏫 College Type", college_types, default=college_types)
+
+    filtered_df_for_colleges = df[df["Type"].isin(selected_types)]
+    college_names = sorted(filtered_df_for_colleges["Institute"].dropna().unique())
+    college_names_with_all = ["All"] + college_names
+    selected_colleges = st.multiselect("🏢 College Name", college_names_with_all, default=["All"])
+
+    if "All" in selected_colleges or not selected_colleges:
+        filtered_df_for_programs = filtered_df_for_colleges
+        selected_colleges = college_names
+    else:
+        filtered_df_for_programs = filtered_df_for_colleges[filtered_df_for_colleges["Institute"].isin(selected_colleges)]
+
+    all_programs = sorted(filtered_df_for_programs["Academic Program Name"].dropna().unique().tolist())
+    program_group = st.multiselect("🎯 Program(s)", ["Computers", "Electronics"] + all_programs)
+
+    rank_range = st.slider(
+        "🏅 Rank Range (Opening to Closing)",
+        0, 1000000, (0, 1000000), step=1000, format="%d",
+        help="Set your JEE rank range (up to 10,00,000)."
+    )
+
+    gender = st.multiselect("⚧️ Gender", options=sorted(df["Gender"].dropna().unique()))
+    quota = st.multiselect("🎟️ Quota", options=sorted(df["Quota"].dropna().unique()))
+    seat_type = st.multiselect("💺 Seat Type", options=sorted(df["Seat Type"].dropna().unique()))
+
+    return selected_types, selected_colleges, program_group, rank_range, gender, quota, seat_type, filtered_df_for_programs
+
+# --- FILTERS: Conditional Placement ---
+admin_mode = False
+if is_mobile:
+    st.markdown("### 🔍 Filters")
     admin_mode = st.checkbox("🔑 Admin Login")
+    if not admin_mode:
+        selected_types, selected_colleges, program_group, rank_range, gender, quota, seat_type, filtered_df_for_programs = filter_widgets()
+else:
+    with st.sidebar:
+        st.header("🔍 Filters")
+        admin_mode = st.checkbox("🔑 Admin Login")
+        if not admin_mode:
+            selected_types, selected_colleges, program_group, rank_range, gender, quota, seat_type, filtered_df_for_programs = filter_widgets()
 
+# --- FILTER LOGIC (same as before, using selected_* variables) ---
 if not admin_mode:
-    # Collapsible advanced filters for compactness
-    with st.expander("🎓 Main Filters", expanded=True):
-        college_types = sorted(df["Type"].dropna().unique())
-        selected_types = st.multiselect("🏫 College Type", college_types, default=college_types)
-
-        filtered_df_for_colleges = df[df["Type"].isin(selected_types)]
-        college_names = sorted(filtered_df_for_colleges["Institute"].dropna().unique())
-        college_names_with_all = ["All"] + college_names
-        selected_colleges = st.multiselect("🏢 College Name", college_names_with_all, default=["All"])
-
-        if "All" in selected_colleges or not selected_colleges:
-            filtered_df_for_programs = filtered_df_for_colleges
-            selected_colleges = college_names
-        else:
-            filtered_df_for_programs = filtered_df_for_colleges[filtered_df_for_colleges["Institute"].isin(selected_colleges)]
-
-        all_programs = sorted(filtered_df_for_programs["Academic Program Name"].dropna().unique().tolist())
-        program_group = st.multiselect("🎯 Program(s)", ["Computers", "Electronics"] + all_programs)
-
-        # Show only important filters up front
-        rank_range = st.slider(
-            "🏅 Rank Range (Opening to Closing)",
-            0, 1000000, (0, 1000000), step=1000, format="%d",
-            help="Set your JEE rank range (up to 10,00,000)."
-        )
-
-    # Less-used filters in a separate expander
-    with st.expander("⚙️ Advanced Filters"):
-        gender = st.multiselect("⚧️ Gender", options=sorted(df["Gender"].dropna().unique()))
-        quota = st.multiselect("🎟️ Quota", options=sorted(df["Quota"].dropna().unique()))
-        seat_type = st.multiselect("💺 Seat Type", options=sorted(df["Seat Type"].dropna().unique()))
-
-    # --- FILTER LOGIC ---
     filtered_df = df[df["Type"].isin(selected_types)]
     filtered_df = filtered_df[(filtered_df["Closing Rank"] >= rank_range[0]) & (filtered_df["Closing Rank"] <= rank_range[1])]
 
@@ -98,12 +105,6 @@ if not admin_mode:
 
     filtered_df = filtered_df.sort_values(by="Closing Rank")
 
-    # --- MAIN CONTENT: RESULTS TABLE ---
-    st.subheader("🎯 Matching Programs")
-    # Show only a few columns by default for mobile, with option to expand
-    display_cols = ["Institute", "Academic Program Name", "Type", "Opening Rank", "Closing Rank", "Quota", "Seat Type", "Gender", "Year"]
-    # ... your filtering logic above ...
-
     # Format ranks with commas for display
     display_df = filtered_df.copy()
     if "Closing Rank" in display_df.columns:
@@ -111,10 +112,9 @@ if not admin_mode:
     if "Opening Rank" in display_df.columns:
         display_df["Opening Rank"] = display_df["Opening Rank"].apply(lambda x: f"{int(x):,}" if pd.notnull(x) else "")
 
-    # Display ALL columns
+    st.subheader("🎯 Matching Programs")
     st.dataframe(display_df, use_container_width=True)
 
-    # Download button
     csv = filtered_df.to_csv(index=False).encode("utf-8")
     st.download_button(
         label="📥 Download results as CSV",
@@ -124,8 +124,8 @@ if not admin_mode:
         help="Download your filtered results."
     )
 
-else:
-    # --- ADMIN PANEL ---
+# --- ADMIN PANEL (unchanged) ---
+if admin_mode:
     st.subheader("🔒 Admin Panel")
     username = st.text_input("Username")
     password = st.text_input("Password", type="password")
