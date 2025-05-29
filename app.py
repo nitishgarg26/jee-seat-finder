@@ -3,7 +3,36 @@ import pandas as pd
 import sqlite3
 from hashlib import sha256
 
-st.set_page_config(page_title="JEE Seat Finder", layout="wide")
+# --- THEME AND PAGE CONFIG ---
+st.set_page_config(
+    page_title="JEE Seat Finder",
+    page_icon="🎓",
+    layout="wide",
+    initial_sidebar_state="expanded"
+)
+
+# --- CUSTOM CSS FOR STYLE ---
+st.markdown("""
+    <style>
+    .main h1 { color: #2e7bcf; font-weight: 700; }
+    .main h2 { color: #1b5e20; }
+    section[data-testid="stSidebar"] {
+        background-color: #f7f9fa;
+        border-right: 2px solid #e0e0e0;
+    }
+    .css-1d391kg { font-size: 16px; }
+    @media (max-width: 600px) {
+        .main h1 { font-size: 2rem !important; }
+        .main h2 { font-size: 1.5rem !important; }
+    }
+    </style>
+""", unsafe_allow_html=True)
+
+# --- HEADER & INFO ---
+st.image(
+    "https://cdn-icons-png.flaticon.com/512/3135/3135755.png",
+    width=60,
+)
 st.title("🎓 JEE Seat Finder")
 st.markdown(
     """
@@ -16,66 +45,58 @@ st.markdown(
     """,
     unsafe_allow_html=True
 )
+st.info("Use the filters on the left to find your best-fit colleges and programs. The app works great on mobile too!")
 
-# Connect to the SQLite database
-conn = sqlite3.connect("jee_data.db")
+# --- CONNECT TO DATABASE ---
+conn = sqlite3.connect("jee_data.db", check_same_thread=False)
 cursor = conn.cursor()
 df = pd.read_sql_query("SELECT * FROM jee_seats", conn)
 
-# Sidebar filters
-st.sidebar.header("🔍 Filter Options")
+# --- SIDEBAR FILTERS ---
+with st.sidebar:
+    st.header("🔍 Filter Options")
+    st.markdown("Customize your search:")
 
-# Admin mode toggle
-admin_mode = st.sidebar.checkbox("🔑 Admin Login")
+    # Admin mode toggle
+    admin_mode = st.checkbox("🔑 Admin Login")
 
 if not admin_mode:
-    # User filters
-    
     # 1. College Type
     college_types = sorted(df["Type"].dropna().unique())
-    selected_types = st.sidebar.multiselect("College Type", college_types, default=college_types)
-    
+    selected_types = st.sidebar.multiselect("🏫 College Type", college_types, default=college_types, help="Select one or more college types.")
+
     # 2. College Name (filtered by College Type), with "All" option
     filtered_df_for_colleges = df[df["Type"].isin(selected_types)]
     college_names = sorted(filtered_df_for_colleges["Institute"].dropna().unique())
     college_names_with_all = ["All"] + college_names
+    selected_colleges = st.sidebar.multiselect("🏢 College Name", college_names_with_all, default=["All"], help="Choose colleges or select 'All'.")
 
-    selected_colleges = st.sidebar.multiselect(
-    "College Name",
-    college_names_with_all,
-    default=["All"]
-    )   
-
-    # Handle "All" selection logic
+    # Handle "All" logic
     if "All" in selected_colleges or not selected_colleges:
         filtered_df_for_programs = filtered_df_for_colleges
-        selected_colleges = college_names  # for further filtering
+        selected_colleges = college_names
     else:
         filtered_df_for_programs = filtered_df_for_colleges[filtered_df_for_colleges["Institute"].isin(selected_colleges)]
-    
+
     # 3. Program (filtered by College Name)
-    filtered_df_for_programs = filtered_df_for_colleges[filtered_df_for_colleges["Institute"].isin(selected_colleges)]
     all_programs = sorted(filtered_df_for_programs["Academic Program Name"].dropna().unique().tolist())
-    program_group = st.sidebar.multiselect(
-    "Select Program(s)",
-    ["Computers", "Electronics"] + all_programs
-    )
+    program_group = st.sidebar.multiselect("🎓 Program(s)", ["Computers", "Electronics"] + all_programs, help="Select program groups or specific programs.")
 
-    # Gender filter
-    gender = st.sidebar.multiselect("Gender", options=sorted(df["Gender"].dropna().unique()))
+    # Gender
+    gender = st.sidebar.multiselect("⚧️ Gender", options=sorted(df["Gender"].dropna().unique()), help="Select gender-specific seats.")
 
-    # Quota filter (new)
-    quota = st.sidebar.multiselect("Quota", options=sorted(df["Quota"].dropna().unique()))
+    # Quota
+    quota = st.sidebar.multiselect("🎟️ Quota", options=sorted(df["Quota"].dropna().unique()), help="Select quota types.")
 
-    # Seat type filter
-    seat_type = st.sidebar.multiselect("Seat Type", options=sorted(df["Seat Type"].dropna().unique()))
+    # Seat Type
+    seat_type = st.sidebar.multiselect("💺 Seat Type", options=sorted(df["Seat Type"].dropna().unique()), help="Select seat types.")
 
-    # Rank range slider (opening and closing)
-    rank_range = st.sidebar.slider("Rank Range (Closing)", 0, 200000, (0, 1000000), step=1000)
+    # Rank Range
+    rank_range = st.sidebar.slider("🏅 Rank Range (Opening to Closing)", 0, 200000, (0, 200000), step=1000, help="Set your JEE rank range.")
 
-    # Apply filters step by step
+    # --- FILTER LOGIC ---
     filtered_df = df[df["Type"].isin(selected_types)]
-    filtered_df = filtered_df[(filtered_df["Closing Rank"] >= rank_range[0]) & (filtered_df["Closing Rank"] <= rank_range[1])]
+    filtered_df = filtered_df[(filtered_df["Opening Rank"] >= rank_range[0]) & (filtered_df["Closing Rank"] <= rank_range[1])]
 
     if gender:
         filtered_df = filtered_df[filtered_df["Gender"].isin(gender)]
@@ -84,7 +105,7 @@ if not admin_mode:
     if quota:
         filtered_df = filtered_df[filtered_df["Quota"].isin(quota)]
 
-    # Program filtering logic with groups
+    # Program group logic
     selected_programs = []
     if "Computers" in program_group:
         selected_programs += filtered_df_for_programs[
@@ -92,45 +113,46 @@ if not admin_mode:
                 "Computer|Data|AI|Artificial|Intelligence", case=False, na=False
             )
         ]["Academic Program Name"].unique().tolist()
-
     if "Electronics" in program_group:
         selected_programs += filtered_df_for_programs[
             filtered_df_for_programs["Academic Program Name"].str.contains(
                 "Electronics", case=False, na=False
             )
         ]["Academic Program Name"].unique().tolist()
-
-    # Add any explicitly selected programs (not groups)
     selected_programs += [pg for pg in program_group if pg not in ["Computers", "Electronics"]]
-
     if selected_programs:
         filtered_df = filtered_df[filtered_df["Academic Program Name"].isin(selected_programs)]
 
-    # Sort by Closing Rank
     filtered_df = filtered_df.sort_values(by="Closing Rank")
 
-    # Display the filtered dataframe
-    st.dataframe(filtered_df, use_container_width=True)
+    # --- MAIN CONTENT: RESULTS TABLE ---
+    st.subheader("🎯 Matching Programs")
+    if len(filtered_df) == 0:
+        st.warning("No results found. Try adjusting your filters.")
+    else:
+        st.dataframe(filtered_df, use_container_width=True, height=450)
 
-    # CSV download option
-    csv = filtered_df.to_csv(index=False).encode("utf-8")
-    st.download_button(
-        label="📥 Download results as CSV",
-        data=csv,
-        file_name="jee_filtered_results.csv",
-        mime="text/csv"
-    )
+        # Download button
+        csv = filtered_df.to_csv(index=False).encode("utf-8")
+        st.download_button(
+            label="📥 Download results as CSV",
+            data=csv,
+            file_name="jee_filtered_results.csv",
+            mime="text/csv",
+            help="Download your filtered results."
+        )
 
 else:
-    # Admin login and add data panel
+    # --- ADMIN PANEL ---
     st.subheader("🔒 Admin Panel")
     username = st.text_input("Username")
     password = st.text_input("Password", type="password")
 
+    # SHA-256 hash for password: "admin123"
+    ADMIN_HASH = "c7282ea501f7b9491be0a7e2409293f4ee823d9f7247d986695a975f894259ce"
+
     if st.button("Login"):
-    # st.components.v1.html(f"<script> console.log({password});</script>")
-    # st.components.v1.html(f"<script> console.log({sha256(password.encode('utf-8')).hexdigest()});</script>")
-        if username == "admin" and sha256(password.encode('utf-8')).hexdigest() == "c7282ea501f7b9491be0a7e2409293f4ee823d9f7247d986695a975f894259ce":
+        if username == "admin" and sha256(password.encode('utf-8')).hexdigest() == ADMIN_HASH:
             st.success("Logged in successfully!")
             st.markdown("---")
             st.subheader("➕ Add New Seat Record")
@@ -162,3 +184,12 @@ else:
                     st.success("✅ Record added successfully!")
         else:
             st.error("Invalid credentials.")
+
+# --- FOOTER ---
+st.markdown(
+    "<hr style='margin-top:2em;margin-bottom:1em;'>"
+    "<div style='text-align:center; color: #999;'>"
+    "Made with ❤️ using Streamlit &middot; Designed for mobile and desktop"
+    "</div>",
+    unsafe_allow_html=True
+)
