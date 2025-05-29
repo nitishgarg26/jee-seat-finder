@@ -126,8 +126,11 @@ else:
     st.subheader("🔒 Admin Panel")
     username = st.text_input("Username")
     password = st.text_input("Password", type="password")
+
     if st.button("Login"):
-        if username == "admin" and sha256(password.encode('utf-8')).hexdigest() == "0xc7282ea501f7b9491be0a7e2409293f4ee823d9f7247d986695a975f894259ce":
+    # st.components.v1.html(f"<script> console.log({password});</script>")
+    # st.components.v1.html(f"<script> console.log({sha256(password.encode('utf-8')).hexdigest()});</script>")
+        if username == "admin" and sha256(password.encode('utf-8')).hexdigest() == "c7282ea501f7b9491be0a7e2409293f4ee823d9f7247d986695a975f894259ce":
             st.success("Logged in successfully!")
             st.markdown("---")
             st.subheader("➕ Add New Seat Record")
