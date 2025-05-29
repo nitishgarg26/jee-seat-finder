@@ -58,7 +58,7 @@ if not admin_mode:
         # Show only important filters up front
         rank_range = st.slider(
             "🏅 Rank Range (Opening to Closing)",
-            0, 1000000, (0, 1000000), step=1000,
+            0, 1000000, (0, 1000000), step=1000, format="%d",
             help="Set your JEE rank range (up to 10,00,000)."
         )
 
@@ -70,7 +70,7 @@ if not admin_mode:
 
     # --- FILTER LOGIC ---
     filtered_df = df[df["Type"].isin(selected_types)]
-    filtered_df = filtered_df[(filtered_df["Opening Rank"] >= rank_range[0]) & (filtered_df["Closing Rank"] <= rank_range[1])]
+    filtered_df = filtered_df[(filtered_df["Closing Rank"] >= rank_range[0]) & (filtered_df["Closing Rank"] <= rank_range[1])]
 
     if gender:
         filtered_df = filtered_df[filtered_df["Gender"].isin(gender)]
