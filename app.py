@@ -5,6 +5,17 @@ from hashlib import sha256
 
 st.set_page_config(page_title="JEE Seat Finder", layout="wide")
 st.title("🎓 JEE Seat Finder")
+st.markdown(
+    """
+    <div style='font-size:16px; color:#444; margin-bottom:16px;'>
+    <b>Opening/Closing Ranks for Open Seats</b> represent <b>CRL</b>.<br>
+    <b>Opening/Closing Ranks for EWS, OBC-NCL, SC and ST Seats</b> represent respective <b>Category Ranks</b>.<br>
+    <b>Opening/Closing Ranks for PwD Seats</b> represent <b>PwD Ranks</b> within Respective Categories.<br>
+    <b>Opening/Closing Ranks for JAC Delhi Seats</b> represent <b>CRL</b> within Respective Categories.<br>
+    </div>
+    """,
+    unsafe_allow_html=True
+)
 
 # Connect to the SQLite database
 conn = sqlite3.connect("jee_data.db")
