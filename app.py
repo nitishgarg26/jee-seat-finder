@@ -4,6 +4,13 @@ import sqlite3
 from hashlib import sha256
 from streamlit_javascript import st_javascript
 
+# --- PAGE CONFIG ---
+st.set_page_config(
+    page_title="JEE Seat Finder",
+    page_icon="🎓",
+    layout="wide",
+    initial_sidebar_state="expanded"
+)
 # Detect screen width
 width = st_javascript("window.innerWidth")
 
@@ -64,13 +71,13 @@ def filter_widgets():
 # --- FILTERS: Conditional Placement ---
 admin_mode = False
 if is_mobile:
-    st.markdown("### 🔍 Filters1")
+    st.markdown("### 🔍 Filters")
     admin_mode = st.checkbox("🔑 Admin Login")
     if not admin_mode:
         selected_types, selected_colleges, program_group, rank_range, gender, quota, seat_type, filtered_df_for_programs = filter_widgets()
 else:
     with st.sidebar:
-        st.header("🔍 Filters2")
+        st.header("🔍 Filters")
         admin_mode = st.checkbox("🔑 Admin Login")
         if not admin_mode:
             selected_types, selected_colleges, program_group, rank_range, gender, quota, seat_type, filtered_df_for_programs = filter_widgets()
