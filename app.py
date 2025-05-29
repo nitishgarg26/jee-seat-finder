@@ -12,7 +12,7 @@ is_mobile = width is not None and width < 768
 
 # --- HEADER ---
 st.title("🎓 JEE Seat Finder")
-st.markdown(width)
+st.markdown("width is". width)
 st.markdown(
     """
     <div style='font-size:15px; color:#444; margin-bottom:10px;'>
@@ -64,13 +64,13 @@ def filter_widgets():
 # --- FILTERS: Conditional Placement ---
 admin_mode = False
 if is_mobile:
-    st.markdown("### 🔍 Filters")
+    st.markdown("### 🔍 Filters1")
     admin_mode = st.checkbox("🔑 Admin Login")
     if not admin_mode:
         selected_types, selected_colleges, program_group, rank_range, gender, quota, seat_type, filtered_df_for_programs = filter_widgets()
 else:
     with st.sidebar:
-        st.header("🔍 Filters")
+        st.header("🔍 Filters2")
         admin_mode = st.checkbox("🔑 Admin Login")
         if not admin_mode:
             selected_types, selected_colleges, program_group, rank_range, gender, quota, seat_type, filtered_df_for_programs = filter_widgets()
