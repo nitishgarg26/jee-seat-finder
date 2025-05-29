@@ -8,7 +8,7 @@ from streamlit_javascript import st_javascript
 width = st_javascript("window.innerWidth")
 
 # Set a threshold for mobile (e.g., 768px)
-is_mobile = width is not None and width < 768
+is_mobile = width is not None and width < 480
 
 # --- HEADER ---
 st.title("🎓 JEE Seat Finder")
