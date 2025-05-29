@@ -2,7 +2,7 @@ import pandas as pd
 import sqlite3
 
 # Load CSV
-df = pd.read_csv("College Counselling - JAC.csv")
+df = pd.read_csv("iiit.csv")
 
 # Ensure ranks are numeric
 df["Closing Rank"] = pd.to_numeric(df["Closing Rank"], errors="coerce")
