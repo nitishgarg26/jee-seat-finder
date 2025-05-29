@@ -102,10 +102,17 @@ if not admin_mode:
     st.subheader("🎯 Matching Programs")
     # Show only a few columns by default for mobile, with option to expand
     display_cols = ["Institute", "Academic Program Name", "Type", "Opening Rank", "Closing Rank", "Quota", "Seat Type", "Gender", "Year"]
-    mobile_cols = ["Institute", "Academic Program Name", "Closing Rank"]
-    with st.expander("Show all columns", expanded=False):
-        st.dataframe(filtered_df[display_cols], use_container_width=True)
-    st.dataframe(filtered_df[mobile_cols], use_container_width=True)
+    # ... your filtering logic above ...
+
+    # Format ranks with commas for display
+    display_df = filtered_df.copy()
+    if "Closing Rank" in display_df.columns:
+        display_df["Closing Rank"] = display_df["Closing Rank"].apply(lambda x: f"{int(x):,}" if pd.notnull(x) else "")
+    if "Opening Rank" in display_df.columns:
+        display_df["Opening Rank"] = display_df["Opening Rank"].apply(lambda x: f"{int(x):,}" if pd.notnull(x) else "")
+
+    # Display ALL columns
+    st.dataframe(display_df, use_container_width=True)
 
     # Download button
     csv = filtered_df.to_csv(index=False).encode("utf-8")
