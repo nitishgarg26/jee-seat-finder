@@ -19,7 +19,6 @@ is_mobile = width is not None and width < 480
 
 # --- HEADER ---
 st.title("🎓 JEE Seat Finder")
-st.info(f"width is {width}")
 st.markdown(
     """
     <div style='font-size:15px; color:#444; margin-bottom:10px;'>
@@ -31,7 +30,7 @@ st.markdown(
     """,
     unsafe_allow_html=True
 )
-st.info("Filter below to find your best-fit colleges and programs. Works great on mobile!")
+st.info("Filter below to find your best-fit colleges and programs.")
 
 # --- CONNECT TO DATABASE ---
 conn = sqlite3.connect("jee_data.db", check_same_thread=False)
@@ -57,7 +56,7 @@ def filter_widgets():
     program_group = st.multiselect("🎯 Program(s)", ["Computers", "Electronics"] + all_programs)
 
     rank_range = st.slider(
-        "🏅 Rank Range (Opening to Closing)",
+        "🏅 Rank Range (Closing)",
         0, 1000000, (0, 1000000), step=1000, format="%d",
         help="Set your JEE rank range (up to 10,00,000)."
     )
