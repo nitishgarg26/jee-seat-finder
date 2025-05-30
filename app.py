@@ -132,6 +132,21 @@ if not admin_mode:
         mime="text/csv",
         help="Download your filtered results."
     )
+# --- Feedback Section ---
+st.subheader("📝 Submit Your Feedback")
+feedback = st.text_area("Please provide your feedback or suggestions:")
+if st.button("Submit Feedback"):
+    if feedback.strip():
+        # Save feedback to a file, database, or email here if desired
+        st.success("Thank you for your feedback!")
+        with open("feedback.txt", "a") as f:
+            f.write(feedback + "\n---\n")
+        # Optionally, clear the feedback box after submission:
+        # st.experimental_rerun()
+    else:
+        st.warning("Please enter some feedback before submitting.")
+
+
 
 # --- ADMIN PANEL (unchanged) ---
 if admin_mode:
