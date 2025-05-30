@@ -61,8 +61,8 @@ def filter_widgets():
         help="Set your JEE rank range (up to 10,00,000)."
     )
 
-    gender = st.multiselect("⚧️ Gender", options=sorted(df["Gender"].dropna().unique()))
-    quota = st.multiselect("🎟️ Quota", options=sorted(df["Quota"].dropna().unique()))
+    gender = st.multiselect("⚧️ Gender", options=sorted(df["Gender"].dropna().unique()), default= "Gender-Neutral")
+    quota = st.multiselect("🎟️ Quota", options=sorted(df["Quota"].dropna().unique()),default= "AI")
     seat_type = st.multiselect("💺 Seat Type", options=sorted(df["Seat Type"].dropna().unique()), default=["OPEN"])
 
     return selected_types, selected_colleges, program_group, rank_range, gender, quota, seat_type, filtered_df_for_programs
