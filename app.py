@@ -21,7 +21,7 @@ is_mobile = width is not None and width < 480
 st.title("🎓 JEE Seat Finder")
 st.markdown(
     """
-    <div style='font-size:15px; color:#444; margin-bottom:10px;'>
+    <div style='font-size:16px; color:#444; margin-bottom:10px;'>
     <b>Opening/Closing Ranks for Open Seats</b> represent <b>CRL</b>.<br>
     <b>Opening/Closing Ranks for EWS, OBC-NCL, SC and ST Seats</b> represent respective <b>Category Ranks</b>.<br>
     <b>Opening/Closing Ranks for PwD Seats</b> represent <b>PwD Ranks</b> within Respective Categories.<br>
