@@ -172,7 +172,6 @@ if admin_mode:
 st.markdown(
     "<hr style='margin-top:2em;margin-bottom:1em;'>"
     "<div style='text-align:center; color: #999;'>"
-    "Made with ❤️ using Streamlit · Designed for mobile and desktop"
     "</div>",
     unsafe_allow_html=True
 )
