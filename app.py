@@ -63,7 +63,7 @@ def filter_widgets():
 
     gender = st.multiselect("⚧️ Gender", options=sorted(df["Gender"].dropna().unique()))
     quota = st.multiselect("🎟️ Quota", options=sorted(df["Quota"].dropna().unique()))
-    seat_type = st.multiselect("💺 Seat Type", options=sorted(df["Seat Type"].dropna().unique()))
+    seat_type = st.multiselect("💺 Seat Type", options=sorted(df["Seat Type"].dropna().unique()), default=["OPEN"])
 
     return selected_types, selected_colleges, program_group, rank_range, gender, quota, seat_type, filtered_df_for_programs
 
