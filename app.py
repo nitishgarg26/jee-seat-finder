@@ -56,18 +56,21 @@ def filter_widgets():
     all_programs = sorted(filtered_df_for_programs["Academic Program Name"].dropna().unique().tolist())
     program_group = st.multiselect("🎯 Program(s)", ["Computers", "Electronics"] + all_programs)
 
-    # New code (two separate sliders)
-    min_rank = st_slider(
+    min_rank = st.number_input(
         "Minimum Closing Rank",
-        0, 1000000, values=[0],  # ← Wrap default in a list,
-        steps=1000,
-        key="min_rank"
+        min_value=0,
+        max_value=1000000,
+        value=0,
+        step=1000,
+        format="%d"
     )
-    max_rank = st_slider(
+    max_rank = st.number_input(
         "Maximum Closing Rank",
-        0, 1000000, values=[1000000],  # ← Wrap default in a list,
-        steps=1000,
-        key="max_rank"
+        min_value=0,
+        max_value=1000000,
+        value=1000000,
+        step=1000,
+        format="%d"
     )
     rank_range = (min_rank, max_rank)
     
