@@ -60,13 +60,13 @@ def filter_widgets():
     min_rank = st_slider(
         "Minimum Closing Rank",
         0, 1000000, 0,
-        step=1000,
+        steps=1000,
         key="min_rank"
     )
     max_rank = st_slider(
         "Maximum Closing Rank",
         0, 1000000, 1000000,
-        step=1000,
+        steps=1000,
         key="max_rank"
     )
     rank_range = (min_rank, max_rank)
