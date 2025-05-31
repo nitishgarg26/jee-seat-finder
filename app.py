@@ -56,16 +56,21 @@ def filter_widgets():
     all_programs = sorted(filtered_df_for_programs["Academic Program Name"].dropna().unique().tolist())
     program_group = st.multiselect("🎯 Program(s)", ["Computers", "Electronics"] + all_programs)
 
-    rank_range = st_slider(
-        "🏅 Rank Range (Closing)",
-        min_value=0,
-        max_value=1000000,
-        value=(0, 1000000),
+    # New code (two separate sliders)
+    min_rank = st_slider(
+        "Minimum Closing Rank",
+        0, 1000000, 0,
         step=1000,
-        format_func=lambda x: f"{x:,}",
-        help="Set your JEE rank range (up to 10,00,000)."
+        key="min_rank"
     )
-
+    max_rank = st_slider(
+        "Maximum Closing Rank",
+        0, 1000000, 1000000,
+        step=1000,
+        key="max_rank"
+    )
+    rank_range = (min_rank, max_rank)
+    
     gender = st.multiselect("⚧️ Gender", options=sorted(df["Gender"].dropna().unique()), default= "Gender-Neutral")
     quota = st.multiselect("🎟️ Quota", options=sorted(df["Quota"].dropna().unique()),default= "AI")
     seat_type = st.multiselect("💺 Seat Type", options=sorted(df["Seat Type"].dropna().unique()), default=["OPEN"])
@@ -91,7 +96,8 @@ if not admin_mode:
     filtered_df = df[df["Type"].isin(selected_types)]
     if selected_colleges and "All" not in selected_colleges:
         filtered_df = filtered_df[filtered_df["Institute"].isin(selected_colleges)]
-        filtered_df = filtered_df[(filtered_df["Closing Rank"] >= rank_range[0]) & (filtered_df["Closing Rank"] <= rank_range[1])]
+    filtered_df = filtered_df[(filtered_df["Closing Rank"] >= rank_range[0]) & (filtered_df["Closing Rank"] <= rank_range[1])]
+
 
     if gender:
         filtered_df = filtered_df[filtered_df["Gender"].isin(gender)]
