@@ -56,7 +56,7 @@ def filter_widgets():
     all_programs = sorted(filtered_df_for_programs["Academic Program Name"].dropna().unique().tolist())
     program_group = st.multiselect("🎯 Program(s)", ["Computers", "Electronics"] + all_programs)
 
-    rank_range = st_super_slider(
+    rank_range = st_slider(
         "🏅 Rank Range (Closing)",
         min_value=0,
         max_value=1000000,
