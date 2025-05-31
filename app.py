@@ -59,13 +59,13 @@ def filter_widgets():
     # New code (two separate sliders)
     min_rank = st_slider(
         "Minimum Closing Rank",
-        0, 1000000, 0,
+        0, 1000000, values=[0],  # ← Wrap default in a list,
         steps=1000,
         key="min_rank"
     )
     max_rank = st_slider(
         "Maximum Closing Rank",
-        0, 1000000, 1000000,
+        0, 1000000, values=[1000000],  # ← Wrap default in a list,
         steps=1000,
         key="max_rank"
     )
