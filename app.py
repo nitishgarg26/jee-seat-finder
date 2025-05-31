@@ -3,6 +3,7 @@ import pandas as pd
 import sqlite3
 from hashlib import sha256
 from streamlit_javascript import st_javascript
+from streamlit_super_slider import st_slider
 
 # --- PAGE CONFIG ---
 st.set_page_config(
@@ -55,9 +56,13 @@ def filter_widgets():
     all_programs = sorted(filtered_df_for_programs["Academic Program Name"].dropna().unique().tolist())
     program_group = st.multiselect("🎯 Program(s)", ["Computers", "Electronics"] + all_programs)
 
-    rank_range = st.slider(
+    rank_range = st_super_slider(
         "🏅 Rank Range (Closing)",
-        0, 1000000, (0, 1000000), step=1000, format="%d",
+        min_value=0,
+        max_value=1000000,
+        value=(0, 1000000),
+        step=1000,
+        format_func=lambda x: f"{x:,}",
         help="Set your JEE rank range (up to 10,00,000)."
     )
 
