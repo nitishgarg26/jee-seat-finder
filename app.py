@@ -69,7 +69,7 @@ def filter_widgets():
         min_value=0,
         max_value=1000000,
         value=1000000,
-        step=1000,
+        step=50000,
         format="%d"
     )
     rank_range = (min_rank, max_rank)
