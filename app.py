@@ -137,12 +137,12 @@ if not admin_mode:
         column_config={
             "Opening Rank": st.column_config.NumberColumn(
                 "Opening Rank",
-                format="%d",
+                format="{:,}",  # This should show commas
                 help="Opening rank for admission"
             ),
             "Closing Rank": st.column_config.NumberColumn(
                 "Closing Rank",
-                format="%d", 
+                format="{:,}",  # This should show commas
                 help="Closing rank for admission"
             )
         }
