@@ -129,14 +129,27 @@ if not admin_mode:
     filtered_df = filtered_df.sort_values(by="Closing Rank")
 
     # Format ranks with commas for display
-    display_df = filtered_df.copy()
-    if "Closing Rank" in display_df.columns:
-        display_df["Closing Rank"] = display_df["Closing Rank"].apply(lambda x: f"{int(x):,}" if pd.notnull(x) else "")
-    if "Opening Rank" in display_df.columns:
-        display_df["Opening Rank"] = display_df["Opening Rank"].apply(lambda x: f"{int(x):,}" if pd.notnull(x) else "")
+    # Keep data numeric for proper sorting, format only for display
+    st.dataframe(
+        filtered_df,
+        use_container_width=True,
+        column_config={
+            "Opening Rank": st.column_config.NumberColumn(
+                "Opening Rank",
+                format="%d",
+                help="Opening rank for admission"
+            ),
+            "Closing Rank": st.column_config.NumberColumn(
+                "Closing Rank",
+                format="%d", 
+                help="Closing rank for admission"
+            )
+        }
+    )
+
 
     st.subheader("🎯 Matching Programs")
-    st.dataframe(display_df, use_container_width=True)
+    st.dataframe(filtered_df, use_container_width=True)
 
     csv = filtered_df.to_csv(index=False).encode("utf-8")
     st.download_button(
