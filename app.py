@@ -274,13 +274,6 @@ def guest_search_page():
             st.warning("Please enter some feedback before submitting.")
 
 def logged_in_search_page():
-    # Reset selection state when page loads (fix for disabled buttons)
-    if 'selected_items' not in st.session_state:
-        st.session_state.selected_items = set()
-    
-    # Clear any stale selections that might cause button issues
-    if len(st.session_state.selected_items) > 0:
-        st.session_state.selected_items = set()
     """Search functionality for logged-in users with table display and checkbox shortlisting"""
     st.markdown("""
     <div style='font-size:15px; color:#444; margin-bottom:10px;'>
@@ -322,7 +315,7 @@ def logged_in_search_page():
     
     st.write(f"Found **{len(filtered_df)}** matching programs:")
     
-    # Initialize session state for selected items
+    # Initialize session state for selected items - only if not exists
     if 'selected_items' not in st.session_state:
         st.session_state.selected_items = set()
     
@@ -381,6 +374,11 @@ def logged_in_search_page():
     enhanced_df = display_df.copy()
     enhanced_df.insert(0, 'Select', False)
     
+    # Set previously selected items to True
+    for idx in st.session_state.selected_items:
+        if idx < len(enhanced_df):
+            enhanced_df.loc[idx, 'Select'] = True
+    
     # Display the main results table with checkboxes
     edited_df = st.data_editor(
         enhanced_df,
@@ -423,7 +421,7 @@ def logged_in_search_page():
         hide_index=True,
         use_container_width=True,
         height=400,
-        key=f"results_table_{st.session_state.user_id}_{len(filtered_df)}"  # Dynamic key to prevent caching issues
+        key="results_table"
     )
     
     # Update selected items based on table selections
@@ -434,7 +432,7 @@ def logged_in_search_page():
     # Add selected items to shortlist button (alternative placement)
     if len(st.session_state.selected_items) > 0:
         st.info(f"💡 {len(st.session_state.selected_items)} items selected. Click 'Add Selected to Shortlist' above to save them.")
-        
+    
     # Download search results as CSV
     st.markdown("---")
     csv = filtered_df.to_csv(index=False).encode("utf-8")
