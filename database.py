@@ -48,6 +48,7 @@ def setup_user_tables():
                 quota TEXT,
                 gender TEXT,
                 notes TEXT,
+                priority_order INTEGER DEFAULT 1,
                 added_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
                 FOREIGN KEY (user_id) REFERENCES users (id) ON DELETE CASCADE
             )
