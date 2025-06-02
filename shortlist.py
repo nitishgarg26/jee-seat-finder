@@ -1,4 +1,4 @@
-# Complete shortlist.py content for JEE Seat Finder app
+# Complete shortlist.py content with intuitive reordering controls
 
 import pandas as pd
 import streamlit as st
@@ -67,46 +67,6 @@ def update_shortlist_notes(shortlist_id, notes):
     conn.close()
 
 
-def update_priority_order(user_id, item_id, new_priority):
-    """Update priority order for a specific item"""
-    conn = get_connection()
-    cursor = conn.cursor()
-    
-    # Get current priority
-    cursor.execute("SELECT priority_order FROM shortlists WHERE id = ? AND user_id = ?", (item_id, user_id))
-    current_priority = cursor.fetchone()
-    
-    if not current_priority:
-        conn.close()
-        return False, "Item not found!"
-    
-    current_priority = current_priority[0]
-    
-    # Update the target item's priority
-    cursor.execute("UPDATE shortlists SET priority_order = ? WHERE id = ? AND user_id = ?", 
-                   (new_priority, item_id, user_id))
-    
-    # Shift other items if necessary
-    if new_priority < current_priority:
-        # Moving up - shift items down
-        cursor.execute("""
-            UPDATE shortlists 
-            SET priority_order = priority_order + 1 
-            WHERE user_id = ? AND priority_order >= ? AND priority_order < ? AND id != ?
-        """, (user_id, new_priority, current_priority, item_id))
-    elif new_priority > current_priority:
-        # Moving down - shift items up
-        cursor.execute("""
-            UPDATE shortlists 
-            SET priority_order = priority_order - 1 
-            WHERE user_id = ? AND priority_order > ? AND priority_order <= ? AND id != ?
-        """, (user_id, current_priority, new_priority, item_id))
-    
-    conn.commit()
-    conn.close()
-    return True, "Priority updated successfully!"
-
-
 def move_item_up(user_id, item_id):
     """Move item up in priority (decrease priority number)"""
     conn = get_connection()
@@ -142,7 +102,7 @@ def move_item_up(user_id, item_id):
     
     conn.commit()
     conn.close()
-    return True, "Item moved up!"
+    return True, "Moved up!"
 
 
 def move_item_down(user_id, item_id):
@@ -180,33 +140,71 @@ def move_item_down(user_id, item_id):
     
     conn.commit()
     conn.close()
-    return True, "Item moved down!"
+    return True, "Moved down!"
 
 
-def reorder_all_priorities(user_id):
-    """Reorder all priorities to be sequential (1, 2, 3, ...)"""
+def move_item_to_position(user_id, item_id, new_position):
+    """Move item to specific position (1 = top)"""
     conn = get_connection()
     cursor = conn.cursor()
     
-    # Get all items ordered by current priority
+    # Get total number of items
+    cursor.execute("SELECT COUNT(*) FROM shortlists WHERE user_id = ?", (user_id,))
+    total_items = cursor.fetchone()[0]
+    
+    if new_position < 1 or new_position > total_items:
+        conn.close()
+        return False, f"Position must be between 1 and {total_items}!"
+    
+    # Get current priority
+    cursor.execute("SELECT priority_order FROM shortlists WHERE id = ? AND user_id = ?", (item_id, user_id))
+    current_priority = cursor.fetchone()
+    
+    if not current_priority:
+        conn.close()
+        return False, "Item not found!"
+    
+    current_priority = current_priority[0]
+    
+    # Get all items ordered by priority
     cursor.execute("""
         SELECT id FROM shortlists 
         WHERE user_id = ? 
-        ORDER BY COALESCE(priority_order, id) ASC
+        ORDER BY priority_order ASC
     """, (user_id,))
     
-    items = cursor.fetchall()
+    all_items = [row[0] for row in cursor.fetchall()]
     
-    # Update priorities to be sequential
-    for index, (item_id,) in enumerate(items, 1):
-        cursor.execute("UPDATE shortlists SET priority_order = ? WHERE id = ?", (index, item_id))
+    # Remove current item and insert at new position
+    all_items.remove(item_id)
+    all_items.insert(new_position - 1, item_id)
+    
+    # Update all priorities
+    for index, item_id_in_list in enumerate(all_items, 1):
+        cursor.execute("UPDATE shortlists SET priority_order = ? WHERE id = ?", (index, item_id_in_list))
     
     conn.commit()
     conn.close()
+    return True, f"Moved to position {new_position}!"
+
+
+def move_item_to_top(user_id, item_id):
+    """Move item to top of the list"""
+    return move_item_to_position(user_id, item_id, 1)
+
+
+def move_item_to_bottom(user_id, item_id):
+    """Move item to bottom of the list"""
+    conn = get_connection()
+    cursor = conn.cursor()
+    cursor.execute("SELECT COUNT(*) FROM shortlists WHERE user_id = ?", (user_id,))
+    total_items = cursor.fetchone()[0]
+    conn.close()
+    return move_item_to_position(user_id, item_id, total_items)
 
 
 def shortlist_page():
-    """Display shortlist management page with tabular format and priority controls"""
+    """Display shortlist management page with intuitive reordering controls"""
     st.subheader("⭐ My Shortlist")
     
     shortlist_df = get_user_shortlist(st.session_state.user_id)
@@ -216,109 +214,135 @@ def shortlist_page():
         return
     
     st.write(f"You have **{len(shortlist_df)}** items in your shortlist.")
+    st.info("💡 Use the control buttons to reorder items, edit notes, or remove items from your shortlist.")
     
-    # Reorder priorities button
-    if st.button("🔄 Reorder Priorities", help="Reset priority numbers to be sequential"):
-        reorder_all_priorities(st.session_state.user_id)
-        st.success("Priorities reordered!")
-        st.rerun()
-    
-    # Format dataframe for display
-    display_df = shortlist_df.copy()
-    if "closing_rank" in display_df.columns:
-        display_df["closing_rank"] = display_df["closing_rank"].apply(lambda x: f"{int(x):,}" if pd.notnull(x) else "")
-    
-    # Rename columns for better display
-    display_df = display_df.rename(columns={
-        'priority_order': 'Priority',
-        'institute': 'Institute',
-        'program': 'Program',
-        'closing_rank': 'Closing Rank',
-        'seat_type': 'Seat Type',
-        'quota': 'Quota',
-        'gender': 'Gender',
-        'notes': 'Notes'
-    })
-    
-    # Select columns for main table display
-    table_columns = ['Priority', 'Institute', 'Program', 'Closing Rank', 'Seat Type', 'Quota', 'Gender', 'Notes']
-    
-    # Display main table
-    st.subheader("📊 Shortlist Table")
-    st.dataframe(
-        display_df[table_columns], 
-        use_container_width=True, 
-        height=300,
-        hide_index=True
-    )
-    
-    # Individual item controls
-    st.subheader("🎛️ Priority Controls & Actions")
-    
+    # Display shortlist in a clean table format with controls
     for idx, row in shortlist_df.iterrows():
         with st.container():
-            col1, col2, col3, col4, col5, col6 = st.columns([0.5, 3, 1, 0.8, 0.8, 0.8])
+            # Create columns for layout
+            col1, col2, col3, col4, col5, col6, col7, col8 = st.columns([0.5, 2.5, 1.5, 0.6, 0.6, 0.6, 0.6, 0.8])
             
             with col1:
-                st.markdown(f"**#{int(row['priority_order'])}**")
+                # Show current position
+                current_position = idx + 1
+                st.markdown(f"**#{current_position}**")
             
             with col2:
-                st.markdown(f"**{row['institute']}** - {row['program']}")
-                st.caption(f"Rank: {row['closing_rank']:,} | {row['seat_type']} | {row['quota']} | {row['gender']}")
+                # Institute and program info
+                st.markdown(f"**{row['institute']}**")
+                st.caption(f"{row['program']}")
             
             with col3:
-                # Notes editing
-                new_notes = st.text_input(
-                    "Notes", 
-                    value=row['notes'] or '', 
-                    key=f"notes_{row['id']}",
-                    label_visibility="collapsed"
-                )
-                if new_notes != (row['notes'] or ''):
-                    if st.button("💾", key=f"save_notes_{row['id']}", help="Save notes"):
-                        update_shortlist_notes(row['id'], new_notes)
-                        st.success("Notes saved!")
-                        st.rerun()
+                # Details
+                st.caption(f"**Rank:** {row['closing_rank']:,}")
+                st.caption(f"**Type:** {row['seat_type']} | {row['quota']}")
+                st.caption(f"**Gender:** {row['gender']}")
             
             with col4:
                 # Move up button
-                if st.button("⬆️", key=f"up_{row['id']}", help="Move up in priority"):
+                if st.button("⬆️", key=f"up_{row['id']}", help="Move up one position", disabled=(current_position == 1)):
                     success, message = move_item_up(st.session_state.user_id, row['id'])
                     if success:
-                        st.success(message)
                         st.rerun()
                     else:
                         st.warning(message)
             
             with col5:
                 # Move down button
-                if st.button("⬇️", key=f"down_{row['id']}", help="Move down in priority"):
+                if st.button("⬇️", key=f"down_{row['id']}", help="Move down one position", disabled=(current_position == len(shortlist_df))):
                     success, message = move_item_down(st.session_state.user_id, row['id'])
                     if success:
-                        st.success(message)
                         st.rerun()
                     else:
                         st.warning(message)
             
             with col6:
+                # Move to top button
+                if st.button("⏫", key=f"top_{row['id']}", help="Move to top", disabled=(current_position == 1)):
+                    success, message = move_item_to_top(st.session_state.user_id, row['id'])
+                    if success:
+                        st.rerun()
+                    else:
+                        st.warning(message)
+            
+            with col7:
+                # Move to bottom button
+                if st.button("⏬", key=f"bottom_{row['id']}", help="Move to bottom", disabled=(current_position == len(shortlist_df))):
+                    success, message = move_item_to_bottom(st.session_state.user_id, row['id'])
+                    if success:
+                        st.rerun()
+                    else:
+                        st.warning(message)
+            
+            with col8:
                 # Remove button
                 if st.button("🗑️", key=f"remove_{row['id']}", help="Remove from shortlist"):
                     remove_from_shortlist(row['id'])
                     st.success("Removed from shortlist!")
                     st.rerun()
             
+            # Notes section (full width)
+            notes_value = row['notes'] or ''
+            new_notes = st.text_input(
+                f"Notes for {row['institute']}", 
+                value=notes_value,
+                key=f"notes_{row['id']}",
+                placeholder="Add your personal notes about this option...",
+                label_visibility="collapsed"
+            )
+            
+            # Auto-save notes when changed
+            if new_notes != notes_value:
+                update_shortlist_notes(row['id'], new_notes)
+                st.success("Notes saved!")
+                st.rerun()
+            
             st.markdown("---")
     
-    # Bulk actions
-    st.subheader("📥 Export & Download")
+    # Advanced reordering options
+    st.markdown("### 🎛️ Advanced Reordering")
     
-    col1, col2 = st.columns(2)
+    with st.expander("🔄 Move Item to Specific Position"):
+        col1, col2, col3 = st.columns([2, 1, 1])
+        
+        with col1:
+            # Select item to move
+            item_options = [f"#{i+1}: {row['institute']} - {row['program']}" for i, (_, row) in enumerate(shortlist_df.iterrows())]
+            selected_item = st.selectbox("Select item to move:", item_options, key="move_item_select")
+        
+        with col2:
+            # Select new position
+            new_position = st.number_input(
+                "New position:", 
+                min_value=1, 
+                max_value=len(shortlist_df), 
+                value=1,
+                key="new_position"
+            )
+        
+        with col3:
+            if st.button("🎯 Move to Position"):
+                if selected_item:
+                    item_index = int(selected_item.split(":")[0].replace("#", "")) - 1
+                    item_id = shortlist_df.iloc[item_index]['id']
+                    success, message = move_item_to_position(st.session_state.user_id, item_id, new_position)
+                    if success:
+                        st.success(message)
+                        st.rerun()
+                    else:
+                        st.error(message)
+    
+    # Export and bulk actions
+    st.markdown("---")
+    st.subheader("📥 Export & Bulk Actions")
+    
+    col1, col2, col3 = st.columns(3)
     
     with col1:
         # Download shortlist as CSV
         csv = shortlist_df.to_csv(index=False).encode("utf-8")
         st.download_button(
-            label="📥 Download Shortlist as CSV",
+            label="📥 Download as CSV",
             data=csv,
             file_name=f"jee_shortlist_{st.session_state.username}.csv",
             mime="text/csv",
@@ -326,28 +350,48 @@ def shortlist_page():
         )
     
     with col2:
-        # Download formatted shortlist
-        formatted_df = display_df.copy()
-        formatted_csv = formatted_df.to_csv(index=False).encode("utf-8")
-        st.download_button(
-            label="📊 Download Formatted Shortlist",
-            data=formatted_csv,
-            file_name=f"jee_shortlist_formatted_{st.session_state.username}.csv",
-            mime="text/csv",
-            help="Download formatted shortlist with proper column names"
+        # Sort options
+        sort_option = st.selectbox(
+            "🔤 Sort by:",
+            ["Priority (Current Order)", "Institute Name", "Closing Rank", "Date Added"],
+            key="sort_option"
         )
-    
-    # Clear all shortlist option
-    st.markdown("---")
-    if st.button("🗑️ Clear All Shortlist", help="Remove all items from shortlist"):
-        if st.button("⚠️ Confirm Clear All", key="confirm_clear"):
+        
+        if st.button("🔄 Apply Sort"):
+            if sort_option == "Institute Name":
+                sorted_items = shortlist_df.sort_values('institute')['id'].tolist()
+            elif sort_option == "Closing Rank":
+                sorted_items = shortlist_df.sort_values('closing_rank')['id'].tolist()
+            elif sort_option == "Date Added":
+                sorted_items = shortlist_df.sort_values('added_at')['id'].tolist()
+            else:
+                sorted_items = shortlist_df['id'].tolist()  # Keep current order
+            
+            # Update priorities based on new order
             conn = get_connection()
             cursor = conn.cursor()
-            cursor.execute("DELETE FROM shortlists WHERE user_id = ?", (st.session_state.user_id,))
+            for index, item_id in enumerate(sorted_items, 1):
+                cursor.execute("UPDATE shortlists SET priority_order = ? WHERE id = ?", (index, item_id))
             conn.commit()
             conn.close()
-            st.success("All items cleared from shortlist!")
+            
+            st.success(f"Sorted by {sort_option}!")
             st.rerun()
+    
+    with col3:
+        # Clear all option
+        if st.button("🗑️ Clear All Shortlist"):
+            if st.button("⚠️ Confirm Clear All", key="confirm_clear_all"):
+                conn = get_connection()
+                cursor = conn.cursor()
+                cursor.execute("DELETE FROM shortlists WHERE user_id = ?", (st.session_state.user_id,))
+                conn.commit()
+                conn.close()
+                st.success("All items cleared from shortlist!")
+                st.rerun()
+    
+    # Display shortlist summary in sidebar
+    display_shortlist_summary()
 
 
 def get_shortlist_summary(user_id):
@@ -360,12 +404,12 @@ def get_shortlist_summary(user_id):
         cursor.execute("SELECT COUNT(*) FROM shortlists WHERE user_id = ?", (user_id,))
         total_items = cursor.fetchone()[0]
         
-        # Items by college type
+        # Items by institute
         cursor.execute("""
-            SELECT s.institute, COUNT(*) as count
-            FROM shortlists s
-            WHERE s.user_id = ?
-            GROUP BY s.institute
+            SELECT institute, COUNT(*) as count
+            FROM shortlists
+            WHERE user_id = ?
+            GROUP BY institute
             ORDER BY count DESC
         """, (user_id,))
         by_institute = cursor.fetchall()
@@ -380,10 +424,21 @@ def get_shortlist_summary(user_id):
         """, (user_id,))
         by_seat_type = cursor.fetchall()
         
+        # Average rank
+        cursor.execute("""
+            SELECT AVG(closing_rank) as avg_rank, MIN(closing_rank) as min_rank, MAX(closing_rank) as max_rank
+            FROM shortlists
+            WHERE user_id = ? AND closing_rank IS NOT NULL
+        """, (user_id,))
+        rank_stats = cursor.fetchone()
+        
         return {
             'total_items': total_items,
             'by_institute': by_institute,
-            'by_seat_type': by_seat_type
+            'by_seat_type': by_seat_type,
+            'avg_rank': rank_stats[0] if rank_stats[0] else None,
+            'min_rank': rank_stats[1] if rank_stats[1] else None,
+            'max_rank': rank_stats[2] if rank_stats[2] else None
         }
         
     except Exception as e:
@@ -394,16 +449,22 @@ def get_shortlist_summary(user_id):
 
 
 def display_shortlist_summary():
-    """Display shortlist summary statistics"""
+    """Display shortlist summary statistics in sidebar"""
     summary = get_shortlist_summary(st.session_state.user_id)
     
     if summary and summary['total_items'] > 0:
         st.sidebar.subheader("📊 Shortlist Summary")
         st.sidebar.metric("Total Items", summary['total_items'])
         
+        if summary['avg_rank']:
+            st.sidebar.metric("Avg. Closing Rank", f"{int(summary['avg_rank']):,}")
+        
+        if summary['min_rank'] and summary['max_rank']:
+            st.sidebar.write(f"**Rank Range:** {summary['min_rank']:,} - {summary['max_rank']:,}")
+        
         if summary['by_institute']:
             st.sidebar.write("**Top Institutes:**")
-            for institute, count in summary['by_institute'][:3]:
+            for institute, count in summary['by_institute'][:5]:
                 st.sidebar.write(f"• {institute}: {count}")
         
         if summary['by_seat_type']:
