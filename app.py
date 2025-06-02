@@ -130,6 +130,7 @@ if not admin_mode:
 
     # Format ranks with commas for display
     # Keep data numeric for proper sorting, format only for display
+    st.subheader("🎯 Matching Programs")
     st.dataframe(
         filtered_df,
         use_container_width=True,
@@ -146,10 +147,6 @@ if not admin_mode:
             )
         }
     )
-
-
-    st.subheader("🎯 Matching Programs")
-    st.dataframe(filtered_df, use_container_width=True)
 
     csv = filtered_df.to_csv(index=False).encode("utf-8")
     st.download_button(
