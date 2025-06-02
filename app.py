@@ -274,7 +274,7 @@ def guest_search_page():
             st.warning("Please enter some feedback before submitting.")
 
 def logged_in_search_page():
-    """Search functionality for logged-in users with table display and checkbox shortlisting"""
+    """Search functionality for logged-in users with stable table state and only table checkboxes for selection"""
     st.markdown("""
     <div style='font-size:15px; color:#444; margin-bottom:10px;'>
     <b>Opening/Closing Ranks for Open Seats</b> represent <b>CRL</b>.<br>
@@ -300,12 +300,28 @@ def logged_in_search_page():
             st.header("🔍 Filters")
             selected_types, selected_colleges, program_group, rank_range, gender, quota, seat_type, filtered_df_for_programs = filter_widgets()
     
-    # Apply filters and format
-    filtered_df = apply_filters(df, selected_types, selected_colleges, program_group, rank_range, gender, quota, seat_type, filtered_df_for_programs)
+    # Create a stable key for caching based on filter values
+    filter_key = f"{hash(str(selected_types))}{hash(str(selected_colleges))}{hash(str(program_group))}{hash(str(rank_range))}{hash(str(gender))}{hash(str(quota))}{hash(str(seat_type))}"
     
-    # Reset index to ensure proper indexing for selection
-    filtered_df = filtered_df.reset_index(drop=True)
-    display_df = format_dataframe_for_display(filtered_df)
+    # Cache filtered results to prevent recomputation on selection changes
+    if 'cached_results' not in st.session_state or st.session_state.get('filter_key') != filter_key:
+        # Apply filters and format
+        filtered_df = apply_filters(df, selected_types, selected_colleges, program_group, rank_range, gender, quota, seat_type, filtered_df_for_programs)
+        filtered_df = filtered_df.reset_index(drop=True)
+        display_df = format_dataframe_for_display(filtered_df)
+        
+        # Cache the results
+        st.session_state.cached_results = {
+            'filtered_df': filtered_df,
+            'display_df': display_df
+        }
+        st.session_state.filter_key = filter_key
+        # Reset selections when filters change
+        st.session_state.selected_items = set()
+    else:
+        # Use cached results
+        filtered_df = st.session_state.cached_results['filtered_df']
+        display_df = st.session_state.cached_results['display_df']
     
     # Display results
     st.subheader("🎯 Matching Programs")
@@ -315,60 +331,68 @@ def logged_in_search_page():
     
     st.write(f"Found **{len(filtered_df)}** matching programs:")
     
-    # Initialize session state for selected items - only if not exists
+    # Initialize session state for selected items
     if 'selected_items' not in st.session_state:
         st.session_state.selected_items = set()
     
-    # Shortlist controls
-    col1, col2, col3 = st.columns([2, 2, 3])
-    with col1:
-        select_all = st.checkbox("Select All")
-        if select_all:
-            st.session_state.selected_items = set(range(len(filtered_df)))
-        elif not select_all and len(st.session_state.selected_items) == len(filtered_df):
-            st.session_state.selected_items = set()
-    
-    with col2:
-        st.write(f"Selected: {len(st.session_state.selected_items)}")
-    
-    with col3:
-        if st.button("⭐ Add Selected to Shortlist", disabled=len(st.session_state.selected_items) == 0):
-            success_count = 0
-            error_count = 0
-            
-            # Process selected items safely
-            for idx in st.session_state.selected_items:
-                try:
-                    # Ensure index is within bounds
-                    if 0 <= idx < len(filtered_df):
-                        row = filtered_df.iloc[idx]
-                        success, message = add_to_shortlist(
-                            st.session_state.user_id,
-                            row['Institute'],
-                            row['Academic Program Name'],
-                            row['Closing Rank'],
-                            row['Seat Type'],
-                            row['Quota'],
-                            row['Gender']
-                        )
-                        if success:
-                            success_count += 1
+    # Create a form to prevent auto-rerun on every checkbox change
+    with st.form("selection_form", clear_on_submit=False):
+        # Shortlist controls inside form
+        col1, col2, col3 = st.columns([2, 2, 3])
+        with col1:
+            select_all = st.form_submit_button("📋 Select All")
+            if select_all:
+                st.session_state.selected_items = set(range(len(filtered_df)))
+                st.rerun()
+        
+        with col2:
+            clear_all = st.form_submit_button("🗑️ Clear Selection")
+            if clear_all:
+                st.session_state.selected_items = set()
+                st.rerun()
+        
+        with col3:
+            add_to_shortlist_btn = st.form_submit_button("⭐ Add Selected to Shortlist", disabled=len(st.session_state.selected_items) == 0)
+            if add_to_shortlist_btn and len(st.session_state.selected_items) > 0:
+                success_count = 0
+                error_count = 0
+                
+                # Process selected items safely
+                for idx in st.session_state.selected_items:
+                    try:
+                        if 0 <= idx < len(filtered_df):
+                            row = filtered_df.iloc[idx]
+                            success, message = add_to_shortlist(
+                                st.session_state.user_id,
+                                row['Institute'],
+                                row['Academic Program Name'],
+                                row['Closing Rank'],
+                                row['Seat Type'],
+                                row['Quota'],
+                                row['Gender']
+                            )
+                            if success:
+                                success_count += 1
+                            else:
+                                error_count += 1
                         else:
                             error_count += 1
-                    else:
+                    except Exception as e:
+                        st.error(f"Error adding item: {e}")
                         error_count += 1
-                except Exception as e:
-                    st.error(f"Error adding item: {e}")
-                    error_count += 1
-            
-            if success_count > 0:
-                st.success(f"✅ Added {success_count} items to shortlist!")
-            if error_count > 0:
-                st.warning(f"⚠️ {error_count} items could not be added.")
-            
-            # Clear selections after adding
-            st.session_state.selected_items = set()
-            st.rerun()
+                
+                if success_count > 0:
+                    st.success(f"✅ Added {success_count} items to shortlist!")
+                if error_count > 0:
+                    st.warning(f"⚠️ {error_count} items could not be added.")
+                
+                # Clear selections after adding
+                st.session_state.selected_items = set()
+                st.rerun()
+    
+    # Display current selection count
+    if len(st.session_state.selected_items) > 0:
+        st.info(f"💡 {len(st.session_state.selected_items)} items selected.")
     
     # Create the enhanced dataframe with selection checkboxes
     enhanced_df = display_df.copy()
@@ -379,7 +403,9 @@ def logged_in_search_page():
         if idx < len(enhanced_df):
             enhanced_df.loc[idx, 'Select'] = True
     
-    # Display the main results table with checkboxes
+    # Display the main results table with checkboxes - using a stable key
+    table_key = f"results_table_{filter_key}"
+    
     edited_df = st.data_editor(
         enhanced_df,
         column_config={
@@ -421,17 +447,14 @@ def logged_in_search_page():
         hide_index=True,
         use_container_width=True,
         height=400,
-        key="results_table"
+        key=table_key
     )
     
-    # Update selected items based on table selections
+    # Update selected items based on table selections (only if table data changed)
     if edited_df is not None:
-        selected_indices = edited_df.index[edited_df['Select'] == True].tolist()
-        st.session_state.selected_items = set(selected_indices)
-    
-    # Add selected items to shortlist button (alternative placement)
-    if len(st.session_state.selected_items) > 0:
-        st.info(f"💡 {len(st.session_state.selected_items)} items selected. Click 'Add Selected to Shortlist' above to save them.")
+        new_selected_indices = set(edited_df.index[edited_df['Select'] == True].tolist())
+        if new_selected_indices != st.session_state.selected_items:
+            st.session_state.selected_items = new_selected_indices
     
     # Download search results as CSV
     st.markdown("---")
