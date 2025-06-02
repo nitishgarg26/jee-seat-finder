@@ -17,20 +17,59 @@ st.set_page_config(
     initial_sidebar_state="expanded"
 )
 
-# Custom CSS for better styling
+# Enhanced CSS for dark theme compatibility and better styling
 st.markdown("""
     <style>
+    /* Dark and Light mode compatibility */
     .block-container {
         max-width: 100vw !important;
         padding-left: 2rem;
         padding-right: 2rem;
     }
+    
+    /* Dark mode styles */
+    @media (prefers-color-scheme: dark) {
+        .block-container {
+            background-color: #0e1117 !important;
+            color: #fafafa !important;
+        }
+        
+        section[data-testid="stSidebar"] {
+            background-color: #1e1e1e !important;
+            color: #fafafa !important;
+            border-right: 1px solid #333 !important;
+        }
+        
+        .main h1, .main h2 {
+            color: #ff6b6b !important;
+        }
+        
+        .stAlert > div {
+            background-color: #262730 !important;
+            color: #fafafa !important;
+            border-left: 4px solid #ff6b6b !important;
+        }
+        
+        .stDataFrame {
+            background-color: #1e1e1e !important;
+        }
+        
+        .login-prompt {
+            background-color: #262730 !important;
+            color: #fafafa !important;
+            border-left: 4px solid #ff6b6b !important;
+        }
+    }
+    
+    /* Light mode styles */
     .main h1 { color: #2e7bcf; font-weight: 700; }
     .main h2 { color: #1b5e20; }
+    
     section[data-testid="stSidebar"] {
         background-color: #f7f9fa;
         border-right: 2px solid #e0e0e0;
     }
+    
     .login-prompt {
         background-color: #e3f2fd;
         padding: 1rem;
@@ -38,9 +77,25 @@ st.markdown("""
         border-left: 4px solid #2196f3;
         margin: 1rem 0;
     }
+    
+    /* Responsive design */
     @media (max-width: 600px) {
         .main h1 { font-size: 2rem !important; }
         .main h2 { font-size: 1.5rem !important; }
+    }
+    
+    /* Shortlist button styling */
+    .shortlist-btn {
+        background-color: #4caf50 !important;
+        color: white !important;
+        border: none !important;
+        padding: 0.25rem 0.5rem !important;
+        border-radius: 4px !important;
+        font-size: 0.8rem !important;
+    }
+    
+    .shortlist-btn:hover {
+        background-color: #45a049 !important;
     }
     </style>
 """, unsafe_allow_html=True)
@@ -75,6 +130,52 @@ def filter_widgets():
     
     rank_range = (min_rank, max_rank)
     return selected_types, selected_colleges, program_group, rank_range, gender, quota, seat_type, filtered_df_for_programs
+
+def apply_filters(df, selected_types, selected_colleges, program_group, rank_range, gender, quota, seat_type, filtered_df_for_programs):
+    """Apply all filters to the dataframe"""
+    filtered_df = df[df["Type"].isin(selected_types)]
+    if selected_colleges and "All" not in selected_colleges:
+        filtered_df = filtered_df[filtered_df["Institute"].isin(selected_colleges)]
+    filtered_df = filtered_df[
+        (filtered_df["Closing Rank"] >= rank_range[0]) &
+        (filtered_df["Closing Rank"] <= rank_range[1])
+    ]
+    
+    if gender:
+        filtered_df = filtered_df[filtered_df["Gender"].isin(gender)]
+    if seat_type:
+        filtered_df = filtered_df[filtered_df["Seat Type"].isin(seat_type)]
+    if quota:
+        filtered_df = filtered_df[filtered_df["Quota"].isin(quota)]
+    
+    # Program filtering logic
+    selected_programs = []
+    if "Computers" in program_group:
+        selected_programs += filtered_df_for_programs[
+            filtered_df_for_programs["Academic Program Name"].str.contains(
+                "Computer|Data|AI|Artificial|Intelligence", case=False, na=False
+            )
+        ]["Academic Program Name"].unique().tolist()
+    if "Electronics" in program_group:
+        selected_programs += filtered_df_for_programs[
+            filtered_df_for_programs["Academic Program Name"].str.contains(
+                "Electronics", case=False, na=False
+            )
+        ]["Academic Program Name"].unique().tolist()
+    selected_programs += [pg for pg in program_group if pg not in ["Computers", "Electronics"]]
+    if selected_programs:
+        filtered_df = filtered_df[filtered_df["Academic Program Name"].isin(selected_programs)]
+    
+    return filtered_df.sort_values(by="Closing Rank")
+
+def format_dataframe_for_display(df):
+    """Format dataframe with commas in ranks"""
+    display_df = df.copy()
+    if "Closing Rank" in display_df.columns:
+        display_df["Closing Rank"] = display_df["Closing Rank"].apply(lambda x: f"{int(x):,}" if pd.notnull(x) else "")
+    if "Opening Rank" in display_df.columns:
+        display_df["Opening Rank"] = display_df["Opening Rank"].apply(lambda x: f"{int(x):,}" if pd.notnull(x) else "")
+    return display_df
 
 def guest_search_page():
     """Search functionality for guest users (without shortlisting)"""
@@ -113,7 +214,7 @@ def guest_search_page():
     width = st_javascript("window.innerWidth")
     is_mobile = width is not None and width < 768
     
-    # Get data
+    # Get data and apply filters
     df = get_jee_data()
     
     # Responsive filter placement
@@ -125,48 +226,9 @@ def guest_search_page():
             st.header("🔍 Filters")
             selected_types, selected_colleges, program_group, rank_range, gender, quota, seat_type, filtered_df_for_programs = filter_widgets()
     
-    # Apply filters (same logic as before)
-    filtered_df = df[df["Type"].isin(selected_types)]
-    if selected_colleges and "All" not in selected_colleges:
-        filtered_df = filtered_df[filtered_df["Institute"].isin(selected_colleges)]
-    filtered_df = filtered_df[
-        (filtered_df["Closing Rank"] >= rank_range[0]) &
-        (filtered_df["Closing Rank"] <= rank_range[1])
-    ]
-    
-    if gender:
-        filtered_df = filtered_df[filtered_df["Gender"].isin(gender)]
-    if seat_type:
-        filtered_df = filtered_df[filtered_df["Seat Type"].isin(seat_type)]
-    if quota:
-        filtered_df = filtered_df[filtered_df["Quota"].isin(quota)]
-    
-    # Program filtering logic
-    selected_programs = []
-    if "Computers" in program_group:
-        selected_programs += filtered_df_for_programs[
-            filtered_df_for_programs["Academic Program Name"].str.contains(
-                "Computer|Data|AI|Artificial|Intelligence", case=False, na=False
-            )
-        ]["Academic Program Name"].unique().tolist()
-    if "Electronics" in program_group:
-        selected_programs += filtered_df_for_programs[
-            filtered_df_for_programs["Academic Program Name"].str.contains(
-                "Electronics", case=False, na=False
-            )
-        ]["Academic Program Name"].unique().tolist()
-    selected_programs += [pg for pg in program_group if pg not in ["Computers", "Electronics"]]
-    if selected_programs:
-        filtered_df = filtered_df[filtered_df["Academic Program Name"].isin(selected_programs)]
-    
-    filtered_df = filtered_df.sort_values(by="Closing Rank")
-    
-    # Format ranks with commas for display
-    display_df = filtered_df.copy()
-    if "Closing Rank" in display_df.columns:
-        display_df["Closing Rank"] = display_df["Closing Rank"].apply(lambda x: f"{int(x):,}" if pd.notnull(x) else "")
-    if "Opening Rank" in display_df.columns:
-        display_df["Opening Rank"] = display_df["Opening Rank"].apply(lambda x: f"{int(x):,}" if pd.notnull(x) else "")
+    # Apply filters and format
+    filtered_df = apply_filters(df, selected_types, selected_colleges, program_group, rank_range, gender, quota, seat_type, filtered_df_for_programs)
+    display_df = format_dataframe_for_display(filtered_df)
     
     # Display results
     st.subheader("🎯 Matching Programs")
@@ -174,26 +236,15 @@ def guest_search_page():
         st.warning("No results found. Try adjusting your filters.")
         return
     
-    # Full table display
+    # Add login prompt column to display dataframe
+    display_with_action = display_df.copy()
+    display_with_action['🔐 Save Option'] = ['Login to Save' for _ in range(len(display_with_action))]
+    
     st.write(f"Found **{len(filtered_df)}** matching programs:")
-    st.dataframe(display_df, use_container_width=True, height=400)
+    st.info("💡 **Login to save your favorite options to a personal shortlist!**")
+    st.dataframe(display_with_action, use_container_width=True, height=400)
     
-    # Show individual results with login prompt for shortlist
-    st.markdown("### Want to save these results?")
-    st.info("💡 **Create an account** to save your favorite options to a personal shortlist!")
-    
-    for idx, row in filtered_df.iterrows():
-        col1, col2 = st.columns([4, 1])
-        with col1:
-            st.markdown(f"**{row['Institute']}** - {row['Academic Program Name']}")
-            st.markdown(f"Closing Rank: {row['Closing Rank']:,} | Seat Type: {row['Seat Type']} | Quota: {row['Quota']} | Gender: {row['Gender']}")
-        with col2:
-            if st.button(f"🔐 Login to Save", key=f"login_prompt_{idx}"):
-                st.session_state.show_login = True
-                st.rerun()
-        st.markdown("---")
-    
-    # Download search results as CSV (available to all users)
+    # Download and feedback sections
     csv = filtered_df.to_csv(index=False).encode("utf-8")
     st.download_button(
         label="📥 Download Search Results as CSV",
@@ -203,7 +254,7 @@ def guest_search_page():
         help="Download your filtered search results."
     )
     
-    # Feedback Section (available to all users)
+    # Feedback Section
     st.markdown("---")
     st.subheader("📝 Submit Your Feedback")
     feedback = st.text_area("Please provide your feedback or suggestions about the app:")
@@ -223,7 +274,7 @@ def guest_search_page():
             st.warning("Please enter some feedback before submitting.")
 
 def logged_in_search_page():
-    """Search functionality for logged-in users (with shortlisting)"""
+    """Search functionality for logged-in users with checkbox shortlisting"""
     st.markdown("""
     <div style='font-size:15px; color:#444; margin-bottom:10px;'>
     <b>Opening/Closing Ranks for Open Seats</b> represent <b>CRL</b>.<br>
@@ -237,7 +288,7 @@ def logged_in_search_page():
     width = st_javascript("window.innerWidth")
     is_mobile = width is not None and width < 768
     
-    # Get data
+    # Get data and apply filters
     df = get_jee_data()
     
     # Responsive filter placement
@@ -249,48 +300,9 @@ def logged_in_search_page():
             st.header("🔍 Filters")
             selected_types, selected_colleges, program_group, rank_range, gender, quota, seat_type, filtered_df_for_programs = filter_widgets()
     
-    # Apply filters (same logic as before)
-    filtered_df = df[df["Type"].isin(selected_types)]
-    if selected_colleges and "All" not in selected_colleges:
-        filtered_df = filtered_df[filtered_df["Institute"].isin(selected_colleges)]
-    filtered_df = filtered_df[
-        (filtered_df["Closing Rank"] >= rank_range[0]) &
-        (filtered_df["Closing Rank"] <= rank_range[1])
-    ]
-    
-    if gender:
-        filtered_df = filtered_df[filtered_df["Gender"].isin(gender)]
-    if seat_type:
-        filtered_df = filtered_df[filtered_df["Seat Type"].isin(seat_type)]
-    if quota:
-        filtered_df = filtered_df[filtered_df["Quota"].isin(quota)]
-    
-    # Program filtering logic
-    selected_programs = []
-    if "Computers" in program_group:
-        selected_programs += filtered_df_for_programs[
-            filtered_df_for_programs["Academic Program Name"].str.contains(
-                "Computer|Data|AI|Artificial|Intelligence", case=False, na=False
-            )
-        ]["Academic Program Name"].unique().tolist()
-    if "Electronics" in program_group:
-        selected_programs += filtered_df_for_programs[
-            filtered_df_for_programs["Academic Program Name"].str.contains(
-                "Electronics", case=False, na=False
-            )
-        ]["Academic Program Name"].unique().tolist()
-    selected_programs += [pg for pg in program_group if pg not in ["Computers", "Electronics"]]
-    if selected_programs:
-        filtered_df = filtered_df[filtered_df["Academic Program Name"].isin(selected_programs)]
-    
-    filtered_df = filtered_df.sort_values(by="Closing Rank")
-    
-    # Format ranks with commas for display
-    display_df = filtered_df.copy()
-    if "Closing Rank" in display_df.columns:
-        display_df["Closing Rank"] = display_df["Closing Rank"].apply(lambda x: f"{int(x):,}" if pd.notnull(x) else "")
-    if "Opening Rank" in display_df.columns:
-        display_df["Opening Rank"] = display_df["Opening Rank"].apply(lambda x: f"{int(x):,}" if pd.notnull(x) else "")
+    # Apply filters and format
+    filtered_df = apply_filters(df, selected_types, selected_colleges, program_group, rank_range, gender, quota, seat_type, filtered_df_for_programs)
+    display_df = format_dataframe_for_display(filtered_df)
     
     # Display results
     st.subheader("🎯 Matching Programs")
@@ -298,19 +310,24 @@ def logged_in_search_page():
         st.warning("No results found. Try adjusting your filters.")
         return
     
-    # Full table display
     st.write(f"Found **{len(filtered_df)}** matching programs:")
-    st.dataframe(display_df, use_container_width=True, height=400)
     
-    # Individual rows with shortlist buttons
-    st.markdown("### Add to Shortlist")
-    for idx, row in filtered_df.iterrows():
-        col1, col2 = st.columns([4, 1])
-        with col1:
-            st.markdown(f"**{row['Institute']}** - {row['Academic Program Name']}")
-            st.markdown(f"Closing Rank: {row['Closing Rank']:,} | Seat Type: {row['Seat Type']} | Quota: {row['Quota']} | Gender: {row['Gender']}")
-        with col2:
-            if st.button(f"⭐ Add to Shortlist", key=f"shortlist_{idx}"):
+    # Initialize session state for selected items
+    if 'selected_items' not in st.session_state:
+        st.session_state.selected_items = []
+    
+    # Create checkbox selection interface
+    col1, col2, col3 = st.columns([1, 3, 1])
+    with col1:
+        select_all = st.checkbox("Select All", key="select_all_results")
+    with col2:
+        st.write("")  # Spacer
+    with col3:
+        if st.button("⭐ Add Selected to Shortlist", disabled=len(st.session_state.selected_items) == 0):
+            success_count = 0
+            error_count = 0
+            for idx in st.session_state.selected_items:
+                row = filtered_df.iloc[idx]
                 success, message = add_to_shortlist(
                     st.session_state.user_id,
                     row['Institute'],
@@ -321,11 +338,44 @@ def logged_in_search_page():
                     row['Gender']
                 )
                 if success:
-                    st.success(message)
+                    success_count += 1
                 else:
-                    st.warning(message)
-                st.rerun()
+                    error_count += 1
+            
+            if success_count > 0:
+                st.success(f"✅ Added {success_count} items to shortlist!")
+            if error_count > 0:
+                st.warning(f"⚠️ {error_count} items were already in your shortlist.")
+            
+            # Clear selections after adding
+            st.session_state.selected_items = []
+            st.rerun()
+    
+    # Handle select all functionality
+    if select_all:
+        st.session_state.selected_items = list(range(len(filtered_df)))
+    elif not select_all and len(st.session_state.selected_items) == len(filtered_df):
+        st.session_state.selected_items = []
+    
+    # Display table with individual checkboxes
+    for idx, (_, row) in enumerate(filtered_df.iterrows()):
+        col1, col2 = st.columns([0.1, 0.9])
+        with col1:
+            is_selected = st.checkbox("", key=f"select_{idx}", value=idx in st.session_state.selected_items)
+            if is_selected and idx not in st.session_state.selected_items:
+                st.session_state.selected_items.append(idx)
+            elif not is_selected and idx in st.session_state.selected_items:
+                st.session_state.selected_items.remove(idx)
+        
+        with col2:
+            st.markdown(f"**{row['Institute']}** - {row['Academic Program Name']}")
+            st.markdown(f"Closing Rank: {row['Closing Rank']:,} | Seat Type: {row['Seat Type']} | Quota: {row['Quota']} | Gender: {row['Gender']}")
+        
         st.markdown("---")
+    
+    # Full table display
+    st.subheader("📊 Complete Data Table")
+    st.dataframe(display_df, use_container_width=True, height=400)
     
     # Download search results as CSV
     csv = filtered_df.to_csv(index=False).encode("utf-8")
@@ -439,9 +489,11 @@ def show_footer():
         unsafe_allow_html=True
     )
 
-# Initialize session state for login modal
+# Initialize session state for login modal and selections
 if 'show_login' not in st.session_state:
     st.session_state.show_login = False
+if 'selected_items' not in st.session_state:
+    st.session_state.selected_items = []
 
 # --- MAIN APP LOGIC ---
 if st.session_state.show_login and not st.session_state.logged_in:
