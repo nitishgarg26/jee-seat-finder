@@ -124,8 +124,8 @@ def filter_widgets():
     min_rank = st.number_input("Minimum Closing Rank", min_value=0, max_value=1000000, value=0, step=1000, format="%d")
     max_rank = st.number_input("Maximum Closing Rank", min_value=0, max_value=1000000, value=1000000, step=1000, format="%d")
     
-    gender = st.multiselect("⚧️ Gender", options=sorted(df["Gender"].dropna().unique()))
-    quota = st.multiselect("🎟️ Quota", options=sorted(df["Quota"].dropna().unique()))
+    gender = st.multiselect("⚧️ Gender", options=sorted(df["Gender"].dropna().unique()), default="Gender-Neutral")
+    quota = st.multiselect("🎟️ Quota", options=sorted(df["Quota"].dropna().unique()),default="AI")
     seat_type = st.multiselect("💺 Seat Type", options=sorted(df["Seat Type"].dropna().unique()), default=["OPEN"])
     
     rank_range = (min_rank, max_rank)
@@ -274,7 +274,7 @@ def guest_search_page():
             st.warning("Please enter some feedback before submitting.")
 
 def logged_in_search_page():
-    """Search functionality for logged-in users with checkbox shortlisting"""
+    """Search functionality for logged-in users with table display and checkbox shortlisting"""
     st.markdown("""
     <div style='font-size:15px; color:#444; margin-bottom:10px;'>
     <b>Opening/Closing Ranks for Open Seats</b> represent <b>CRL</b>.<br>
@@ -314,14 +314,20 @@ def logged_in_search_page():
     
     # Initialize session state for selected items
     if 'selected_items' not in st.session_state:
-        st.session_state.selected_items = []
+        st.session_state.selected_items = set()
     
-    # Create checkbox selection interface
-    col1, col2, col3 = st.columns([1, 3, 1])
+    # Shortlist controls
+    col1, col2, col3 = st.columns([2, 2, 3])
     with col1:
-        select_all = st.checkbox("Select All", key="select_all_results")
+        select_all = st.checkbox("Select All")
+        if select_all:
+            st.session_state.selected_items = set(range(len(filtered_df)))
+        elif not select_all and len(st.session_state.selected_items) == len(filtered_df):
+            st.session_state.selected_items = set()
+    
     with col2:
-        st.write("")  # Spacer
+        st.write(f"Selected: {len(st.session_state.selected_items)}")
+    
     with col3:
         if st.button("⭐ Add Selected to Shortlist", disabled=len(st.session_state.selected_items) == 0):
             success_count = 0
@@ -348,36 +354,69 @@ def logged_in_search_page():
                 st.warning(f"⚠️ {error_count} items were already in your shortlist.")
             
             # Clear selections after adding
-            st.session_state.selected_items = []
+            st.session_state.selected_items = set()
             st.rerun()
     
-    # Handle select all functionality
-    if select_all:
-        st.session_state.selected_items = list(range(len(filtered_df)))
-    elif not select_all and len(st.session_state.selected_items) == len(filtered_df):
-        st.session_state.selected_items = []
+    # Create the enhanced dataframe with selection checkboxes
+    enhanced_df = display_df.copy()
+    enhanced_df.insert(0, 'Select', False)
     
-    # Display table with individual checkboxes
-    for idx, (_, row) in enumerate(filtered_df.iterrows()):
-        col1, col2 = st.columns([0.1, 0.9])
-        with col1:
-            is_selected = st.checkbox("", key=f"select_{idx}", value=idx in st.session_state.selected_items)
-            if is_selected and idx not in st.session_state.selected_items:
-                st.session_state.selected_items.append(idx)
-            elif not is_selected and idx in st.session_state.selected_items:
-                st.session_state.selected_items.remove(idx)
-        
-        with col2:
-            st.markdown(f"**{row['Institute']}** - {row['Academic Program Name']}")
-            st.markdown(f"Closing Rank: {row['Closing Rank']:,} | Seat Type: {row['Seat Type']} | Quota: {row['Quota']} | Gender: {row['Gender']}")
-        
-        st.markdown("---")
+    # Display the main results table with checkboxes
+    edited_df = st.data_editor(
+        enhanced_df,
+        column_config={
+            "Select": st.column_config.CheckboxColumn(
+                "Select",
+                help="Select rows to add to shortlist",
+                default=False,
+            ),
+            "Institute": st.column_config.TextColumn(
+                "Institute",
+                width="medium",
+            ),
+            "Academic Program Name": st.column_config.TextColumn(
+                "Program",
+                width="large",
+            ),
+            "Closing Rank": st.column_config.TextColumn(
+                "Closing Rank",
+                width="small",
+            ),
+            "Opening Rank": st.column_config.TextColumn(
+                "Opening Rank",
+                width="small",
+            ),
+            "Seat Type": st.column_config.TextColumn(
+                "Seat Type",
+                width="small",
+            ),
+            "Quota": st.column_config.TextColumn(
+                "Quota",
+                width="small",
+            ),
+            "Gender": st.column_config.TextColumn(
+                "Gender",
+                width="medium",
+            ),
+        },
+        disabled=["Institute", "Academic Program Name", "Type", "Closing Rank", "Opening Rank", "Seat Type", "Quota", "Gender", "Year"],
+        hide_index=True,
+        use_container_width=True,
+        height=400,
+        key="results_table"
+    )
     
-    # Full table display
-    st.subheader("📊 Complete Data Table")
-    st.dataframe(display_df, use_container_width=True, height=400)
+    # Update selected items based on table selections
+    if edited_df is not None:
+        selected_indices = edited_df.index[edited_df['Select'] == True].tolist()
+        st.session_state.selected_items = set(selected_indices)
+    
+    # Add selected items to shortlist button (alternative placement)
+    if len(st.session_state.selected_items) > 0:
+        st.info(f"💡 {len(st.session_state.selected_items)} items selected. Click 'Add Selected to Shortlist' above to save them.")
     
     # Download search results as CSV
+    st.markdown("---")
     csv = filtered_df.to_csv(index=False).encode("utf-8")
     st.download_button(
         label="📥 Download Search Results as CSV",
