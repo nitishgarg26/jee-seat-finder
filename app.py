@@ -302,6 +302,9 @@ def logged_in_search_page():
     
     # Apply filters and format
     filtered_df = apply_filters(df, selected_types, selected_colleges, program_group, rank_range, gender, quota, seat_type, filtered_df_for_programs)
+    
+    # Reset index to ensure proper indexing for selection
+    filtered_df = filtered_df.reset_index(drop=True)
     display_df = format_dataframe_for_display(filtered_df)
     
     # Display results
@@ -332,26 +335,36 @@ def logged_in_search_page():
         if st.button("⭐ Add Selected to Shortlist", disabled=len(st.session_state.selected_items) == 0):
             success_count = 0
             error_count = 0
+            
+            # Process selected items safely
             for idx in st.session_state.selected_items:
-                row = filtered_df.iloc[idx]
-                success, message = add_to_shortlist(
-                    st.session_state.user_id,
-                    row['Institute'],
-                    row['Academic Program Name'],
-                    row['Closing Rank'],
-                    row['Seat Type'],
-                    row['Quota'],
-                    row['Gender']
-                )
-                if success:
-                    success_count += 1
-                else:
+                try:
+                    # Ensure index is within bounds
+                    if 0 <= idx < len(filtered_df):
+                        row = filtered_df.iloc[idx]
+                        success, message = add_to_shortlist(
+                            st.session_state.user_id,
+                            row['Institute'],
+                            row['Academic Program Name'],
+                            row['Closing Rank'],
+                            row['Seat Type'],
+                            row['Quota'],
+                            row['Gender']
+                        )
+                        if success:
+                            success_count += 1
+                        else:
+                            error_count += 1
+                    else:
+                        error_count += 1
+                except Exception as e:
+                    st.error(f"Error adding item: {e}")
                     error_count += 1
             
             if success_count > 0:
                 st.success(f"✅ Added {success_count} items to shortlist!")
             if error_count > 0:
-                st.warning(f"⚠️ {error_count} items were already in your shortlist.")
+                st.warning(f"⚠️ {error_count} items could not be added.")
             
             # Clear selections after adding
             st.session_state.selected_items = set()
@@ -414,6 +427,28 @@ def logged_in_search_page():
     # Add selected items to shortlist button (alternative placement)
     if len(st.session_state.selected_items) > 0:
         st.info(f"💡 {len(st.session_state.selected_items)} items selected. Click 'Add Selected to Shortlist' above to save them.")
+    
+    # Alternative: Quick add individual items
+    st.markdown("### Quick Add Individual Items")
+    cols = st.columns(min(len(filtered_df), 5))  # Max 5 columns for mobile compatibility
+    for idx, row in filtered_df.head(5).iterrows():  # Show first 5 for quick access
+        col_idx = idx % 5
+        with cols[col_idx]:
+            if st.button(f"⭐ {row['Institute'][:15]}...", key=f"quick_add_{idx}", help=f"Add {row['Institute']} - {row['Academic Program Name']} to shortlist"):
+                success, message = add_to_shortlist(
+                    st.session_state.user_id,
+                    row['Institute'],
+                    row['Academic Program Name'],
+                    row['Closing Rank'],
+                    row['Seat Type'],
+                    row['Quota'],
+                    row['Gender']
+                )
+                if success:
+                    st.success("Added to shortlist!")
+                else:
+                    st.warning(message)
+                st.rerun()
     
     # Download search results as CSV
     st.markdown("---")
