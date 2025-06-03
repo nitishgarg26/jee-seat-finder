@@ -1,4 +1,4 @@
-# Complete shortlist.py content with requested removals
+# Complete shortlist.py content with intuitive reordering controls
 
 import pandas as pd
 import streamlit as st
@@ -143,67 +143,68 @@ def move_item_down(user_id, item_id):
     return True, "Moved down!"
 
 
-def move_item_to_top(user_id, item_id):
-    """Move item to top of the list"""
+def move_item_to_position(user_id, item_id, new_position):
+    """Move item to specific position (1 = top)"""
     conn = get_connection()
     cursor = conn.cursor()
+    
+    # Get total number of items
+    cursor.execute("SELECT COUNT(*) FROM shortlists WHERE user_id = ?", (user_id,))
+    total_items = cursor.fetchone()[0]
+    
+    if new_position < 1 or new_position > total_items:
+        conn.close()
+        return False, f"Position must be between 1 and {total_items}!"
     
     # Get current priority
     cursor.execute("SELECT priority_order FROM shortlists WHERE id = ? AND user_id = ?", (item_id, user_id))
     current_priority = cursor.fetchone()
     
-    if not current_priority or current_priority[0] <= 1:
+    if not current_priority:
         conn.close()
-        return False, "Item is already at the top!"
+        return False, "Item not found!"
     
-    # Update all items with priority < current to priority + 1
+    current_priority = current_priority[0]
+    
+    # Get all items ordered by priority
     cursor.execute("""
-        UPDATE shortlists 
-        SET priority_order = priority_order + 1 
-        WHERE user_id = ? AND priority_order < ?
-    """, (user_id, current_priority[0]))
+        SELECT id FROM shortlists 
+        WHERE user_id = ? 
+        ORDER BY priority_order ASC
+    """, (user_id,))
     
-    # Set current item to priority 1
-    cursor.execute("UPDATE shortlists SET priority_order = 1 WHERE id = ?", (item_id,))
+    all_items = [row[0] for row in cursor.fetchall()]
+    
+    # Remove current item and insert at new position
+    all_items.remove(item_id)
+    all_items.insert(new_position - 1, item_id)
+    
+    # Update all priorities
+    for index, item_id_in_list in enumerate(all_items, 1):
+        cursor.execute("UPDATE shortlists SET priority_order = ? WHERE id = ?", (index, item_id_in_list))
     
     conn.commit()
     conn.close()
-    return True, "Moved to top!"
+    return True, f"Moved to position {new_position}!"
+
+
+def move_item_to_top(user_id, item_id):
+    """Move item to top of the list"""
+    return move_item_to_position(user_id, item_id, 1)
 
 
 def move_item_to_bottom(user_id, item_id):
     """Move item to bottom of the list"""
     conn = get_connection()
     cursor = conn.cursor()
-    
-    # Get total items and current priority
     cursor.execute("SELECT COUNT(*) FROM shortlists WHERE user_id = ?", (user_id,))
     total_items = cursor.fetchone()[0]
-    
-    cursor.execute("SELECT priority_order FROM shortlists WHERE id = ? AND user_id = ?", (item_id, user_id))
-    current_priority = cursor.fetchone()
-    
-    if not current_priority or current_priority[0] >= total_items:
-        conn.close()
-        return False, "Item is already at the bottom!"
-    
-    # Update all items with priority > current to priority - 1
-    cursor.execute("""
-        UPDATE shortlists 
-        SET priority_order = priority_order - 1 
-        WHERE user_id = ? AND priority_order > ?
-    """, (user_id, current_priority[0]))
-    
-    # Set current item to last position
-    cursor.execute("UPDATE shortlists SET priority_order = ? WHERE id = ?", (total_items, item_id))
-    
-    conn.commit()
     conn.close()
-    return True, "Moved to bottom!"
+    return move_item_to_position(user_id, item_id, total_items)
 
 
 def shortlist_page():
-    """Display shortlist management page with streamlined controls"""
+    """Display shortlist management page with intuitive reordering controls"""
     st.subheader("⭐ My Shortlist")
     
     shortlist_df = get_user_shortlist(st.session_state.user_id)
@@ -298,11 +299,44 @@ def shortlist_page():
             
             st.markdown("---")
     
-    # Export options only
-    st.markdown("---")
-    st.subheader("📥 Export Options")
+    # Advanced reordering options
+    st.markdown("### 🎛️ Advanced Reordering")
     
-    col1, col2 = st.columns(2)
+    with st.expander("🔄 Move Item to Specific Position"):
+        col1, col2, col3 = st.columns([2, 1, 1])
+        
+        with col1:
+            # Select item to move
+            item_options = [f"#{i+1}: {row['institute']} - {row['program']}" for i, (_, row) in enumerate(shortlist_df.iterrows())]
+            selected_item = st.selectbox("Select item to move:", item_options, key="move_item_select")
+        
+        with col2:
+            # Select new position
+            new_position = st.number_input(
+                "New position:", 
+                min_value=1, 
+                max_value=len(shortlist_df), 
+                value=1,
+                key="new_position"
+            )
+        
+        with col3:
+            if st.button("🎯 Move to Position"):
+                if selected_item:
+                    item_index = int(selected_item.split(":")[0].replace("#", "")) - 1
+                    item_id = shortlist_df.iloc[item_index]['id']
+                    success, message = move_item_to_position(st.session_state.user_id, item_id, new_position)
+                    if success:
+                        st.success(message)
+                        st.rerun()
+                    else:
+                        st.error(message)
+    
+    # Export and bulk actions
+    st.markdown("---")
+    st.subheader("📥 Export & Bulk Actions")
+    
+    col1, col2, col3 = st.columns(3)
     
     with col1:
         # Download shortlist as CSV
@@ -316,6 +350,35 @@ def shortlist_page():
         )
     
     with col2:
+        # Sort options
+        sort_option = st.selectbox(
+            "🔤 Sort by:",
+            ["Priority (Current Order)", "Institute Name", "Closing Rank", "Date Added"],
+            key="sort_option"
+        )
+        
+        if st.button("🔄 Apply Sort"):
+            if sort_option == "Institute Name":
+                sorted_items = shortlist_df.sort_values('institute')['id'].tolist()
+            elif sort_option == "Closing Rank":
+                sorted_items = shortlist_df.sort_values('closing_rank')['id'].tolist()
+            elif sort_option == "Date Added":
+                sorted_items = shortlist_df.sort_values('added_at')['id'].tolist()
+            else:
+                sorted_items = shortlist_df['id'].tolist()  # Keep current order
+            
+            # Update priorities based on new order
+            conn = get_connection()
+            cursor = conn.cursor()
+            for index, item_id in enumerate(sorted_items, 1):
+                cursor.execute("UPDATE shortlists SET priority_order = ? WHERE id = ?", (index, item_id))
+            conn.commit()
+            conn.close()
+            
+            st.success(f"Sorted by {sort_option}!")
+            st.rerun()
+    
+    with col3:
         # Clear all option
         if st.button("🗑️ Clear All Shortlist"):
             if st.button("⚠️ Confirm Clear All", key="confirm_clear_all"):
