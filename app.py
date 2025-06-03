@@ -283,14 +283,14 @@ def logged_in_search_page():
     <b>Opening/Closing Ranks for JAC Delhi Seats</b> represent <b>CRL</b> within Respective Categories.<br>
     </div>
     """, unsafe_allow_html=True)
-    
+
     # Device detection for responsive layout
     width = st_javascript("window.innerWidth")
     is_mobile = width is not None and width < 768
-    
+
     # Get data
     df = get_jee_data()
-    
+
     # Responsive filter placement
     if is_mobile:
         st.markdown("### 🔍 Filters")
@@ -299,26 +299,26 @@ def logged_in_search_page():
         with st.sidebar:
             st.header("🔍 Filters")
             selected_types, selected_colleges, program_group, rank_range, gender, quota, seat_type, filtered_df_for_programs = filter_widgets()
-    
+
     # Apply filters
     filtered_df = apply_filters(df, selected_types, selected_colleges, program_group, rank_range, gender, quota, seat_type, filtered_df_for_programs)
-    
+
     # Reset index to ensure proper indexing for selection
     filtered_df = filtered_df.reset_index(drop=True)
     display_df = format_dataframe_for_display(filtered_df)
-    
+
     # Display results
     st.subheader("🎯 Matching Programs")
     if len(filtered_df) == 0:
         st.warning("No results found. Try adjusting your filters.")
         return
-    
+
     st.write(f"Found **{len(filtered_df)}** matching programs:")
-    
+
     # Initialize session state for selected items
     if 'selected_items' not in st.session_state:
         st.session_state.selected_items = set()
-    
+
     # Shortlist controls
     col1, col2, col3 = st.columns([2, 2, 3])
     with col1:
@@ -327,19 +327,17 @@ def logged_in_search_page():
             st.session_state.selected_items = set(range(len(filtered_df)))
         elif not select_all and len(st.session_state.selected_items) == len(filtered_df):
             st.session_state.selected_items = set()
-    
+
     with col2:
         st.write(f"Selected: {len(st.session_state.selected_items)}")
-    
+
     with col3:
         if st.button("⭐ Add Selected to Shortlist", disabled=len(st.session_state.selected_items) == 0):
             success_count = 0
             error_count = 0
-            
-            # Process selected items safely
+
             for idx in st.session_state.selected_items:
                 try:
-                    # Ensure index is within bounds
                     if 0 <= idx < len(filtered_df):
                         row = filtered_df.iloc[idx]
                         success, message = add_to_shortlist(
@@ -360,26 +358,24 @@ def logged_in_search_page():
                 except Exception as e:
                     st.error(f"Error adding item: {e}")
                     error_count += 1
-            
+
             if success_count > 0:
                 st.success(f"✅ Added {success_count} items to shortlist!")
             if error_count > 0:
                 st.warning(f"⚠️ {error_count} items could not be added.")
-            
-            # Clear selections after adding
+
             st.session_state.selected_items = set()
             st.rerun()
-    
-    # Create the enhanced dataframe with selection checkboxes
-    enhanced_df = display_df.copy()
-    enhanced_df.insert(0, 'Select', False)
-    
-    # Set previously selected items to True
-    for idx in st.session_state.selected_items:
-        if idx < len(enhanced_df):
-            enhanced_df.loc[idx, 'Select'] = True
-    
-    # Display the main results table with checkboxes
+
+    # --- Create or reuse enhanced DataFrame with selection state ---
+    if 'table_data' not in st.session_state or len(st.session_state.table_data) != len(display_df):
+        enhanced_df = display_df.copy()
+        enhanced_df.insert(0, 'Select', False)
+        st.session_state.table_data = enhanced_df
+    else:
+        enhanced_df = st.session_state.table_data.copy()
+
+    # --- Display the interactive editor with checkboxes ---
     edited_df = st.data_editor(
         enhanced_df,
         column_config={
@@ -388,34 +384,13 @@ def logged_in_search_page():
                 help="Select rows to add to shortlist",
                 default=False,
             ),
-            "Institute": st.column_config.TextColumn(
-                "Institute",
-                width="medium",
-            ),
-            "Academic Program Name": st.column_config.TextColumn(
-                "Program",
-                width="large",
-            ),
-            "Closing Rank": st.column_config.TextColumn(
-                "Closing Rank",
-                width="small",
-            ),
-            "Opening Rank": st.column_config.TextColumn(
-                "Opening Rank",
-                width="small",
-            ),
-            "Seat Type": st.column_config.TextColumn(
-                "Seat Type",
-                width="small",
-            ),
-            "Quota": st.column_config.TextColumn(
-                "Quota",
-                width="small",
-            ),
-            "Gender": st.column_config.TextColumn(
-                "Gender",
-                width="medium",
-            ),
+            "Institute": st.column_config.TextColumn("Institute", width="medium"),
+            "Academic Program Name": st.column_config.TextColumn("Program", width="large"),
+            "Closing Rank": st.column_config.TextColumn("Closing Rank", width="small"),
+            "Opening Rank": st.column_config.TextColumn("Opening Rank", width="small"),
+            "Seat Type": st.column_config.TextColumn("Seat Type", width="small"),
+            "Quota": st.column_config.TextColumn("Quota", width="small"),
+            "Gender": st.column_config.TextColumn("Gender", width="medium"),
         },
         disabled=["Institute", "Academic Program Name", "Type", "Closing Rank", "Opening Rank", "Seat Type", "Quota", "Gender", "Year"],
         hide_index=True,
@@ -423,32 +398,31 @@ def logged_in_search_page():
         height=400,
         key="results_table"
     )
-    
-    # Update selected items based on table selections
+
+    # --- Update session state with current checkbox selections ---
     if edited_df is not None:
-        selected_indices = edited_df.index[edited_df['Select'] == True].tolist()
-        st.session_state.selected_items = set(selected_indices)
-    
-    # Add selected items to shortlist button (alternative placement)
+        st.session_state.table_data = edited_df.copy()
+        st.session_state.selected_items = set(edited_df.index[edited_df['Select'] == True])
+
     if len(st.session_state.selected_items) > 0:
         st.info(f"💡 {len(st.session_state.selected_items)} items selected. Click 'Add Selected to Shortlist' above to save them.")
-    
+
     # Download search results as CSV
     st.markdown("---")
     csv = filtered_df.to_csv(index=False).encode("utf-8")
     st.download_button(
-        label="📥 Download Search Results as CSV",
+        label="📅 Download Search Results as CSV",
         data=csv,
         file_name="jee_search_results.csv",
         mime="text/csv",
         help="Download your filtered search results."
     )
-    
+
     # Feedback Section
     st.markdown("---")
     st.subheader("📝 Submit Your Feedback")
     feedback = st.text_area("Please provide your feedback or suggestions about the app:")
-    
+
     if st.button("Submit Feedback"):
         if feedback.strip():
             try:
