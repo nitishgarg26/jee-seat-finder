@@ -303,7 +303,7 @@ def shortlist_page():
     st.markdown("---")
     st.subheader("📥 Export & Bulk Actions")
     
-    col1, col2 = st.columns(3)
+    col1, col2 = st.columns(2)
     
     with col1:
         # Download shortlist as CSV
