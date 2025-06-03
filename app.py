@@ -284,14 +284,11 @@ def logged_in_search_page():
     </div>
     """, unsafe_allow_html=True)
 
-    # Device detection for responsive layout
     width = st_javascript("window.innerWidth")
     is_mobile = width is not None and width < 768
 
-    # Get data
     df = get_jee_data()
 
-    # Responsive filter placement
     if is_mobile:
         st.markdown("### 🔍 Filters")
         selected_types, selected_colleges, program_group, rank_range, gender, quota, seat_type, filtered_df_for_programs = filter_widgets()
@@ -300,14 +297,10 @@ def logged_in_search_page():
             st.header("🔍 Filters")
             selected_types, selected_colleges, program_group, rank_range, gender, quota, seat_type, filtered_df_for_programs = filter_widgets()
 
-    # Apply filters
     filtered_df = apply_filters(df, selected_types, selected_colleges, program_group, rank_range, gender, quota, seat_type, filtered_df_for_programs)
-
-    # Reset index to ensure proper indexing for selection
     filtered_df = filtered_df.reset_index(drop=True)
     display_df = format_dataframe_for_display(filtered_df)
 
-    # Display results
     st.subheader("🎯 Matching Programs")
     if len(filtered_df) == 0:
         st.warning("No results found. Try adjusting your filters.")
@@ -315,32 +308,35 @@ def logged_in_search_page():
 
     st.write(f"Found **{len(filtered_df)}** matching programs:")
 
-    # Initialize session state for selected items
+    # Initialize session state
     if 'selected_items' not in st.session_state:
         st.session_state.selected_items = set()
+    if 'selected_flags' not in st.session_state or len(st.session_state.selected_flags) != len(display_df):
+        st.session_state.selected_flags = [False] * len(display_df)
 
-    # Shortlist controls
+    # Selection controls
     col1, col2, col3 = st.columns([2, 2, 3])
     with col1:
-        select_all = st.checkbox("Select All")
+        select_all = st.checkbox("Select All", value=len(st.session_state.selected_items) == len(display_df))
         if select_all:
-            st.session_state.selected_items = set(range(len(filtered_df)))
-        elif not select_all and len(st.session_state.selected_items) == len(filtered_df):
-            st.session_state.selected_items = set()
+            st.session_state.selected_flags = [True] * len(display_df)
+            st.session_state.selected_items = set(range(len(display_df)))
+        else:
+            if len(st.session_state.selected_items) == len(display_df):
+                st.session_state.selected_flags = [False] * len(display_df)
+                st.session_state.selected_items = set()
 
     with col2:
         st.write(f"Selected: {len(st.session_state.selected_items)}")
 
     with col3:
         if st.button("⭐ Add Selected to Shortlist", disabled=len(st.session_state.selected_items) == 0):
-            success_count = 0
-            error_count = 0
-
+            success_count, error_count = 0, 0
             for idx in st.session_state.selected_items:
                 try:
                     if 0 <= idx < len(filtered_df):
                         row = filtered_df.iloc[idx]
-                        success, message = add_to_shortlist(
+                        success, _ = add_to_shortlist(
                             st.session_state.user_id,
                             row['Institute'],
                             row['Academic Program Name'],
@@ -353,38 +349,25 @@ def logged_in_search_page():
                             success_count += 1
                         else:
                             error_count += 1
-                    else:
-                        error_count += 1
                 except Exception as e:
                     st.error(f"Error adding item: {e}")
                     error_count += 1
-
             if success_count > 0:
                 st.success(f"✅ Added {success_count} items to shortlist!")
             if error_count > 0:
                 st.warning(f"⚠️ {error_count} items could not be added.")
-
             st.session_state.selected_items = set()
+            st.session_state.selected_flags = [False] * len(display_df)
             st.rerun()
 
-    # --- Create or reuse enhanced DataFrame with selection state ---
-    if 'table_data' not in st.session_state or not st.session_state.get('filters_applied', False):
-        enhanced_df = display_df.copy()
-        enhanced_df.insert(0, 'Select', False)
-        st.session_state.table_data = enhanced_df
-        st.session_state.filters_applied = True
-    else:
-        enhanced_df = st.session_state.table_data.copy()
+    # Create enhanced DataFrame for display
+    enhanced_df = display_df.copy()
+    enhanced_df.insert(0, 'Select', st.session_state.selected_flags)
 
-    # --- Display the interactive editor with checkboxes ---
     edited_df = st.data_editor(
         enhanced_df,
         column_config={
-            "Select": st.column_config.CheckboxColumn(
-                "Select",
-                help="Select rows to add to shortlist",
-                default=False,
-            ),
+            "Select": st.column_config.CheckboxColumn("Select", help="Select rows to add to shortlist"),
             "Institute": st.column_config.TextColumn("Institute", width="medium"),
             "Academic Program Name": st.column_config.TextColumn("Program", width="large"),
             "Closing Rank": st.column_config.TextColumn("Closing Rank", width="small"),
@@ -400,30 +383,31 @@ def logged_in_search_page():
         key="results_table"
     )
 
-    # --- Update session state with current checkbox selections ---
+    # Update selections
     if edited_df is not None:
-        st.session_state.table_data = edited_df.copy()
-        st.session_state.selected_items = set(edited_df.index[edited_df['Select'] == True])
+        st.session_state.selected_flags = edited_df['Select'].tolist()
+        st.session_state.selected_items = {
+            idx for idx, selected in enumerate(st.session_state.selected_flags) if selected
+        }
 
     if len(st.session_state.selected_items) > 0:
         st.info(f"💡 {len(st.session_state.selected_items)} items selected. Click 'Add Selected to Shortlist' above to save them.")
 
-    # Download search results as CSV
+    # CSV Download
     st.markdown("---")
     csv = filtered_df.to_csv(index=False).encode("utf-8")
     st.download_button(
-        label="📅 Download Search Results as CSV",
+        label="📥 Download Search Results as CSV",
         data=csv,
         file_name="jee_search_results.csv",
         mime="text/csv",
         help="Download your filtered search results."
     )
 
-    # Feedback Section
+    # Feedback
     st.markdown("---")
     st.subheader("📝 Submit Your Feedback")
     feedback = st.text_area("Please provide your feedback or suggestions about the app:")
-
     if st.button("Submit Feedback"):
         if feedback.strip():
             try:
@@ -433,7 +417,7 @@ def logged_in_search_page():
                     f.write(f"Timestamp: {pd.Timestamp.now()}\n")
                     f.write("---\n")
                 st.success("Thank you for your feedback!")
-            except Exception as e:
+            except Exception:
                 st.success("Thank you for your feedback!")
         else:
             st.warning("Please enter some feedback before submitting.")
