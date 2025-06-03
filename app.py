@@ -308,47 +308,38 @@ def logged_in_search_page():
 
     st.write(f"Found **{len(filtered_df)}** matching programs:")
 
-    # Initialize session state
+    # Session state setup
     if 'selected_items' not in st.session_state:
         st.session_state.selected_items = set()
-    if 'selected_flags' not in st.session_state or len(st.session_state.selected_flags) != len(display_df):
-        st.session_state.selected_flags = [False] * len(display_df)
 
-    # Selection controls
+    # Controls
     col1, col2, col3 = st.columns([2, 2, 3])
     with col1:
-        select_all = st.checkbox("Select All", value=len(st.session_state.selected_items) == len(display_df))
-        if select_all:
-            st.session_state.selected_flags = [True] * len(display_df)
+        if st.button("Select All"):
             st.session_state.selected_items = set(range(len(display_df)))
-        else:
-            if len(st.session_state.selected_items) == len(display_df):
-                st.session_state.selected_flags = [False] * len(display_df)
-                st.session_state.selected_items = set()
-
+        if st.button("Clear All"):
+            st.session_state.selected_items = set()
     with col2:
         st.write(f"Selected: {len(st.session_state.selected_items)}")
-
     with col3:
         if st.button("⭐ Add Selected to Shortlist", disabled=len(st.session_state.selected_items) == 0):
             success_count, error_count = 0, 0
             for idx in st.session_state.selected_items:
                 try:
-                    if 0 <= idx < len(filtered_df):
-                        row = filtered_df.iloc[idx]
-                        success, _ = add_to_shortlist(
-                            st.session_state.user_id,
-                            row['Institute'],
-                            row['Academic Program Name'],
-                            row['Closing Rank'],
-                            row['Seat Type'],
-                            row['Quota'],
-                            row['Gender']
-                        )
-                        if success:
-                            success_count += 1
-                        else:
-                            error_count += 1
+                    row = filtered_df.iloc[idx]
+                    success, _ = add_to_shortlist(
+                        st.session_state.user_id,
+                        row['Institute'],
+                        row['Academic Program Name'],
+                        row['Closing Rank'],
+                        row['Seat Type'],
+                        row['Quota'],
+                        row['Gender']
+                    )
+                    if success:
+                        success_count += 1
+                    else:
+                        error_count += 1
                 except Exception as e:
                     st.error(f"Error adding item: {e}")
                     error_count += 1
@@ -357,38 +348,23 @@ def logged_in_search_page():
             if error_count > 0:
                 st.warning(f"⚠️ {error_count} items could not be added.")
             st.session_state.selected_items = set()
-            st.session_state.selected_flags = [False] * len(display_df)
             st.rerun()
 
-    # Create enhanced DataFrame for display
-    enhanced_df = display_df.copy()
-    enhanced_df.insert(0, 'Select', st.session_state.selected_flags)
-
-    edited_df = st.data_editor(
-        enhanced_df,
-        column_config={
-            "Select": st.column_config.CheckboxColumn("Select", help="Select rows to add to shortlist"),
-            "Institute": st.column_config.TextColumn("Institute", width="medium"),
-            "Academic Program Name": st.column_config.TextColumn("Program", width="large"),
-            "Closing Rank": st.column_config.TextColumn("Closing Rank", width="small"),
-            "Opening Rank": st.column_config.TextColumn("Opening Rank", width="small"),
-            "Seat Type": st.column_config.TextColumn("Seat Type", width="small"),
-            "Quota": st.column_config.TextColumn("Quota", width="small"),
-            "Gender": st.column_config.TextColumn("Gender", width="medium"),
-        },
-        disabled=["Institute", "Academic Program Name", "Type", "Closing Rank", "Opening Rank", "Seat Type", "Quota", "Gender", "Year"],
-        hide_index=True,
-        use_container_width=True,
-        height=400,
-        key="results_table"
-    )
-
-    # Update selections
-    if edited_df is not None:
-        st.session_state.selected_flags = edited_df['Select'].tolist()
-        st.session_state.selected_items = {
-            idx for idx, selected in enumerate(st.session_state.selected_flags) if selected
-        }
+    # Row-by-row rendering with checkboxes
+    for idx, row in display_df.iterrows():
+        col1, col2 = st.columns([0.07, 0.93])
+        with col1:
+            selected = st.checkbox("", key=f"chk_{idx}", value=idx in st.session_state.selected_items)
+            if selected:
+                st.session_state.selected_items.add(idx)
+            else:
+                st.session_state.selected_items.discard(idx)
+        with col2:
+            st.markdown(
+                f"**{row['Institute']}** – *{row['Academic Program Name']}*  \n"
+                f"🟢 CR: {row['Closing Rank']} | OR: {row['Opening Rank']} | "
+                f"Seat: {row['Seat Type']} | Quota: {row['Quota']} | Gender: {row['Gender']}"
+            )
 
     if len(st.session_state.selected_items) > 0:
         st.info(f"💡 {len(st.session_state.selected_items)} items selected. Click 'Add Selected to Shortlist' above to save them.")
