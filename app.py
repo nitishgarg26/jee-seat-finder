@@ -283,12 +283,15 @@ def logged_in_search_page():
     <b>Opening/Closing Ranks for JAC Delhi Seats</b> represent <b>CRL</b> within Respective Categories.<br>
     </div>
     """, unsafe_allow_html=True)
-
+    
+    # Device detection for responsive layout
     width = st_javascript("window.innerWidth")
     is_mobile = width is not None and width < 768
-
+    
+    # Get data and apply filters
     df = get_jee_data()
-
+    
+    # Responsive filter placement
     if is_mobile:
         st.markdown("### 🔍 Filters")
         selected_types, selected_colleges, program_group, rank_range, gender, quota, seat_type, filtered_df_for_programs = filter_widgets()
@@ -296,80 +299,158 @@ def logged_in_search_page():
         with st.sidebar:
             st.header("🔍 Filters")
             selected_types, selected_colleges, program_group, rank_range, gender, quota, seat_type, filtered_df_for_programs = filter_widgets()
-
+    
+    # Apply filters and format
     filtered_df = apply_filters(df, selected_types, selected_colleges, program_group, rank_range, gender, quota, seat_type, filtered_df_for_programs)
+    
+    # Reset index to ensure proper indexing for selection
     filtered_df = filtered_df.reset_index(drop=True)
     display_df = format_dataframe_for_display(filtered_df)
-
+    
+    # Display results
     st.subheader("🎯 Matching Programs")
     if len(filtered_df) == 0:
         st.warning("No results found. Try adjusting your filters.")
         return
-
+    
     st.write(f"Found **{len(filtered_df)}** matching programs:")
-
-    # Session state setup
+    
+    # Initialize session state for selected items
     if 'selected_items' not in st.session_state:
         st.session_state.selected_items = set()
-
-    # Controls
+    
+    # Shortlist controls
     col1, col2, col3 = st.columns([2, 2, 3])
     with col1:
-        if st.button("Select All"):
-            st.session_state.selected_items = set(range(len(display_df)))
-        if st.button("Clear All"):
+        select_all = st.checkbox("Select All")
+        if select_all:
+            st.session_state.selected_items = set(range(len(filtered_df)))
+        elif not select_all and len(st.session_state.selected_items) == len(filtered_df):
             st.session_state.selected_items = set()
+    
     with col2:
         st.write(f"Selected: {len(st.session_state.selected_items)}")
+    
     with col3:
         if st.button("⭐ Add Selected to Shortlist", disabled=len(st.session_state.selected_items) == 0):
-            success_count, error_count = 0, 0
+            success_count = 0
+            error_count = 0
+            
+            # Process selected items safely
             for idx in st.session_state.selected_items:
                 try:
-                    row = filtered_df.iloc[idx]
-                    success, _ = add_to_shortlist(
-                        st.session_state.user_id,
-                        row['Institute'],
-                        row['Academic Program Name'],
-                        row['Closing Rank'],
-                        row['Seat Type'],
-                        row['Quota'],
-                        row['Gender']
-                    )
-                    if success:
-                        success_count += 1
+                    # Ensure index is within bounds
+                    if 0 <= idx < len(filtered_df):
+                        row = filtered_df.iloc[idx]
+                        success, message = add_to_shortlist(
+                            st.session_state.user_id,
+                            row['Institute'],
+                            row['Academic Program Name'],
+                            row['Closing Rank'],
+                            row['Seat Type'],
+                            row['Quota'],
+                            row['Gender']
+                        )
+                        if success:
+                            success_count += 1
+                        else:
+                            error_count += 1
                     else:
                         error_count += 1
                 except Exception as e:
                     st.error(f"Error adding item: {e}")
                     error_count += 1
+            
             if success_count > 0:
                 st.success(f"✅ Added {success_count} items to shortlist!")
             if error_count > 0:
                 st.warning(f"⚠️ {error_count} items could not be added.")
+            
+            # Clear selections after adding
             st.session_state.selected_items = set()
             st.rerun()
-
-    # Row-by-row rendering with checkboxes
-    for idx, row in display_df.iterrows():
-        col1, col2 = st.columns([0.07, 0.93])
-        with col1:
-            selected = st.checkbox("", key=f"chk_{idx}", value=idx in st.session_state.selected_items)
-            if selected:
-                st.session_state.selected_items.add(idx)
-            else:
-                st.session_state.selected_items.discard(idx)
-        with col2:
-            st.markdown(
-                f"**{row['Institute']}** – *{row['Academic Program Name']}*  \n"
-                f"🟢 CR: {row['Closing Rank']} | OR: {row['Opening Rank']} | "
-                f"Seat: {row['Seat Type']} | Quota: {row['Quota']} | Gender: {row['Gender']}"
-            )
-
+    
+    # Create the enhanced dataframe with selection checkboxes
+    enhanced_df = display_df.copy()
+    enhanced_df.insert(0, 'Select', False)
+    
+    # Display the main results table with checkboxes
+    edited_df = st.data_editor(
+        enhanced_df,
+        column_config={
+            "Select": st.column_config.CheckboxColumn(
+                "Select",
+                help="Select rows to add to shortlist",
+                default=False,
+            ),
+            "Institute": st.column_config.TextColumn(
+                "Institute",
+                width="medium",
+            ),
+            "Academic Program Name": st.column_config.TextColumn(
+                "Program",
+                width="large",
+            ),
+            "Closing Rank": st.column_config.TextColumn(
+                "Closing Rank",
+                width="small",
+            ),
+            "Opening Rank": st.column_config.TextColumn(
+                "Opening Rank",
+                width="small",
+            ),
+            "Seat Type": st.column_config.TextColumn(
+                "Seat Type",
+                width="small",
+            ),
+            "Quota": st.column_config.TextColumn(
+                "Quota",
+                width="small",
+            ),
+            "Gender": st.column_config.TextColumn(
+                "Gender",
+                width="medium",
+            ),
+        },
+        disabled=["Institute", "Academic Program Name", "Type", "Closing Rank", "Opening Rank", "Seat Type", "Quota", "Gender", "Year"],
+        hide_index=True,
+        use_container_width=True,
+        height=400,
+        key="results_table"
+    )
+    
+    # Update selected items based on table selections
+    if edited_df is not None:
+        selected_indices = edited_df.index[edited_df['Select'] == True].tolist()
+        st.session_state.selected_items = set(selected_indices)
+    
+    # Add selected items to shortlist button (alternative placement)
     if len(st.session_state.selected_items) > 0:
         st.info(f"💡 {len(st.session_state.selected_items)} items selected. Click 'Add Selected to Shortlist' above to save them.")
-
-    # CSV Download
+    
+    # Alternative: Quick add individual items
+    st.markdown("### Quick Add Individual Items")
+    cols = st.columns(min(len(filtered_df), 5))  # Max 5 columns for mobile compatibility
+    for idx, row in filtered_df.head(5).iterrows():  # Show first 5 for quick access
+        col_idx = idx % 5
+        with cols[col_idx]:
+            if st.button(f"⭐ {row['Institute'][:15]}...", key=f"quick_add_{idx}", help=f"Add {row['Institute']} - {row['Academic Program Name']} to shortlist"):
+                success, message = add_to_shortlist(
+                    st.session_state.user_id,
+                    row['Institute'],
+                    row['Academic Program Name'],
+                    row['Closing Rank'],
+                    row['Seat Type'],
+                    row['Quota'],
+                    row['Gender']
+                )
+                if success:
+                    st.success("Added to shortlist!")
+                else:
+                    st.warning(message)
+                st.rerun()
+    
+    # Download search results as CSV
     st.markdown("---")
     csv = filtered_df.to_csv(index=False).encode("utf-8")
     st.download_button(
@@ -379,11 +460,12 @@ def logged_in_search_page():
         mime="text/csv",
         help="Download your filtered search results."
     )
-
-    # Feedback
+    
+    # Feedback Section
     st.markdown("---")
     st.subheader("📝 Submit Your Feedback")
     feedback = st.text_area("Please provide your feedback or suggestions about the app:")
+    
     if st.button("Submit Feedback"):
         if feedback.strip():
             try:
@@ -393,7 +475,7 @@ def logged_in_search_page():
                     f.write(f"Timestamp: {pd.Timestamp.now()}\n")
                     f.write("---\n")
                 st.success("Thank you for your feedback!")
-            except Exception:
+            except Exception as e:
                 st.success("Thank you for your feedback!")
         else:
             st.warning("Please enter some feedback before submitting.")
