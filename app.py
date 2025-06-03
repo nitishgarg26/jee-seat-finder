@@ -368,10 +368,11 @@ def logged_in_search_page():
             st.rerun()
 
     # --- Create or reuse enhanced DataFrame with selection state ---
-    if 'table_data' not in st.session_state or len(st.session_state.table_data) != len(display_df):
+    if 'table_data' not in st.session_state or not st.session_state.get('filters_applied', False):
         enhanced_df = display_df.copy()
         enhanced_df.insert(0, 'Select', False)
         st.session_state.table_data = enhanced_df
+        st.session_state.filters_applied = True
     else:
         enhanced_df = st.session_state.table_data.copy()
 
