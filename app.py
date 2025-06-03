@@ -427,29 +427,7 @@ def logged_in_search_page():
     # Add selected items to shortlist button (alternative placement)
     if len(st.session_state.selected_items) > 0:
         st.info(f"💡 {len(st.session_state.selected_items)} items selected. Click 'Add Selected to Shortlist' above to save them.")
-    
-    # Alternative: Quick add individual items
-    st.markdown("### Quick Add Individual Items")
-    cols = st.columns(min(len(filtered_df), 5))  # Max 5 columns for mobile compatibility
-    for idx, row in filtered_df.head(5).iterrows():  # Show first 5 for quick access
-        col_idx = idx % 5
-        with cols[col_idx]:
-            if st.button(f"⭐ {row['Institute'][:15]}...", key=f"quick_add_{idx}", help=f"Add {row['Institute']} - {row['Academic Program Name']} to shortlist"):
-                success, message = add_to_shortlist(
-                    st.session_state.user_id,
-                    row['Institute'],
-                    row['Academic Program Name'],
-                    row['Closing Rank'],
-                    row['Seat Type'],
-                    row['Quota'],
-                    row['Gender']
-                )
-                if success:
-                    st.success("Added to shortlist!")
-                else:
-                    st.warning(message)
-                st.rerun()
-    
+        
     # Download search results as CSV
     st.markdown("---")
     csv = filtered_df.to_csv(index=False).encode("utf-8")

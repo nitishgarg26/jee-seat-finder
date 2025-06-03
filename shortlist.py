@@ -298,45 +298,12 @@ def shortlist_page():
                 st.rerun()
             
             st.markdown("---")
-    
-    # Advanced reordering options
-    st.markdown("### 🎛️ Advanced Reordering")
-    
-    with st.expander("🔄 Move Item to Specific Position"):
-        col1, col2, col3 = st.columns([2, 1, 1])
         
-        with col1:
-            # Select item to move
-            item_options = [f"#{i+1}: {row['institute']} - {row['program']}" for i, (_, row) in enumerate(shortlist_df.iterrows())]
-            selected_item = st.selectbox("Select item to move:", item_options, key="move_item_select")
-        
-        with col2:
-            # Select new position
-            new_position = st.number_input(
-                "New position:", 
-                min_value=1, 
-                max_value=len(shortlist_df), 
-                value=1,
-                key="new_position"
-            )
-        
-        with col3:
-            if st.button("🎯 Move to Position"):
-                if selected_item:
-                    item_index = int(selected_item.split(":")[0].replace("#", "")) - 1
-                    item_id = shortlist_df.iloc[item_index]['id']
-                    success, message = move_item_to_position(st.session_state.user_id, item_id, new_position)
-                    if success:
-                        st.success(message)
-                        st.rerun()
-                    else:
-                        st.error(message)
-    
     # Export and bulk actions
     st.markdown("---")
     st.subheader("📥 Export & Bulk Actions")
     
-    col1, col2, col3 = st.columns(3)
+    col1, col2 = st.columns(3)
     
     with col1:
         # Download shortlist as CSV
@@ -348,37 +315,8 @@ def shortlist_page():
             mime="text/csv",
             help="Download your complete shortlist"
         )
-    
-    with col2:
-        # Sort options
-        sort_option = st.selectbox(
-            "🔤 Sort by:",
-            ["Priority (Current Order)", "Institute Name", "Closing Rank", "Date Added"],
-            key="sort_option"
-        )
         
-        if st.button("🔄 Apply Sort"):
-            if sort_option == "Institute Name":
-                sorted_items = shortlist_df.sort_values('institute')['id'].tolist()
-            elif sort_option == "Closing Rank":
-                sorted_items = shortlist_df.sort_values('closing_rank')['id'].tolist()
-            elif sort_option == "Date Added":
-                sorted_items = shortlist_df.sort_values('added_at')['id'].tolist()
-            else:
-                sorted_items = shortlist_df['id'].tolist()  # Keep current order
-            
-            # Update priorities based on new order
-            conn = get_connection()
-            cursor = conn.cursor()
-            for index, item_id in enumerate(sorted_items, 1):
-                cursor.execute("UPDATE shortlists SET priority_order = ? WHERE id = ?", (index, item_id))
-            conn.commit()
-            conn.close()
-            
-            st.success(f"Sorted by {sort_option}!")
-            st.rerun()
-    
-    with col3:
+    with col2:
         # Clear all option
         if st.button("🗑️ Clear All Shortlist"):
             if st.button("⚠️ Confirm Clear All", key="confirm_clear_all"):
