@@ -1,0 +1,311 @@
+/* styles.css - Complete styling for JEE Seat Finder app */
+
+/* General container styling */
+.block-container {
+    max-width: 100vw !important;
+    padding-left: 2rem;
+    padding-right: 2rem;
+}
+
+/* Dark and Light mode compatibility */
+@media (prefers-color-scheme: dark) {
+    .block-container {
+        background-color: #0e1117 !important;
+        color: #fafafa !important;
+    }
+    
+    section[data-testid="stSidebar"] {
+        background-color: #1e1e1e !important;
+        color: #fafafa !important;
+        border-right: 1px solid #333 !important;
+    }
+    
+    .main h1, .main h2 {
+        color: #ff6b6b !important;
+    }
+    
+    .stAlert > div {
+        background-color: #262730 !important;
+        color: #fafafa !important;
+        border-left: 4px solid #ff6b6b !important;
+    }
+    
+    .stDataFrame {
+        background-color: #1e1e1e !important;
+    }
+    
+    .login-prompt {
+        background-color: #262730 !important;
+        color: #fafafa !important;
+        border-left: 4px solid #ff6b6b !important;
+    }
+    
+    /* Dark mode tab styling */
+    .stTabs [data-baseweb="tab-list"] {
+        background-color: #262730 !important;
+    }
+    
+    .stTabs [data-baseweb="tab"] {
+        color: #fafafa !important;
+    }
+    
+    .stTabs [aria-selected="true"] {
+        background-color: #1e1e1e !important;
+        color: #ff6b6b !important;
+    }
+    
+    .stTabs [data-baseweb="tab"]:hover {
+        background-color: #1e1e1e !important;
+        color: #ff6b6b !important;
+    }
+}
+
+/* Light mode styles */
+.main h1 { 
+    color: #2e7bcf; 
+    font-weight: 700;
+    background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.main h2 { 
+    color: #1b5e20; 
+}
+
+section[data-testid="stSidebar"] {
+    background-color: #f7f9fa;
+    border-right: 2px solid #e0e0e0;
+}
+
+.login-prompt {
+    background-color: #e3f2fd;
+    padding: 1rem;
+    border-radius: 5px;
+    border-left: 4px solid #2196f3;
+    margin: 1rem 0;
+}
+
+/* Responsive design */
+@media (max-width: 600px) {
+    .main h1 { 
+        font-size: 2rem !important; 
+    }
+    .main h2 { 
+        font-size: 1.5rem !important; 
+    }
+    
+    .block-container {
+        padding-left: 1rem;
+        padding-right: 1rem;
+    }
+}
+
+/* Button styling */
+.shortlist-btn {
+    background-color: #4caf50 !important;
+    color: white !important;
+    border: none !important;
+    padding: 0.25rem 0.5rem !important;
+    border-radius: 4px !important;
+    font-size: 0.8rem !important;
+    transition: all 0.3s ease !important;
+}
+
+.shortlist-btn:hover {
+    background-color: #45a049 !important;
+    transform: translateY(-1px) !important;
+}
+
+/* Primary button enhancements */
+.stButton > button[kind="primary"] {
+    background: linear-gradient(90deg, #667eea 0%, #764ba2 100%) !important;
+    border: none !important;
+    border-radius: 8px !important;
+    padding: 0.5rem 1rem !important;
+    font-weight: 600 !important;
+    transition: all 0.3s ease !important;
+}
+
+.stButton > button[kind="primary"]:hover {
+    transform: translateY(-2px) !important;
+    box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4) !important;
+}
+
+/* Tab styling */
+.stTabs [data-baseweb="tab-list"] {
+    gap: 8px;
+    background-color: #f0f2f6;
+    border-radius: 10px;
+    padding: 5px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.stTabs [data-baseweb="tab"] {
+    height: 50px;
+    padding: 10px 20px;
+    background-color: transparent;
+    border-radius: 8px;
+    color: #262730;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    border: 2px solid transparent;
+}
+
+.stTabs [aria-selected="true"] {
+    background-color: #ffffff;
+    color: #1f77b4;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+    border-color: #1f77b4;
+}
+
+.stTabs [data-baseweb="tab"]:hover {
+    background-color: #ffffff;
+    color: #1f77b4;
+    transform: translateY(-1px);
+}
+
+/* Data editor styling */
+.stDataFrame {
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+/* Alert styling */
+.stAlert {
+    border-radius: 8px;
+    border: none;
+}
+
+.stSuccess {
+    background: linear-gradient(90deg, #56ab2f 0%, #a8e6cf 100%);
+    color: white;
+}
+
+.stError {
+    background: linear-gradient(90deg, #ff416c 0%, #ff4b2b 100%);
+    color: white;
+}
+
+.stWarning {
+    background: linear-gradient(90deg, #f7971e 0%, #ffd200 100%);
+    color: white;
+}
+
+.stInfo {
+    background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+    color: white;
+}
+
+/* Form styling */
+.stTextInput > div > div > input {
+    border-radius: 8px;
+    border: 2px solid #e0e0e0;
+    transition: border-color 0.3s ease;
+}
+
+.stTextInput > div > div > input:focus {
+    border-color: #667eea;
+    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+}
+
+.stSelectbox > div > div > div {
+    border-radius: 8px;
+}
+
+.stMultiSelect > div > div > div {
+    border-radius: 8px;
+}
+
+/* Number input styling */
+.stNumberInput > div > div > input {
+    border-radius: 8px;
+    border: 2px solid #e0e0e0;
+    transition: border-color 0.3s ease;
+}
+
+.stNumberInput > div > div > input:focus {
+    border-color: #667eea;
+    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+}
+
+/* Checkbox styling */
+.stCheckbox > label {
+    font-weight: 500;
+}
+
+/* Download button styling */
+.stDownloadButton > button {
+    background: linear-gradient(90deg, #11998e 0%, #38ef7d 100%) !important;
+    color: white !important;
+    border: none !important;
+    border-radius: 8px !important;
+    font-weight: 600 !important;
+    transition: all 0.3s ease !important;
+}
+
+.stDownloadButton > button:hover {
+    transform: translateY(-2px) !important;
+    box-shadow: 0 4px 12px rgba(17, 153, 142, 0.4) !important;
+}
+
+/* Sidebar enhancements */
+.css-1d391kg {
+    padding-top: 1rem;
+}
+
+/* Footer styling */
+hr {
+    border: none;
+    height: 2px;
+    background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+    border-radius: 1px;
+}
+
+/* Text area styling */
+.stTextArea > div > div > textarea {
+    border-radius: 8px;
+    border: 2px solid #e0e0e0;
+    transition: border-color 0.3s ease;
+}
+
+.stTextArea > div > div > textarea:focus {
+    border-color: #667eea;
+    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+}
+
+/* Metric styling */
+.metric-container {
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    padding: 1rem;
+    border-radius: 10px;
+    color: white;
+    margin-bottom: 1rem;
+}
+
+/* Loading spinner */
+.stSpinner > div {
+    border-top-color: #667eea;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: linear-gradient(180deg, #667eea 0%, #764ba2 100%);
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(180deg, #5a6fd8 0%, #6a4190 100%);
+}

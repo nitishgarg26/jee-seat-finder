@@ -10,95 +10,25 @@ from database import setup_user_tables, get_jee_data, get_connection
 setup_user_tables()
 initialize_session()
 
+
+def load_css(file_name):
+    """Load CSS from external file"""
+    try:
+        with open(file_name, 'r') as f:
+            css = f.read()
+        st.markdown(f'<style>{css}</style>', unsafe_allow_html=True)
+    except FileNotFoundError:
+        st.warning(f"CSS file {file_name} not found. Using default styling.")
+
+# Load CSS at the start of your app
+load_css('styles.css')
+
 st.set_page_config(
     page_title="JEE Seat Finder",
     page_icon="🎓",
     layout="wide",
     initial_sidebar_state="expanded"
 )
-
-# Enhanced CSS for dark theme compatibility and better styling
-st.markdown("""
-    <style>
-    /* Dark and Light mode compatibility */
-    .block-container {
-        max-width: 100vw !important;
-        padding-left: 2rem;
-        padding-right: 2rem;
-    }
-    
-    /* Dark mode styles */
-    @media (prefers-color-scheme: dark) {
-        .block-container {
-            background-color: #0e1117 !important;
-            color: #fafafa !important;
-        }
-        
-        section[data-testid="stSidebar"] {
-            background-color: #1e1e1e !important;
-            color: #fafafa !important;
-            border-right: 1px solid #333 !important;
-        }
-        
-        .main h1, .main h2 {
-            color: #ff6b6b !important;
-        }
-        
-        .stAlert > div {
-            background-color: #262730 !important;
-            color: #fafafa !important;
-            border-left: 4px solid #ff6b6b !important;
-        }
-        
-        .stDataFrame {
-            background-color: #1e1e1e !important;
-        }
-        
-        .login-prompt {
-            background-color: #262730 !important;
-            color: #fafafa !important;
-            border-left: 4px solid #ff6b6b !important;
-        }
-    }
-    
-    /* Light mode styles */
-    .main h1 { color: #2e7bcf; font-weight: 700; }
-    .main h2 { color: #1b5e20; }
-    
-    section[data-testid="stSidebar"] {
-        background-color: #f7f9fa;
-        border-right: 2px solid #e0e0e0;
-    }
-    
-    .login-prompt {
-        background-color: #e3f2fd;
-        padding: 1rem;
-        border-radius: 5px;
-        border-left: 4px solid #2196f3;
-        margin: 1rem 0;
-    }
-    
-    /* Responsive design */
-    @media (max-width: 600px) {
-        .main h1 { font-size: 2rem !important; }
-        .main h2 { font-size: 1.5rem !important; }
-    }
-    
-    /* Shortlist button styling */
-    .shortlist-btn {
-        background-color: #4caf50 !important;
-        color: white !important;
-        border: none !important;
-        padding: 0.25rem 0.5rem !important;
-        border-radius: 4px !important;
-        font-size: 0.8rem !important;
-    }
-    
-    .shortlist-btn:hover {
-        background-color: #45a049 !important;
-    }
-    </style>
-""", unsafe_allow_html=True)
 
 def filter_widgets():
     """Reusable filter widgets function"""
@@ -315,16 +245,77 @@ def logged_in_search_page():
     
     st.write(f"Found **{len(filtered_df)}** matching programs:")
     
-    # Initialize session state for selected items - IMPORTANT: Initialize early
+    # Initialize session state for selected items
     if 'selected_items' not in st.session_state:
         st.session_state.selected_items = set()
     
-    # Clear selected items if navigating from another page - ADD THIS
+    # Clear selected items if navigating from another page
     if 'current_page' not in st.session_state:
         st.session_state.current_page = 'search'
     elif st.session_state.current_page != 'search':
         st.session_state.selected_items = set()
         st.session_state.current_page = 'search'
+    
+    # MOVED: Shortlist controls ABOVE the table
+    col1, col2, col3 = st.columns([2, 2, 3])
+    with col1:
+        current_selection_count = len(st.session_state.selected_items)
+        select_all = st.checkbox("Select All", key=f"select_all_{current_selection_count}")
+        if select_all:
+            st.session_state.selected_items = set(range(len(filtered_df)))
+        elif not select_all and len(st.session_state.selected_items) == len(filtered_df):
+            st.session_state.selected_items = set()
+    
+    with col2:
+        st.write(f"**Selected: {len(st.session_state.selected_items)}**")
+    
+    with col3:
+        button_key = f"add_shortlist_{len(st.session_state.selected_items)}_{current_selection_count}"
+        if st.button("⭐ Add Selected to Shortlist", 
+                    disabled=len(st.session_state.selected_items) == 0,
+                    key=button_key,
+                    type="primary"):
+            success_count = 0
+            error_count = 0
+            
+            # Process selected items safely
+            for idx in st.session_state.selected_items:
+                try:
+                    if 0 <= idx < len(filtered_df):
+                        row = filtered_df.iloc[idx]
+                        success, message = add_to_shortlist(
+                            st.session_state.user_id,
+                            row['Institute'],
+                            row['Academic Program Name'],
+                            row['Closing Rank'],
+                            row['Seat Type'],
+                            row['Quota'],
+                            row['Gender']
+                        )
+                        if success:
+                            success_count += 1
+                        else:
+                            error_count += 1
+                    else:
+                        error_count += 1
+                except Exception as e:
+                    st.error(f"Error adding item: {e}")
+                    error_count += 1
+            
+            if success_count > 0:
+                st.success(f"✅ Added {success_count} items to shortlist!")
+            if error_count > 0:
+                st.warning(f"⚠️ {error_count} items could not be added.")
+            
+            # Clear selections after adding
+            st.session_state.selected_items = set()
+            st.rerun()
+    
+    # Show selection info if items are selected
+    if len(st.session_state.selected_items) > 0:
+        st.info(f"💡 {len(st.session_state.selected_items)} items selected. Click 'Add Selected to Shortlist' above to save them.")
+    
+    st.markdown("---")
     
     # Create the enhanced dataframe with selection checkboxes
     enhanced_df = display_df.copy()
@@ -375,67 +366,10 @@ def logged_in_search_page():
         key="results_table"
     )
     
-    # Update selected items based on table selections - PROCESS SELECTIONS BEFORE BUTTON
+    # Update selected items based on table selections
     if edited_df is not None:
         selected_indices = edited_df.index[edited_df['Select'] == True].tolist()
         st.session_state.selected_items = set(selected_indices)
-    
-    # Shortlist controls - MOVED AFTER SELECTION PROCESSING
-    col1, col2, col3 = st.columns([2, 2, 3])
-    with col1:
-        # Force re-evaluation by checking current state
-        current_selection_count = len(st.session_state.selected_items)
-        select_all = st.checkbox("Select All", key=f"select_all_{current_selection_count}")
-        if select_all:
-            st.session_state.selected_items = set(range(len(filtered_df)))
-        elif not select_all and len(st.session_state.selected_items) == len(filtered_df):
-            st.session_state.selected_items = set()
-    
-    with col2:
-        st.write(f"Selected: {len(st.session_state.selected_items)}")
-    
-    with col3:
-        # Use a unique key that changes with selection count to force re-render
-        button_key = f"add_shortlist_{len(st.session_state.selected_items)}_{current_selection_count}"
-        if st.button("⭐ Add Selected to Shortlist", 
-                    disabled=len(st.session_state.selected_items) == 0,
-                    key=button_key):
-            success_count = 0
-            error_count = 0
-            
-            # Process selected items safely
-            for idx in st.session_state.selected_items:
-                try:
-                    # Ensure index is within bounds
-                    if 0 <= idx < len(filtered_df):
-                        row = filtered_df.iloc[idx]
-                        success, message = add_to_shortlist(
-                            st.session_state.user_id,
-                            row['Institute'],
-                            row['Academic Program Name'],
-                            row['Closing Rank'],
-                            row['Seat Type'],
-                            row['Quota'],
-                            row['Gender']
-                        )
-                        if success:
-                            success_count += 1
-                        else:
-                            error_count += 1
-                    else:
-                        error_count += 1
-                except Exception as e:
-                    st.error(f"Error adding item: {e}")
-                    error_count += 1
-            
-            if success_count > 0:
-                st.success(f"✅ Added {success_count} items to shortlist!")
-            if error_count > 0:
-                st.warning(f"⚠️ {error_count} items could not be added.")
-            
-            # Clear selections after adding
-            st.session_state.selected_items = set()
-            st.rerun()
         
     # Download search results as CSV
     st.markdown("---")
@@ -518,27 +452,35 @@ def admin_page():
             st.error("Invalid credentials.")
 
 def main_app():
-    """Main application after login"""
+    """Main application after login with attractive navigation"""
     # Header with user info and logout
     col1, col2 = st.columns([3, 1])
     with col1:
         st.title(f"🎓 JEE Seat Finder - Welcome, {st.session_state.username}!")
     with col2:
-        if st.button("🚪 Logout"):
+        if st.button("🚪 Logout", type="secondary"):
             logout()
     
-    # Navigation
-    if st.session_state.username == "admin":
-        page = st.sidebar.selectbox("Navigate", ["🔍 Search Seats", "⭐ My Shortlist", "🔑 Admin Panel"])
-    else:
-        page = st.sidebar.selectbox("Navigate", ["🔍 Search Seats", "⭐ My Shortlist"])
+    # Modern tab-style navigation
+    st.markdown("---")
     
-    if page == "🔍 Search Seats":
-        logged_in_search_page()
-    elif page == "⭐ My Shortlist":
-        shortlist_page()
-    elif page == "🔑 Admin Panel":
-        admin_page()
+    # Create navigation tabs
+    if st.session_state.username == "admin":
+        tab1, tab2, tab3 = st.tabs(["🔍 Search Seats", "⭐ My Shortlist", "🔑 Admin Panel"])
+        
+        with tab1:
+            logged_in_search_page()
+        with tab2:
+            shortlist_page()
+        with tab3:
+            admin_page()
+    else:
+        tab1, tab2 = st.tabs(["🔍 Search Seats", "⭐ My Shortlist"])
+        
+        with tab1:
+            logged_in_search_page()
+        with tab2:
+            shortlist_page()
 
 # Footer
 def show_footer():
