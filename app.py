@@ -6,10 +6,6 @@ from auth import initialize_session, login_page, logout
 from shortlist import add_to_shortlist, shortlist_page
 from database import setup_user_tables, get_jee_data, get_connection
 
-# Initialize database and session
-setup_user_tables()
-initialize_session()
-
 st.set_page_config(
     page_title="JEE Seat Finder",
     page_icon="🎓",
@@ -28,6 +24,10 @@ def load_css(file_name):
 
 # Load CSS at the start of your app
 load_css('styles.css')
+
+# Initialize database and session
+setup_user_tables()
+initialize_session()
 
 def filter_widgets():
     """Reusable filter widgets function"""
