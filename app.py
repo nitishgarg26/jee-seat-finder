@@ -10,6 +10,12 @@ from database import setup_user_tables, get_jee_data, get_connection
 setup_user_tables()
 initialize_session()
 
+st.set_page_config(
+    page_title="JEE Seat Finder",
+    page_icon="🎓",
+    layout="wide",
+    initial_sidebar_state="expanded"
+)
 
 def load_css(file_name):
     """Load CSS from external file"""
@@ -22,13 +28,6 @@ def load_css(file_name):
 
 # Load CSS at the start of your app
 load_css('styles.css')
-
-st.set_page_config(
-    page_title="JEE Seat Finder",
-    page_icon="🎓",
-    layout="wide",
-    initial_sidebar_state="expanded"
-)
 
 def filter_widgets():
     """Reusable filter widgets function"""
