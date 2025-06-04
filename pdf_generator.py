@@ -198,7 +198,8 @@ def generate_search_results_pdf(df, username, filters_applied=None):
         pdf.add_page()
         
         # Header
-        pdf.set_font('Arial', 'B', 16)
+        pdf.add_font("DejaVu", "", "DejaVuSans.ttf", uni=True)
+        pdf.set_font('DejaVu', 'B', 16)
         pdf.set_text_color(102, 126, 234)
         pdf.cell(0, 15, '🎓 JEE Seat Finder - Search Results', 0, 1, 'C')
         
