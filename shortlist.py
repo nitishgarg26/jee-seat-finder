@@ -3,6 +3,7 @@
 import pandas as pd
 import streamlit as st
 from database import get_connection
+from pdf_generator import generate_shortlist_pdf, validate_dataframe_for_pdf
 
 
 def add_to_shortlist(user_id, institute, program, closing_rank, seat_type, quota, gender, notes=""):
@@ -303,10 +304,10 @@ def shortlist_page():
         
     # Export and bulk actions
     st.markdown("---")
-    st.subheader("📥 Export & Bulk Actions")
-    
-    col1, col2 = st.columns(2)
-    
+    st.subheader("📥 Export & Actions")
+
+    col1, col2, col3 = st.columns(3)
+
     with col1:
         # Download shortlist as CSV
         csv = shortlist_df.to_csv(index=False).encode("utf-8")
@@ -315,10 +316,38 @@ def shortlist_page():
             data=csv,
             file_name=f"jee_shortlist_{st.session_state.username}.csv",
             mime="text/csv",
-            help="Download your complete shortlist"
+            help="Download your complete shortlist as CSV"
         )
-        
+
     with col2:
+        # Download shortlist as PDF
+        if len(shortlist_df) > 0:
+            try:
+                if validate_dataframe_for_pdf(shortlist_df):
+                    pdf_bytes = generate_shortlist_pdf(shortlist_df, st.session_state.username)
+                    st.download_button(
+                        label="📄 Download as PDF",
+                        data=pdf_bytes,
+                        file_name=f"jee_shortlist_{st.session_state.username}.pdf",
+                        mime="application/pdf",
+                        help="Download your shortlist as a well-formatted PDF"
+                    )
+                else:
+                    st.error("Invalid data format for PDF generation")
+            except Exception as e:
+                st.error(f"PDF generation error: {str(e)}")
+                # Fallback CSV download
+                st.download_button(
+                    label="📥 Download CSV (PDF Error)",
+                    data=csv,
+                    file_name=f"jee_shortlist_{st.session_state.username}_fallback.csv",
+                    mime="text/csv",
+                    help="PDF generation failed, download CSV instead"
+                )
+        else:
+            st.info("Add items to shortlist to enable PDF download")
+
+    with col3:
         # Clear all option
         if st.button("🗑️ Clear All Shortlist"):
             if st.button("⚠️ Confirm Clear All", key="confirm_clear_all"):
