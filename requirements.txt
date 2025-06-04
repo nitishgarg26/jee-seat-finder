@@ -3,4 +3,3 @@ pandas
 streamlit-javascript
 streamlit-super-slider
 fpdf2
-sqlite3
