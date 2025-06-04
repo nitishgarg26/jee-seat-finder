@@ -205,6 +205,8 @@ def move_item_to_bottom(user_id, item_id):
 
 def shortlist_page():
     """Display shortlist management page with intuitive reordering controls"""
+    # Set current page marker
+    st.session_state.current_page = 'shortlist'
     st.subheader("⭐ My Shortlist")
     
     shortlist_df = get_user_shortlist(st.session_state.user_id)
